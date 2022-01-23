@@ -50,6 +50,8 @@
            :on-message #'org-hs--ws-on-message
            :on-close #'org-hs--ws-on-close))
 
+(defun stop-server ()
+    (websocket-server-close org-hs-ws-server))
 
 (defun org-hs--ws-on-message (_ws frame)
   "Functions to run when the  server receives a message.
@@ -94,12 +96,12 @@ Takes _WS and FRAME as arguments."
   )
 
 (defun get-calendar-entries (scope)
-    (org-map-entries #'get-agenda "TODO=\"TODO\"+SCHEDULED>=\"<2008-10-11>\"" nil))
+    (org-map-entries #'get-agenda "TODO=\"TODO\"+SCHEDULED>=\"<2008-10-11>\"" scope))
           
 (provide 'org-hyperscheduler)
 
 (defun org-hs--get-agenda ()
-    (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries)))
+    (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda)))
   )
 
 
