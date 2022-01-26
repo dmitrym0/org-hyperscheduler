@@ -10,3 +10,7 @@
 * Running tests
 
 ~cask exec buttercup -L .~
+
+
+* Tasks
+-  [ ] Move server logic out of org-hyperscheduler so that it can be tested without ocnflicting with the running instance.

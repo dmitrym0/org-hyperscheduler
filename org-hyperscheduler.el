@@ -96,7 +96,7 @@ Takes _WS and FRAME as arguments."
   )
 
 (defun get-calendar-entries (scope)
-    (org-map-entries #'get-agenda "TODO=\"TODO\"+SCHEDULED>=\"<2008-10-11>\"" scope))
+    (org-map-entries #'get-agenda "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"" scope))
           
 (provide 'org-hyperscheduler)
 
@@ -110,6 +110,7 @@ Takes _WS and FRAME as arguments."
 
 (defun get-js-date-pair ()
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
+         (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP"))))))
          (year-start (plist-get plist :year-start))
          (month-start (plist-get plist :month-start))
          (day-start (plist-get plist :day-start))
@@ -128,6 +129,7 @@ Takes _WS and FRAME as arguments."
     )
   )
 
+; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
 (defun date-time-to-iso8601-js-like (seconds minutes hour day month year)
   (message (format "params %s %s %s %s %s %s" seconds minutes hour day month year))
   (let* ((minutes (or minutes 0))

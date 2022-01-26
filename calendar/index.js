@@ -11,7 +11,7 @@ cal = new tui.Calendar('#calendar', {
     {
       id: '2',
       name: 'Company',
-      color: '#00a9ff',
+      color: '#000000',
       bgColor: '#00a9ff',
       dragBgColor: '#00a9ff',
       borderColor: '#00a9ff'
@@ -80,9 +80,11 @@ socket.onmessage = function(event) {
         }
         calId = calId + 1;
 
-        if (agendaItem["SCHEDULED"] != undefined) {
-            schedule.push(calendarItem);
+        if (agendaItem["SCHEDULED"] === undefined) {
+            calendarItem.calendarId = 2;
         }
+
+        schedule.push(calendarItem);
     }
 
 
