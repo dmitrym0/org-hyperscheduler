@@ -64,7 +64,7 @@ socket.onmessage = function(event) {
     schedule = [];
     for (const agendaItem of agenda) {
         let calendarItem = {
-            id:  calId,
+            id:  agendaItem["ID"],
             calendarId: 1,
             dueDateClass: '',
             title: agendaItem["ITEM"].replaceAll(/\[\[.*\:.*\]\[/ig, ''),
