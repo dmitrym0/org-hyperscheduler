@@ -147,3 +147,21 @@ Takes _WS and FRAME as arguments."
       (format-time-string "%z")))))
 
 
+
+;; --- deal with exporting links
+
+
+(defun get-link-location ()
+ (org-element-property :contents-begin (car (org-element-map (org-element-headline-parser (point)) 'link #'identity))))
+
+
+
+(defun get-link-label ()
+(let* ((link-location (get-link-location)))
+(goto-char link-location)
+(get-link-label--)))
+
+(defun get-link-label-- ()
+  (let ((link (org-element-context)))
+     (buffer-substring-no-properties (org-element-property :contents-begin link)
+                                    (org-element-property :contents-end link))))
