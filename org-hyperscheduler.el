@@ -91,6 +91,7 @@ Takes _WS and FRAME as arguments."
       (org-id-get-create)
     (error nil))
   (setq org-id-prefix nil)
+  (org-set-tags (org-uniquify (cons "DO_NOT_ORG_ROAM" (org-get-tags))))
   (let* ((props (org-entry-properties))
          (js-date (get-js-date-pair ))
          )

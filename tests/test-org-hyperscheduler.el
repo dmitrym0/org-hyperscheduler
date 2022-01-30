@@ -56,6 +56,16 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
                 (setq original org-id-prefix
                 )))
 
+
+          (it "has roam ignore tag"
+              (with-temp-buffer
+                (org-mode)
+                (insert mock-org-contents)
+                (let* ((todo-entries (get-calendar-entries nil))
+                  (tags (org-get-tags)))
+                  (expect (member "DO_NOT_ORG_ROAM" tags) :not :to-be nil))))
+
+
 )
 
 
