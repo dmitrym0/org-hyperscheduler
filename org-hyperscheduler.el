@@ -84,6 +84,13 @@ Takes _WS and FRAME as arguments."
 
 
 (defun get-agenda ()
+  ; TODO: should we preserve the original value?
+  (setq org-id-prefix "org-hs-id-custom")
+  ; silently eat the error that org-id-get-create generates in temp buffers.
+  (condition-case nil
+      (org-id-get-create)
+    (error nil))
+  (setq org-id-prefix nil)
   (let* ((props (org-entry-properties))
          (js-date (get-js-date-pair ))
          )
