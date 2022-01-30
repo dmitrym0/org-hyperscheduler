@@ -67,7 +67,7 @@ socket.onmessage = function(event) {
             id:  calId,
             calendarId: 1,
             dueDateClass: '',
-            title: agendaItem["ITEM"],
+            title: agendaItem["ITEM"].replaceAll(/\[\[.*\:.*\]\[/ig, ''),
             category: 'time',
             start: agendaItem["startDate"],
             end: agendaItem["endDate"],
