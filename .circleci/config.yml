@@ -18,6 +18,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "---"
+          command: "echo $TZ"
+      - run:
           name: "timezones?"
           command: "ls /usr/share/zoneinfo/America"
       - run:
@@ -28,7 +31,7 @@ jobs:
           command: "cask"
       - run:
           name: "Run unit tests"
-          command: "TZ=America/Vancouver cask exec buttercup -L ."
+          command: "cask exec buttercup -L ."
 
 
 
