@@ -47,6 +47,22 @@ cal.createSchedules([
 ]);
 */
 
+cal.on('beforeUpdateSchedule', function(event) {
+    updated_schedule = event.schedule;
+    changes = event.changes;
+
+    console.log(`schedule:` + schedule + `changes:` + changes);
+
+    console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
+
+    cal.updateSchedule(updated_schedule.id, updated_schedule.calendarId, changes);
+});
+
+
+function getUnixTimestampFromDate(date) {
+    return date.getTime() / 1000;
+}
+
 
 let socket = new WebSocket("ws://127.0.0.1:44445");
 
