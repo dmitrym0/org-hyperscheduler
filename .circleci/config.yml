@@ -5,14 +5,13 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  org-hyperscheduler-test:
     docker:
-      - image: cimg/base:stable
+      - image: silex/emacs:27.1
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
+      - run: apt update && apt install -y cask
       - checkout
       - run:
           name: "Say hello"
@@ -21,6 +20,6 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  org-hyperscheduler-workflow:
     jobs:
-      - say-hello
+      - org-hyperscheduler-test
