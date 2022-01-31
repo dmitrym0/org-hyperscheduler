@@ -9,16 +9,16 @@ jobs:
     docker:
       - image: silex/emacs:27.2-ci-cask
         environment:
-          TZ: "America/Los_Angeles"
+          TZ: "/usr/share/zoneinfo/America/Vancouver"
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     environment:
-      TZ: "America/Los_Angeles"
+      TZ: "/usr/share/zoneinfo/America/Vancouver"
     steps:
       - checkout
       - run:
-          name: "timezonmes?"
+          name: "timezones?"
           command: "ls /usr/share/zoneinfo/America"
       - run:
           name: "Say hello"
