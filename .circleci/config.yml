@@ -18,6 +18,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "timezonmes?"
+          command: "ls /usr/share/zoneinfo/"
+      - run:
           name: "Say hello"
           command: "echo Hello, World!"
       - run:
@@ -25,7 +28,7 @@ jobs:
           command: "cask"
       - run:
           name: "Run unit tests"
-          command: "cask exec buttercup -L ."
+          command: "TZ=America/Vancouver cask exec buttercup -L ."
 
 
 
