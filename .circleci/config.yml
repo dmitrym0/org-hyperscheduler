@@ -20,7 +20,7 @@ jobs:
           command: "cask"
       - run:
           name: "Run unit tests"
-          command: "cask exec buttercup -L ."
+          command: "TZ=America/Vancouver cask exec buttercup -L ."
 
 
 
