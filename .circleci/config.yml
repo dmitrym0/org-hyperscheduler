@@ -18,15 +18,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "---"
-          command: "echo $TZ"
-      - run:
-          name: "timezones?"
-          command: "ls /usr/share/zoneinfo/America"
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-      - run:
           name: "Fetch cask depedencies"
           command: "cask"
       - run:
