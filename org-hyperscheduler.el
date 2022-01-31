@@ -148,6 +148,15 @@ Takes _WS and FRAME as arguments."
       (format-time-string "%z")))))
 
 
+(defun get-scheduled-timestamp-for-scheduled-event (start-time-stamp stop-time-stamp) 
+  (concat (format-time-string "<%Y-%m-%d %a %H:%M:%S" (seconds-to-time start-time-stamp))
+          (format-time-string "-%H:%M:%S>" (seconds-to-time stop-time-stamp))))
+
+
+
+(defun schedule-at-point (timestamp)
+  (org-schedule nil "<2022-01-25 Tue 11:30-12:31>"))
+
 
 ;; --- deal with exporting links
 
