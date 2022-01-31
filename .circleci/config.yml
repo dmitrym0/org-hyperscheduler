@@ -10,6 +10,8 @@ jobs:
       - image: silex/emacs:27.2-ci-cask
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    environment:
+      TZ: "America/Los_Angeles"
     steps:
       - checkout
       - run:
@@ -20,7 +22,7 @@ jobs:
           command: "cask"
       - run:
           name: "Run unit tests"
-          command: "export TZ=America/Vancouver; cask exec buttercup -L ."
+          command: "cask exec buttercup -L ."
 
 
 
