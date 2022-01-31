@@ -11,11 +11,13 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - run: apt update && apt install -y cask
       - checkout
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+      - run:
+          name: "Fetch cask depedencies"
+          command: "cask"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
