@@ -19,7 +19,7 @@ jobs:
       - checkout
       - run:
           name: "timezonmes?"
-          command: "ls /usr/share/zoneinfo/"
+          command: "ls /usr/share/zoneinfo/America"
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
