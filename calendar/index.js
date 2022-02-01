@@ -50,11 +50,20 @@ cal.createSchedules([
 cal.on('beforeUpdateSchedule', function(event) {
     updated_schedule = event.schedule;
     changes = event.changes;
+    if (changes.start === undefined) {
+        changes.start = updated_schedule.start;
+    }
+        
 
     console.log(`schedule:` + schedule + `changes:` + changes);
 
     console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
 
+
+    update_event_data = {id: updated_schedule.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
+    
+    socket.send(JSON.stringify({"command": "update-event", "data":update_event_data}));
+    
     cal.updateSchedule(updated_schedule.id, updated_schedule.calendarId, changes);
 });
 
@@ -69,7 +78,7 @@ let socket = new WebSocket("ws://127.0.0.1:44445");
 socket.onopen = function(e) {
     console.log("[open] Connection established");
     console.log("Sending to server");
-    socket.send(JSON.stringify({"command":"getAgenda"}));
+    socket.send(JSON.stringify({"command":"get-agenda"}));
 };
 
 socket.onmessage = function(event) {
