@@ -60,17 +60,15 @@ Takes _WS and FRAME as arguments."
                (websocket-frame-text frame) :object-type 'alist))
          (command (alist-get 'command msg))
          (data (alist-get 'data msg)))
-    (message command)
-    (message data)
-    (cond ((string= command "getAgenda")
+    (message (format "Command: %s" command))
+    (message (format "Data: %s" data))
+    (cond ((string= command "get-agenda")
            (org-hs--get-agenda))
-          ((string= command "delete")
-           (org-roam-ui--on-msg-delete-node data))
-          ((string= command "create")
-           (org-roam-ui--on-msg-create-node data))
+          ((string= command "update-event")
+           (org-hs--update-event data))
           (t
            (message
-            "Something went wrong when receiving a message from org-roam-ui")))))
+            "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
 
 
 
@@ -82,11 +80,32 @@ Takes _WS and FRAME as arguments."
     )
 )
 
+(defun org-hs--update-event (data)
+  (message "+org-hs-update-event")
+  (let* ((id (alist-get 'id data))
+         (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
+         (message (format "Updating ID: %s to timestamp: %s" id timestamp))
+         (save-excursion
+           (find-event-by-id id)
+           (schedule-at-point timestamp)
+           )
+         
+
+    )
+  (message "-org-hs-update-event")
+  )
+             
+(defun find-event-by-id (id)
+  (let* ((location (org-id-find id)))
+    (find-file (car location))
+    (goto-char (cdr location))
+  )
+  )
 
 (defun get-agenda ()
-  ; TODO: should we preserve the original value?
+                                        ; TODO: should we preserve the original value?
   (setq org-id-prefix "org-hs-id-custom")
-  ; silently eat the error that org-id-get-create generates in temp buffers.
+                                        ; silently eat the error that org-id-get-create generates in temp buffers.
   (condition-case nil
       (org-id-get-create)
     (error nil))
@@ -104,12 +123,12 @@ Takes _WS and FRAME as arguments."
   )
 
 (defun get-calendar-entries (scope)
-    (org-map-entries #'get-agenda "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"" scope))
-          
+  (org-map-entries #'get-agenda "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"" scope))
+
 (provide 'org-hyperscheduler)
 
 (defun org-hs--get-agenda ()
-    (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda)))
+  (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda)))
   )
 
 
@@ -137,9 +156,9 @@ Takes _WS and FRAME as arguments."
     )
   )
 
-; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
+                                        ; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
 (defun date-time-to-iso8601-js-like (seconds minutes hour day month year)
-  (message (format "params %s %s %s %s %s %s" seconds minutes hour day month year))
+  ;; (message (format "params %s %s %s %s %s %s" seconds minutes hour day month year))
   (let* ((minutes (or minutes 0))
         (hour (or hour 0)))
     (concat
@@ -149,13 +168,13 @@ Takes _WS and FRAME as arguments."
 
 
 (defun get-scheduled-timestamp-for-scheduled-event (start-time-stamp stop-time-stamp) 
-  (concat (format-time-string "<%Y-%m-%d %a %H:%M:%S" (seconds-to-time start-time-stamp))
-          (format-time-string "-%H:%M:%S>" (seconds-to-time stop-time-stamp))))
+  (concat (format-time-string "<%Y-%m-%d %a %H:%M" (seconds-to-time start-time-stamp))
+          (format-time-string "-%H:%M>" (seconds-to-time stop-time-stamp))))
 
 
 
 (defun schedule-at-point (timestamp)
-  (org-schedule nil "<2022-01-25 Tue 11:30-12:31>"))
+  (org-schedule nil timestamp))
 
 
 ;; --- deal with exporting links
@@ -175,3 +194,8 @@ Takes _WS and FRAME as arguments."
   (let ((link (org-element-context)))
      (buffer-substring-no-properties (org-element-property :contents-begin link)
                                     (org-element-property :contents-end link))))
+
+(defun org-hs--ws-on-close ()
+  (message "org-hs--ws-on-close")
+  )
+
