@@ -101,4 +101,4 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
 
 (describe "time stamp generation"
           (it "can create a proper emacs timestamp from unix timestamp"
-              (expect (get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30:00-15:16:40>")))
+              (expect (get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30-15:16>")))
