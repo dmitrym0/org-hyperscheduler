@@ -15,6 +15,9 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
 :END:
 ")
 
+(setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"")
+
+
 (describe "Getting the agenda"
           (it "can get the correct entries"
               (with-temp-buffer

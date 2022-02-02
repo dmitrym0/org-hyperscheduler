@@ -20,6 +20,8 @@
 *** TODO a task
 ")
 
+(setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\"")
+
 (defun print-entries ()
   (let* ((props (org-entry-properties))
          (reslist ())
@@ -62,10 +64,14 @@ Takes _WS and FRAME as arguments."
          (data (alist-get 'data msg)))
     (message (format "Command: %s" command))
     (message (format "Data: %s" data))
+    (setq last-data data)
     (cond ((string= command "get-agenda")
            (org-hs--get-agenda))
           ((string= command "update-event")
            (org-hs--update-event data))
+          ((string= command "add-scheduled-event")
+           (org-hs--add-scheduled-event data))
+
           (t
            (message
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
@@ -95,6 +101,21 @@ Takes _WS and FRAME as arguments."
   (message "-org-hs-update-event")
   )
              
+(defun org-hs--add-scheduled-event (data)
+  (message "+org-hs--add-scheduled-event")
+  (let* ((title (alist-get 'title data))
+         (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
+         (message (format "Creating %s to timestamp: %s" title timestamp))
+         (save-excursion
+           (goto-file "~/org-roam/inbox.org")
+           (insert (format "* TODO %s" title))
+           (schedule-at-point timestamp)
+           )
+         
+    )
+  (message "-org-hs--add-scheduled-event")
+  )
+
 (defun find-event-by-id (id)
   (let* ((location (org-id-find id)))
     (find-file (car location))
@@ -123,7 +144,7 @@ Takes _WS and FRAME as arguments."
   )
 
 (defun get-calendar-entries (scope)
-  (org-map-entries #'get-agenda "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"" scope))
+  (org-map-entries #'get-agenda org-hyperscheduler-agenda-filter scope))
 
 (provide 'org-hyperscheduler)
 
@@ -195,7 +216,7 @@ Takes _WS and FRAME as arguments."
      (buffer-substring-no-properties (org-element-property :contents-begin link)
                                     (org-element-property :contents-end link))))
 
-(defun org-hs--ws-on-close ()
+(defun org-hs--ws-on-close (_websocket)
   (message "org-hs--ws-on-close")
   )
 
