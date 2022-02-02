@@ -1,3 +1,4 @@
+var schedule = [];
 function setEventListener() {
   // $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
   $('#menu-navi').on('click', onClickNavi);
@@ -116,7 +117,7 @@ socket.onmessage = function(event) {
             id:  agendaItem["ID"],
             calendarId: 1,
             dueDateClass: '',
-            title: agendaItem["ITEM"].replaceAll(/\[\[.*\:.*\]\[/ig, ''),
+            title: agendaItem["ITEM"].replaceAll(/\[\[.*\:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
             category: 'time',
             start: agendaItem["startDate"],
             end: agendaItem["endDate"],
