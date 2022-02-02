@@ -1,8 +1,41 @@
+function setEventListener() {
+  // $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
+  $('#menu-navi').on('click', onClickNavi);
+  // window.addEventListener('resize', resizeThrottled);
+}
+
+// from https://github.com/nhn/tui.calendar/blob/ac65d491c21b99ba18e179664c96089bd51216c7/examples/js/default.js
+function getDataAction(target) {
+  return target.dataset ? target.dataset.action : target.getAttribute('data-action');
+}
+
+
+function onClickNavi(e) {
+  var action = getDataAction(e.target);
+
+  switch (action) {
+    case 'move-prev':
+      cal.prev();
+      break;
+    case 'move-next':
+      cal.next();
+      break;
+    case 'move-today':
+      cal.today();
+      break;
+    default:
+      return;
+  }
+
+  setRenderRangeText();
+  setSchedules();
+}
+
 cal = new tui.Calendar('#calendar', {
     calendars: [
     {
       id: '1',
-      name: 'My Calendar',
+      name: 'Scheduled Items',
       color: '#ffffff',
       bgColor: '#9e5fff',
       dragBgColor: '#9e5fff',
@@ -10,7 +43,7 @@ cal = new tui.Calendar('#calendar', {
     },
     {
       id: '2',
-      name: 'Company',
+      name: 'Timestamped Items',
       color: '#000000',
       bgColor: '#00a9ff',
       dragBgColor: '#00a9ff',
@@ -21,7 +54,10 @@ cal = new tui.Calendar('#calendar', {
     defaultView: 'week', // set 'month'
     month: {
       visibleWeeksCount: 2 // visible week count in monthly
-    }
+    },
+    
+    useCreationPopup: true,
+    useDetailPopup: true
   });
 
 /*
@@ -46,6 +82,8 @@ cal.createSchedules([
     }
 ]);
 */
+
+calendar = cal;
 
 cal.on('beforeUpdateSchedule', function(event) {
     updated_schedule = event.schedule;
@@ -76,6 +114,7 @@ function getUnixTimestampFromDate(date) {
 let socket = new WebSocket("ws://127.0.0.1:44445");
 
 socket.onopen = function(e) {
+    $("body").addClass("loading");
     console.log("[open] Connection established");
     console.log("Sending to server");
     socket.send(JSON.stringify({"command":"get-agenda"}));
@@ -115,7 +154,35 @@ socket.onmessage = function(event) {
 
     
     cal.createSchedules(schedule);
+    $("body").removeClass("loading");
 };
+
+
+calendar.on({
+        clickMore: function (e) {
+            console.log('clickMore', e);
+        },
+        clickSchedule: function (e) {
+            console.log('clickSchedule', e);
+            //cal.openCreationPopup(e.schedule);
+        },
+        clickDayname: function (date) {
+            console.log('clickDayname', date);
+        },
+        beforeCreateSchedule: function (e) {
+            console.log('beforeCreateSchedule', e);
+            socket.send(JSON.stringify({"command":"add-scheduled-event", data: e}));
+        },
+        beforeDeleteSchedule: function (e) {
+            console.log('beforeDeleteSchedule', e);
+            calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+        },
+        afterRenderSchedule: function (e) {
+            // const schedule = e.schedule;
+            // let element = calendar.getElement(schedule.id, schedule.calendarId);
+            // console.log('afterRenderSchedule', element);
+        }
+});
 
 socket.onclose = function(event) {
   if (event.wasClean) {
@@ -130,3 +197,5 @@ socket.onclose = function(event) {
 socket.onerror = function(error) {
   alert(`[error] ${error.message}`);
 };
+
+setEventListener();
