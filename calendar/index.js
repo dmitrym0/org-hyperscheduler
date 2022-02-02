@@ -60,29 +60,6 @@ cal = new tui.Calendar('#calendar', {
     useDetailPopup: true
   });
 
-/*
-cal.createSchedules([
-    {
-        id: '1',
-        calendarId: '1',
-        title: 'my schedule',
-        category: 'time',
-        dueDateClass: '',
-        start: '2022-01-18T22:30:00+09:00',
-        end: '2022-01-19T02:30:00+09:00'
-    },
-    {
-        id: '2',
-        calendarId: '1',
-        title: 'second schedule',
-        category: 'time',
-        dueDateClass: '',
-        start: '2022-01-18T12:00:00-08:00',
-        end: '2022-01-18T13:00:00-08:00'
-    }
-]);
-*/
-
 calendar = cal;
 
 cal.on('beforeUpdateSchedule', function(event) {
@@ -113,14 +90,22 @@ function getUnixTimestampFromDate(date) {
 
 let socket = new WebSocket("ws://127.0.0.1:44445");
 
-socket.onopen = function(e) {
-    $("body").addClass("loading");
+
+function getAgenda() {
+   $("body").addClass("loading");
     console.log("[open] Connection established");
     console.log("Sending to server");
     socket.send(JSON.stringify({"command":"get-agenda"}));
+}
+
+socket.onopen = function(e) {
+    getAgenda();
 };
 
 socket.onmessage = function(event) {
+    for (let existingEvent of schedule) {
+        cal.deleteSchedule(existingEvent.id, existingEvent.calendarId, false);
+    }
     console.log(`[message] Data received from server: ${event.data}`);
     agenda = JSON.parse(event.data);
     console.log(`${agenda.length} items in agenda.`);
@@ -171,7 +156,10 @@ calendar.on({
         },
         beforeCreateSchedule: function (e) {
             console.log('beforeCreateSchedule', e);
+            e.startUnix = getUnixTimestampFromDate(e.start);
+            e.endUnix =  getUnixTimestampFromDate(e.end);
             socket.send(JSON.stringify({"command":"add-scheduled-event", data: e}));
+            getAgenda();
         },
         beforeDeleteSchedule: function (e) {
             console.log('beforeDeleteSchedule', e);

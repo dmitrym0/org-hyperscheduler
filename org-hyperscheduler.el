@@ -91,7 +91,7 @@ Takes _WS and FRAME as arguments."
   (let* ((id (alist-get 'id data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
          (message (format "Updating ID: %s to timestamp: %s" id timestamp))
-         (save-excursion
+         (save-window-excursion
            (find-event-by-id id)
            (schedule-at-point timestamp)
            )
@@ -104,11 +104,12 @@ Takes _WS and FRAME as arguments."
 (defun org-hs--add-scheduled-event (data)
   (message "+org-hs--add-scheduled-event")
   (let* ((title (alist-get 'title data))
-         (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
-         (message (format "Creating %s to timestamp: %s" title timestamp))
-         (save-excursion
-           (goto-file "~/org-roam/inbox.org")
-           (insert (format "* TODO %s" title))
+         (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data))))
+         )
+         (save-window-excursion
+           (find-file "~/org-roam/inbox.org")
+           (goto-char (point-max))
+           (insert (format "* TODO %s\n" title))
            (schedule-at-point timestamp)
            )
          
