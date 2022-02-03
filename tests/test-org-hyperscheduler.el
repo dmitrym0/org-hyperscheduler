@@ -19,7 +19,7 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
 (setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"")
 
 
-(describe "Getting the agenda"
+(describe "Agenda functionality"
           (it "can get the correct entries"
               (with-temp-buffer
                 (org-mode)
@@ -68,6 +68,11 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
                 (let* ((todo-entries (get-calendar-entries nil))
                   (tags (org-get-tags)))
                   (expect (member "DO_NOT_ORG_ROAM" tags) :not :to-be nil))))
+
+          (it "can update an existing scheduled event")
+          (it "can insert a new scheduled event into the list")
+          (it "can insert a new timestamped event into the list")
+          (it "can delete an existing event from the list")
 
 
 )
