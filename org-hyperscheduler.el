@@ -45,12 +45,14 @@
 
 
 (setq org-hs-ws-server
+    ; only run the server if we are not in test env.
+    (unless (boundp 'org-hyperscheduler-test-env) 
           (websocket-server
            44445
            :host 'local
            :on-open #'org-hs--ws-on-open
            :on-message #'org-hs--ws-on-message
-           :on-close #'org-hs--ws-on-close))
+           :on-close #'org-hs--ws-on-close)))
 
 (defun stop-server ()
     (websocket-server-close org-hs-ws-server))

@@ -1,3 +1,4 @@
+(setq org-hyperscheduler-test-env t)
 
 (require 'org-hyperscheduler)
 
