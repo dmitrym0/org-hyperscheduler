@@ -1,4 +1,5 @@
-var schedule = [];
+var schedule = window.localStorage.getItem('schedule');
+
 function setEventListener() {
   // $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
   $('#menu-navi').on('click', onClickNavi);
@@ -93,7 +94,13 @@ let socket = new WebSocket("ws://127.0.0.1:44445");
 
 
 function getAgenda() {
-   $("body").addClass("loading");
+    if (schedule === null) {
+        $("body").addClass("loading");
+    } else {
+        schedule = JSON.parse(schedule);
+        console.log(`[hs] Loading schedule from localStorage, ${schedule.length} entries.`);
+        cal.createSchedules(schedule);
+    }
     console.log("[open] Connection established");
     console.log("Sending to server");
     socket.send(JSON.stringify({"command":"get-agenda"}));
@@ -107,6 +114,7 @@ socket.onmessage = function(event) {
     for (let existingEvent of schedule) {
         cal.deleteSchedule(existingEvent.id, existingEvent.calendarId, false);
     }
+    schedule = [];
     console.log(`[message] Data received from server: ${event.data}`);
     agenda = JSON.parse(event.data);
     console.log(`${agenda.length} items in agenda.`);
@@ -140,6 +148,7 @@ socket.onmessage = function(event) {
 
     
     cal.createSchedules(schedule);
+    window.localStorage.setItem('schedule', JSON.stringify(schedule));
     $("body").removeClass("loading");
 };
 
