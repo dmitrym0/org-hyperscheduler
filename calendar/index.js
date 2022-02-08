@@ -12,6 +12,12 @@ function getDataAction(target) {
 }
 
 
+// we need to re-render the calendar so that that time/hour marker gets updated.
+function refreshCalendar() {
+    setTimeout(refreshCalendar, 300000);
+    cal.render();
+}
+
 function onClickNavi(e) {
   var action = getDataAction(e.target);
 
@@ -25,12 +31,16 @@ function onClickNavi(e) {
     case 'move-today':
       cal.today();
       break;
+    case 'change-day':
+      cal.changeView('day', true);
+      break;
+    case 'change-week':
+      cal.changeView('week', true);
+      break;
     default:
       return;
   }
 
-  setRenderRangeText();
-  setSchedules();
 }
 
 cal = new tui.Calendar('#calendar', {
@@ -59,7 +69,16 @@ cal = new tui.Calendar('#calendar', {
     },
     
     useCreationPopup: true,
-    useDetailPopup: true
+    useDetailPopup: true,
+    taskView: false, 
+    usageStatistics: false,
+    isReadOnly: false,
+      week: {
+        narrowWeekend: true,
+        startDayOfWeek: 1 // monday
+      },
+    scheduleView:  ['allday', 'time'],
+
   });
 
 calendar = cal;
@@ -176,6 +195,7 @@ calendar.on({
             calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
         },
         afterRenderSchedule: function (e) {
+            console.log('after render');
             // const schedule = e.schedule;
             // let element = calendar.getElement(schedule.id, schedule.calendarId);
             // console.log('afterRenderSchedule', element);
@@ -197,3 +217,7 @@ socket.onerror = function(error) {
 };
 
 setEventListener();
+
+
+
+refreshCalendar();
