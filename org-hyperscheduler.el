@@ -20,7 +20,15 @@
 *** TODO a task
 ")
 
+
+(setq org-hyperscheduler-hide-done-tasks t)
+
+
 (setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\"")
+
+
+(and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
+
 
 (defun print-entries ()
   (let* ((props (org-entry-properties))
@@ -68,7 +76,8 @@ Takes _WS and FRAME as arguments."
     (message (format "Data: %s" data))
     (setq last-data data)
     (cond ((string= command "get-agenda")
-           (org-hs--get-agenda))
+           (async-start
+           (org-hs--get-agenda)))
           ((string= command "update-event")
            (org-hs--update-event data))
           ((string= command "add-scheduled-event")
