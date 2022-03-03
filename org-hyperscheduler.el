@@ -1,7 +1,7 @@
 
 (require 'org)
 (require 'websocket)
-(require 'cl)
+(require 'cl-lib)
 
 (setq websocket-debug t)
 
