@@ -3,6 +3,21 @@
 (require 'websocket)
 (require 'cl-lib)
 
+
+(defgroup org-hyperscheduler nil
+  "org-hyperscheduler config"
+  :group 'org-hyperscheduler
+  :prefix "org-hyperscheduler-"
+  :link '(url-link :tag "Github" "https://github.com/dmitrym0/org-hyperscheduler"))
+
+
+
+(defcustom org-hyperscheduler-readonly-mode t
+  "If true, the web interface becomes read only."
+  :group 'org-hyperscheduler
+  :type 'boolean)
+
+
 (setq websocket-debug t)
 
 (defvar wstest-server-buffer (get-buffer-create "*wstest-server*"))
@@ -66,7 +81,7 @@
     (websocket-server-close org-hs-ws-server))
 
 (defun org-hs--ws-on-message (_ws frame)
-  "Functions to run when the  server receives a message.
+  "Functions to run when the server receives a message.
 Takes _WS and FRAME as arguments."
   (let* ((msg (json-parse-string
                (websocket-frame-text frame) :object-type 'alist))
@@ -76,13 +91,11 @@ Takes _WS and FRAME as arguments."
     (message (format "Data: %s" data))
     (setq last-data data)
     (cond ((string= command "get-agenda")
-           (async-start
-           (org-hs--get-agenda)))
+           (async-start (org-hs--get-agenda)))
           ((string= command "update-event")
            (org-hs--update-event data))
           ((string= command "add-scheduled-event")
            (org-hs--add-scheduled-event data))
-
           (t
            (message
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
@@ -101,32 +114,22 @@ Takes _WS and FRAME as arguments."
   (message "+org-hs-update-event")
   (let* ((id (alist-get 'id data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
-         (message (format "Updating ID: %s to timestamp: %s" id timestamp))
-         (save-window-excursion
-           (find-event-by-id id)
-           (schedule-at-point timestamp)
-           )
-         
-
-    )
-  (message "-org-hs-update-event")
-  )
+    (message (format "Updating ID: %s to timestamp: %s" id timestamp))
+    (save-window-excursion
+      (find-event-by-id id)
+      (schedule-at-point timestamp)))
+  (message "-org-hs-update-event"))
              
 (defun org-hs--add-scheduled-event (data)
   (message "+org-hs--add-scheduled-event")
   (let* ((title (alist-get 'title data))
-         (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data))))
-         )
-         (save-window-excursion
-           (find-file "~/org-roam/inbox.org")
-           (goto-char (point-max))
-           (insert (format "* TODO %s\n" title))
-           (schedule-at-point timestamp)
-           )
-         
-    )
-  (message "-org-hs--add-scheduled-event")
-  )
+         (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
+    (save-window-excursion
+      (find-file "~/org-roam/inbox.org")
+      (goto-char (point-max))
+      (insert (format "* TODO %s\n" title))
+      (schedule-at-point timestamp)))
+  (message "-org-hs--add-scheduled-event"))
 
 (defun find-event-by-id (id)
   (let* ((location (org-id-find id)))
@@ -145,8 +148,7 @@ Takes _WS and FRAME as arguments."
   (setq org-id-prefix nil)
   (org-set-tags (org-uniquify (cons "DO_NOT_ORG_ROAM" (org-get-tags))))
   (let* ((props (org-entry-properties))
-         (js-date (get-js-date-pair ))
-         )
+         (js-date (get-js-date-pair )))
     (print props)
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
@@ -232,3 +234,8 @@ Takes _WS and FRAME as arguments."
   (message "org-hs--ws-on-close")
   )
 
+
+(defun org-hs-open ()
+  "Open org-hs"
+  (interactive)
+  (browse-url "file:///Users/dmitry/workspace/org-hyperscheduler/calendar/index.html"))
