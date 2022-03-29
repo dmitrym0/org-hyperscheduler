@@ -1,6 +1,6 @@
 
 
-[[https://circleci.com/gh/dmitrym0/org-hyperscheduler.svg?style=svg]]
+[[https://circleci.com/gh/dmitrym0/org-hyperscheduler.svg?style=svg]] [![GitHub Release][release-badge]][release] [![MELPA][melpa-badge]][melpa] [![License GPL 3][gpl3-badge]][gpl3]
 
 * org-hyperscheduler 
 
