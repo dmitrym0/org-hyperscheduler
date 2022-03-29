@@ -113,6 +113,7 @@ let socket = new WebSocket("ws://127.0.0.1:44445");
 
 
 function getAgenda() {
+    $("body").addClass("loading");
     if (schedule === null) {
         $("body").addClass("loading");
     } else {
@@ -148,6 +149,7 @@ socket.onmessage = function(event) {
             category: 'time',
             start: agendaItem["startDate"],
             end: agendaItem["endDate"],
+            isReadOnly: agendaItem["isReadOnly"],
             // isAllDay: agendaItem["allDay"]
         };
 
@@ -166,9 +168,12 @@ socket.onmessage = function(event) {
 
 
     
+    if (isReadOnly) {
+        alert("Readonly mode; please see customized-group org-hyperscheduler");
+        cal.setOptions({isReadOnly:true});
+    $("body").removeClass("loading");
     cal.createSchedules(schedule);
     window.localStorage.setItem('schedule', JSON.stringify(schedule));
-    $("body").removeClass("loading");
 };
 
 
@@ -219,5 +224,8 @@ socket.onerror = function(error) {
 setEventListener();
 
 
+function isReadOnly() {
+    return agenda.at(0).isReadOnly;
+}
 
 refreshCalendar();
