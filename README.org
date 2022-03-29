@@ -5,15 +5,11 @@
 * org-hyperscheduler 
 
 
-
-
 * Development
 
 
 * Running tests
 
-~cask exec buttercup -L .~
-
-
-* Tasks
--  [ ] Move server logic out of org-hyperscheduler so that it can be tested without ocnflicting with the running instance.
+1. Install [[https://github.com/cask/cask][cask]] (~brew install cask~).
+2. Run ~cask~ to install dependencies.
+3. Run ~cask exec buttercup -L .~
