@@ -171,6 +171,8 @@ socket.onmessage = function(event) {
     if (isReadOnly) {
         alert("Readonly mode; please see customized-group org-hyperscheduler");
         cal.setOptions({isReadOnly:true});
+    }
+    
     $("body").removeClass("loading");
     cal.createSchedules(schedule);
     window.localStorage.setItem('schedule', JSON.stringify(schedule));
