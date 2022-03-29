@@ -4,8 +4,13 @@
 (require 'cl-lib)
 
 
+
+;; ---------------------------------------------------------------------------------------------------
+;; ---------------------------------------------------------------------------------------------------
+;; options
+
 (defgroup org-hyperscheduler nil
-  "org-hyperscheduler config"
+  "org-hyperscheduler"
   :group 'org-hyperscheduler
   :prefix "org-hyperscheduler-"
   :link '(url-link :tag "Github" "https://github.com/dmitrym0/org-hyperscheduler"))
@@ -13,10 +18,29 @@
 
 
 (defcustom org-hyperscheduler-readonly-mode t
-  "If true, the web interface becomes read only."
+  "If true, the web interface becomes read only.
+   In Read-only mode, changes to agenda entries can only be made from Emacs.
+   In Read-write mode, changes can be made either in Emacs or in the web-interface.
+   **NOTE** that for bidirectional changes to work each eligible agenda entry must have an ~org-id~.
+   This org-id will be added automatically by org-hyperscheduler. If you don't want org-hyperscheduler to modify your agenda entries, keep the read-only mode enabled."
   :group 'org-hyperscheduler
   :type 'boolean)
 
+(defcustom org-hyperscheduler-hide-done-tasks t
+  "If true, once a task transitions from TODO to DONE it disappears from the web calendar"
+  :group 'org-hyperscheduler
+  :type 'boolean)
+
+
+(defcustom org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\""
+  "This is a filter to use to generate a list of agenda tasks/entries to show in the calendar"
+  :group 'org-hyperscheduler
+  :type 'string)
+
+
+
+;; ---------------------------------------------------------------------------------------------------
+;; ---------------------------------------------------------------------------------------------------
 
 (setq websocket-debug t)
 
@@ -36,12 +60,6 @@
 ")
 
 
-(setq org-hyperscheduler-hide-done-tasks t)
-
-
-(setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\"")
-
-
 (and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
 
 
@@ -54,8 +72,7 @@
   )
 
 (defun get-entries()
-  (org-entry-properties)
-  )
+  (org-entry-properties))
 
 
 (defun get-dummy-schedule ()
@@ -77,7 +94,7 @@
            :on-message #'org-hs--ws-on-message
            :on-close #'org-hs--ws-on-close)))
 
-(defun stop-server ()
+(defun org-hs-stop-server ()
     (websocket-server-close org-hs-ws-server))
 
 (defun org-hs--ws-on-message (_ws frame)
@@ -146,6 +163,7 @@ Takes _WS and FRAME as arguments."
       (org-id-get-create)
     (error nil))
   (setq org-id-prefix nil)
+  ;; TODO: Make the ignore tag configurable 
   (org-set-tags (org-uniquify (cons "DO_NOT_ORG_ROAM" (org-get-tags))))
   (let* ((props (org-entry-properties))
          (js-date (get-js-date-pair )))
@@ -153,6 +171,7 @@ Takes _WS and FRAME as arguments."
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
+    (push `(isReadOnly . t) props)
     props
     )
   )
@@ -163,12 +182,7 @@ Takes _WS and FRAME as arguments."
 (provide 'org-hyperscheduler)
 
 (defun org-hs--get-agenda ()
-  (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda)))
-  )
-
-
-
-
+  (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda))))
 
 (defun get-js-date-pair ()
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
