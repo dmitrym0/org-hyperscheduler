@@ -1,8 +1,7 @@
 
 
-[[https://circleci.com/gh/dmitrym0/org-hyperscheduler.svg?style=svg]] [[https://img.shields.io/github/v/release/dmitrym0/org-hyperscheduler]]
+[[https://circleci.com/gh/dmitrym0/org-hyperscheduler.svg?style=svg]] [[https://github.com/dmitrym0/org-hyperscheduler/releases][file:https://img.shields.io/github/v/release/dmitrym0/org-hyperscheduler]] 
 
-[[gpl3]]
 
 
 * org-hyperscheduler 
