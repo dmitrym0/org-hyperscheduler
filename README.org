@@ -1,6 +1,6 @@
 
 
-[[https://img.shields.io/circleci/build/gh/dmitrym0/org-hyperscheduler.svg]] [[https://github.com/dmitrym0/org-hyperscheduler/releases][file:https://www.shields.io/github/v/release/dmitrym0/org-hyperscheduler.svg?display_name=tag]] 
+[[https://app.circleci.com/pipelines/github/dmitrym0/org-hyperscheduler?branch=main&filter=all][https://img.shields.io/circleci/build/gh/dmitrym0/org-hyperscheduler.svg]] [[https://github.com/dmitrym0/org-hyperscheduler/releases][file:https://www.shields.io/github/v/release/dmitrym0/org-hyperscheduler.svg?display_name=tag]]
 
 
 
