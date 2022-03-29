@@ -1,9 +1,12 @@
+;;; org-hyperscheduler.el --- web representation of org-agenda
+;; Copyright © 2022 Dmitry Markushevich
 
+;; TODO: Add license.
+
+;; ---------------------------------------------------------------------------------------------------
 (require 'org)
 (require 'websocket)
 (require 'cl-lib)
-
-
 
 ;; ---------------------------------------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------------------------
@@ -14,8 +17,6 @@
   :group 'org-hyperscheduler
   :prefix "org-hyperscheduler-"
   :link '(url-link :tag "Github" "https://github.com/dmitrym0/org-hyperscheduler"))
-
-
 
 (defcustom org-hyperscheduler-readonly-mode t
   "If true, the web interface becomes read only.
@@ -33,7 +34,7 @@
 
 
 (defcustom org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\""
-  "This is a filter to use to generate a list of agenda tasks/entries to show in the calendar"
+  "This is a filter to use to generate a list of agenda tasks/entries to show in the calendar."
   :group 'org-hyperscheduler
   :type 'string)
 
@@ -48,18 +49,18 @@
 (defvar wstest-server-name "wstest-server")
 
 (defun print-entries ()
-(message (cdr (assoc "ITEM" (org-entry-properties)))))
+  (message (cdr (assoc "ITEM" (org-entry-properties)))))
 
-;(org-map-entries #'print-entries nil)
 
 
 (defvar mock-org-contents-runtime
-"* Heading 1
+  "* Heading 1
 ** Subheading 2
 *** TODO a task
 ")
 
 
+; modify the agenda filter if we want to hide done tasks.
 (and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
 
 
@@ -75,6 +76,7 @@
   (org-entry-properties))
 
 
+; for testing
 (defun get-dummy-schedule ()
   (with-temp-buffer
     (org-mode)
@@ -128,6 +130,7 @@ Takes _WS and FRAME as arguments."
 )
 
 (defun org-hs--update-event (data)
+  "Update the given event with the content provided."
   (message "+org-hs-update-event")
   (let* ((id (alist-get 'id data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
@@ -138,6 +141,7 @@ Takes _WS and FRAME as arguments."
   (message "-org-hs-update-event"))
              
 (defun org-hs--add-scheduled-event (data)
+  "Create a new event in an inbox."
   (message "+org-hs--add-scheduled-event")
   (let* ((title (alist-get 'title data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
@@ -148,14 +152,20 @@ Takes _WS and FRAME as arguments."
       (schedule-at-point timestamp)))
   (message "-org-hs--add-scheduled-event"))
 
+(defun org-hs--ws-on-close (_websocket)
+  (message "org-hs--ws-on-close"))
+
+(defun org-hs--get-agenda ()
+  (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda))))
+
 (defun find-event-by-id (id)
+  "Find a event by ID so we can modify it."
   (let* ((location (org-id-find id)))
     (find-file (car location))
-    (goto-char (cdr location))
-  )
-  )
+    (goto-char (cdr location))))
 
 (defun get-agenda ()
+  "Get an org agenda event and transform it into a form that is easily JSONable."
                                         ; TODO: should we preserve the original value?
   (setq org-id-prefix "org-hs-id-custom")
                                         ; silently eat the error that org-id-get-create generates in temp buffers.
@@ -177,14 +187,12 @@ Takes _WS and FRAME as arguments."
   )
 
 (defun get-calendar-entries (scope)
+  "Get all agenda entries using our filter and return a structure that is JSONable"
   (org-map-entries #'get-agenda org-hyperscheduler-agenda-filter scope))
 
-(provide 'org-hyperscheduler)
-
-(defun org-hs--get-agenda ()
-  (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda))))
 
 (defun get-js-date-pair ()
+  "Convert from org timestamp to the format that TUI.calendar expects"
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
          (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP"))))))
          (year-start (plist-get plist :year-start))
@@ -201,15 +209,14 @@ Takes _WS and FRAME as arguments."
          (end (date-time-to-iso8601-js-like 0 minute-end hour-end day-end month-end year-end) )
          (all-day (if (eq hour-start nil) "true" "false"))
          (combined `((startDate . ,start) ( endDate . ,end) (allDay . ,all-day))))
-    combined
-    )
-  )
+    combined))
 
-                                        ; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
+; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
 (defun date-time-to-iso8601-js-like (seconds minutes hour day month year)
+  "Convert time stamps to ISO8601 format"
   ;; (message (format "params %s %s %s %s %s %s" seconds minutes hour day month year))
   (let* ((minutes (or minutes 0))
-        (hour (or hour 0)))
+         (hour (or hour 0)))
     (concat
      (format-time-string "%Y-%m-%dT%T"  (encode-time seconds minutes hour day month year))
      ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))
@@ -217,16 +224,19 @@ Takes _WS and FRAME as arguments."
 
 
 (defun get-scheduled-timestamp-for-scheduled-event (start-time-stamp stop-time-stamp) 
+  "Convert a unix time stamp back to org timestamp"
   (concat (format-time-string "<%Y-%m-%d %a %H:%M" (seconds-to-time start-time-stamp))
           (format-time-string "-%H:%M>" (seconds-to-time stop-time-stamp))))
 
 
 
 (defun schedule-at-point (timestamp)
+  "Schedule a heading at point with a given timestamp"
   (org-schedule nil timestamp))
 
 
 ;; --- deal with exporting links
+;; WIP
 
 
 (defun get-link-location ()
@@ -244,12 +254,14 @@ Takes _WS and FRAME as arguments."
      (buffer-substring-no-properties (org-element-property :contents-begin link)
                                     (org-element-property :contents-end link))))
 
-(defun org-hs--ws-on-close (_websocket)
-  (message "org-hs--ws-on-close")
-  )
+
+;; --- end links
 
 
 (defun org-hs-open ()
   "Open org-hs"
   (interactive)
   (browse-url "file:///Users/dmitry/workspace/org-hyperscheduler/calendar/index.html"))
+
+
+(provide 'org-hyperscheduler)
