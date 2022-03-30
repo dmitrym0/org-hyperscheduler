@@ -13,7 +13,7 @@ Hyperscheduling is the idea of fully planning your day using a calendar. Every m
 
 ** org-hyperscheduler
 
-[[file:images/org-hs-ui.png][org-hyperscheduler]]
+[[file:images/org-hs-ui.png]]
 
 ** Development
 
