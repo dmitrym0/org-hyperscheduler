@@ -6,11 +6,15 @@
 
 * org-hyperscheduler 
 
+** What is Hyperscheduling
+#+begin_quote
+Hyperscheduling is the idea of fully planning your day using a calendar. Every minute of the day is assigned to some task using a calendar.
+#+end_quote
 
-* Development
+** Development
 
 
-* Running tests
+** Running tests
 
 1. Install [[https://github.com/cask/cask][cask]] (~brew install cask~).
 2. Run ~cask~ to install dependencies.
