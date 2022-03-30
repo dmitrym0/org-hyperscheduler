@@ -50,7 +50,7 @@ and then visualize them to ensure that capacity is available:
 Use ~M-x customize-group org-hyperscheduler~ to configure this module.
 
 
-*/Readonly mode/*
+*Readonly mode*
 org-hyperscheduler is able to update entries in Emacs when using the web UI. To suppor this functionality, org-hyperscheduler must create IDs for each scheduled entry. If you are not ok with org-hyperscheduler modifying your data, keep ~org-hyperscheduler-readonly-mode~ turned on. In this mode you can visualize your agenda, but cannot make any changes in web UI.:w
 
 
