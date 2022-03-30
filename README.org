@@ -16,21 +16,21 @@ Hyperscheduling is the idea of fully planning your day using a calendar. Every m
 org-hyperscheduler presents a web UI that allows agenda entries to be visualized and moved around easily.
 
 
-Here's a typical agenda
+Here's a typical agenda (~C-c a a~):
 
 [[file:images/org-agenda.png]]
 
-and here is how it's visualized in org-hyperscheduler
+and here is how it's visualized in org-hyperscheduler:
 
 [[file:images/org-hs-ui.png]]
 
-- blue entries are coming from an external calendar (such [[https://github.com/kidd/org-gcal.el][org-gcal]]).
-- purple entries are part of standard org-agenda
+- blue entries are coming from an external calendar (such as [[https://github.com/kidd/org-gcal.el][org-gcal]]).
+- purple entries are part of standard org-agenda.
 
 
 The user is free to modify entries or move them around provided =org-hyperschedule-readonly-mode= is disabled.
 
-** Planning a day
+** Planning A Day
 
 When planning a day, it's easy to start with a list of tasks:
 
@@ -41,7 +41,19 @@ and then visualize them to ensure that capacity is available:
 [[file:images/org-hs-ui-2.png]]
 
 
+
+** Installation
+
 ** Configuration
+
+
+Use ~M-x customize-group org-hyperscheduler~ to configure this module.
+
+
+*/Readonly mode/*
+org-hyperscheduler is able to update entries in Emacs when using the web UI. To suppor this functionality, org-hyperscheduler must create IDs for each scheduled entry. If you are not ok with org-hyperscheduler modifying your data, keep ~org-hyperscheduler-readonly-mode~ turned on. In this mode you can visualize your agenda, but cannot make any changes in web UI.:w
+
+
 
 
 ** Development
