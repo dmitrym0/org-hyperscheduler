@@ -168,7 +168,7 @@ socket.onmessage = function(event) {
 
 
     
-    if (isReadOnly) {
+    if (isReadOnly()) {
         alert("Readonly mode; please see customized-group org-hyperscheduler");
         cal.setOptions({isReadOnly:true});
     }
