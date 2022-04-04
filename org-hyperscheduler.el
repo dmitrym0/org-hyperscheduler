@@ -181,7 +181,7 @@ Takes _WS and FRAME as arguments."
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
-    (push `(isReadOnly . t) props)
+    (push `(isReadOnly . org-hyperscheduler-readonly-mode) props)
     props
     )
   )
