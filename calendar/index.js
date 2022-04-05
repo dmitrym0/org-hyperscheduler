@@ -1,9 +1,13 @@
-var schedule = window.localStorage.getItem('schedule');
+// get the schedule from local storage so we can display something immediately.
+let schedule = window.localStorage.getItem('schedule');
+let agenda;
 
+// set readonly mode
+function setReadonly() {
+  calendar.setOptions({isReadOnly:true});
+}
 function setEventListener() {
-  // $('.dropdown-menu a[role="menuitem"]').on('click', onClickMenu);
   $('#menu-navi').on('click', onClickNavi);
-  // window.addEventListener('resize', resizeThrottled);
 }
 
 // from https://github.com/nhn/tui.calendar/blob/ac65d491c21b99ba18e179664c96089bd51216c7/examples/js/default.js
@@ -15,27 +19,28 @@ function getDataAction(target) {
 // we need to re-render the calendar so that that time/hour marker gets updated.
 function refreshCalendar() {
     setTimeout(refreshCalendar, 300000);
-    cal.render();
+    calendar.render();
 }
 
+// handler for day/week/month views, as well next/previous.
 function onClickNavi(e) {
   var action = getDataAction(e.target);
 
   switch (action) {
     case 'move-prev':
-      cal.prev();
+      calendar.prev();
       break;
     case 'move-next':
-      cal.next();
+      calendar.next();
       break;
     case 'move-today':
-      cal.today();
+      calendar.today();
       break;
     case 'change-day':
-      cal.changeView('day', true);
+      calendar.changeView('day', true);
       break;
     case 'change-week':
-      cal.changeView('week', true);
+      calendar.changeView('week', true);
       break;
     default:
       return;
@@ -43,7 +48,11 @@ function onClickNavi(e) {
 
 }
 
-cal = new tui.Calendar('#calendar', {
+// initialize the calendar object.
+// current support two calendars:
+// - scheduled items (basically anything with a SCHEDULED: property)
+// - time stamped items (in practice this comes from org-gcal)
+let calendar = new tui.Calendar('#calendar', {
     calendars: [
     {
       id: '1',
@@ -81,111 +90,56 @@ cal = new tui.Calendar('#calendar', {
 
   });
 
-calendar = cal;
-
-cal.on('beforeUpdateSchedule', function(event) {
-    updated_schedule = event.schedule;
-    changes = event.changes;
+// update calendar entry
+calendar.on('beforeUpdateSchedule', function(event) {
+    let updated_schedule = event.schedule;
+    let changes = event.changes;
     if (changes.start === undefined) {
         changes.start = updated_schedule.start;
     }
         
-
     console.log(`schedule:` + schedule + `changes:` + changes);
 
     console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
 
-
-    update_event_data = {id: updated_schedule.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
-    
+    let update_event_data = {id: updated_schedule.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
     socket.send(JSON.stringify({"command": "update-event", "data":update_event_data}));
-    
-    cal.updateSchedule(updated_schedule.id, updated_schedule.calendarId, changes);
+    calendar.updateSchedule(updated_schedule.id, updated_schedule.calendarId, changes);
 });
 
 
+// convert javascript date to unix time stamp because that's easier to pass around.
 function getUnixTimestampFromDate(date) {
     return date.getTime() / 1000;
 }
 
 
-let socket = new WebSocket("ws://127.0.0.1:44445");
 
-
+// fetch agenda
+// TODO: it would be nice if we could start working with cache while loading from emacs.
 function getAgenda() {
+    // make "loading" nicer.
     $("body").addClass("loading");
     if (schedule === null) {
         $("body").addClass("loading");
     } else {
         schedule = JSON.parse(schedule);
         console.log(`[hs] Loading schedule from localStorage, ${schedule.length} entries.`);
-        cal.createSchedules(schedule);
+        calendar.createSchedules(schedule);
     }
     console.log("[open] Connection established");
     console.log("Sending to server");
     socket.send(JSON.stringify({"command":"get-agenda"}));
 }
 
-socket.onopen = function(e) {
-    getAgenda();
-};
-
-socket.onmessage = function(event) {
-    for (let existingEvent of schedule) {
-        cal.deleteSchedule(existingEvent.id, existingEvent.calendarId, false);
-    }
-    schedule = [];
-    console.log(`[message] Data received from server: ${event.data}`);
-    agenda = JSON.parse(event.data);
-    console.log(`${agenda.length} items in agenda.`);
-    let calId = 0;
-    schedule = [];
-    for (const agendaItem of agenda) {
-        let calendarItem = {
-            id:  agendaItem["ID"],
-            calendarId: 1,
-            dueDateClass: '',
-            title: agendaItem["ITEM"].replaceAll(/\[\[.*\:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
-            category: 'time',
-            start: agendaItem["startDate"],
-            end: agendaItem["endDate"],
-            isReadOnly: agendaItem["isReadOnly"],
-            // isAllDay: agendaItem["allDay"]
-        };
-
-
-        if (agendaItem["allDay"] === "true") {
-            calendarItem.category = 'allday';
-        }
-        calId = calId + 1;
-
-        if (agendaItem["SCHEDULED"] === undefined) {
-            calendarItem.calendarId = 2;
-        }
-
-        schedule.push(calendarItem);
-    }
-
-
-    
-    if (isReadOnly()) {
-        alert("Readonly mode; please see customized-group org-hyperscheduler");
-        cal.setOptions({isReadOnly:true});
-    }
-    
-    $("body").removeClass("loading");
-    cal.createSchedules(schedule);
-    window.localStorage.setItem('schedule', JSON.stringify(schedule));
-};
-
-
+// calendar call backs
 calendar.on({
         clickMore: function (e) {
             console.log('clickMore', e);
         },
         clickSchedule: function (e) {
             console.log('clickSchedule', e);
-            //cal.openCreationPopup(e.schedule);
+            //calendar.openCreationPopup(e.schedule);
         },
         clickDayname: function (date) {
             console.log('clickDayname', date);
@@ -200,34 +154,103 @@ calendar.on({
         beforeDeleteSchedule: function (e) {
             console.log('beforeDeleteSchedule', e);
             calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+            // TODO: implement this on emacs side
         },
         afterRenderSchedule: function (e) {
-            console.log('after render');
+            console.log('after render', e);
             // const schedule = e.schedule;
             // let element = calendar.getElement(schedule.id, schedule.calendarId);
             // console.log('afterRenderSchedule', element);
         }
 });
 
-socket.onclose = function(event) {
-  if (event.wasClean) {
-    alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-  } else {
-    // e.g. server process killed or network down
-    // event.code is usually 1006 in this case
-    alert('[close] Connection died');
-  }
-};
-
-socket.onerror = function(error) {
-  alert(`[error] ${error.message}`);
-};
-
-setEventListener();
 
 
+// are we in readonly mode?
 function isReadOnly() {
     return agenda.at(0).isReadOnly;
 }
 
+
+// -- networking stuff ---- 
+let socket = new WebSocket("ws://127.0.0.1:44445");
+
+
+// callback for when the connection is established
+socket.onopen = function() {
+    getAgenda();
+};
+
+
+// callback for when we get data
+socket.onmessage = function(event) {
+    for (let existingEvent of schedule) {
+        calendar.deleteSchedule(existingEvent.id, existingEvent.calendarId, false);
+    }
+    
+    schedule = [];
+    console.log(`[message] Data received from server: ${event.data}`);
+    agenda = JSON.parse(event.data);
+    console.log(`${agenda.length} items in agenda.`);
+    schedule = [];
+    
+    for (const agendaItem of agenda) {
+        
+        let calendarItem = {
+            id:  agendaItem["ID"],
+            calendarId: 1,
+            dueDateClass: '',
+            // sad attempt at removing links. *TODO*
+            title: agendaItem["ITEM"].replaceAll(/\[\[.*:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
+            category: 'time',
+            start: agendaItem["startDate"],
+            end: agendaItem["endDate"],
+            //isReadOnly: agendaItem["isReadOnly"],
+            //isAllDay: agendaItem["allDay"]
+        };
+
+
+        if (agendaItem["allDay"] === "true") {
+            calendarItem.category = 'allday';
+        }
+
+        if (agendaItem["SCHEDULED"] === undefined) {
+            calendarItem.calendarId = 2;
+        }
+        
+        schedule.push(calendarItem);
+    }
+
+
+    
+    if (isReadOnly()) {
+        alert("Readonly mode; please see customized-group org-hyperscheduler");
+        
+    }
+    
+    $("body").removeClass("loading");
+    
+    calendar.createSchedules(schedule);
+    
+    window.localStorage.setItem('schedule', JSON.stringify(schedule));
+};
+
+socket.onclose = function(event) {
+    if (event.wasClean) {
+        alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+    } else {
+        // e.g. server process killed or network down
+        // event.code is usually 1006 in this case
+        alert('[close] Connection died');
+    }
+    setReadonly();
+};
+
+socket.onerror = function(error) {
+    alert(`[error] ${error.message}`);
+    setReadonly();
+};
+
+
+setEventListener();
 refreshCalendar();
