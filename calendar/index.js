@@ -236,18 +236,14 @@ socket.onmessage = function(event) {
 };
 
 socket.onclose = function(event) {
-    if (event.wasClean) {
-        alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-    } else {
-        // e.g. server process killed or network down
-        // event.code is usually 1006 in this case
-        alert('[close] Connection died');
-    }
+    alert("Lost connection to Emacs. Going into readonly-mode.");
     setReadonly();
 };
 
 socket.onerror = function(error) {
-    alert(`[error] ${error.message}`);
+    alert("Connection error. Going into readonly-mode.");
+    // this gets picked up from local storage. probably should unify this with getAgenda()
+    calendar.createSchedules(JSON.parse(schedule));
     setReadonly();
 };
 
