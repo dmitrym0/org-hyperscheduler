@@ -97,7 +97,8 @@
            :on-close #'org-hs--ws-on-close)))
 
 (defun org-hs-stop-server ()
-    (websocket-server-close org-hs-ws-server))
+  (interactive)
+  (websocket-server-close org-hs-ws-server))
 
 (defun org-hs--ws-on-message (_ws frame)
   "Functions to run when the server receives a message.
@@ -176,12 +177,13 @@ Takes _WS and FRAME as arguments."
   ;; TODO: Make the ignore tag configurable 
   (org-set-tags (org-uniquify (cons "DO_NOT_ORG_ROAM" (org-get-tags))))
   (let* ((props (org-entry-properties))
+         (json-null json-false)
          (js-date (get-js-date-pair )))
     (print props)
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
-    (push `(isReadOnly . org-hyperscheduler-readonly-mode) props)
+    (push `(isReadOnly . ,org-hyperscheduler-readonly-mode) props)
     props
     )
   )
@@ -259,7 +261,7 @@ Takes _WS and FRAME as arguments."
 
 
 (defun org-hs-open ()
-  "Open org-hs"
+  "Open org-hyperscheduler in the browser"
   (interactive)
   (browse-url "file:///Users/dmitry/workspace/org-hyperscheduler/calendar/index.html"))
 
