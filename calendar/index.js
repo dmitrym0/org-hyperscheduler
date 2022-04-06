@@ -153,8 +153,9 @@ calendar.on({
         },
         beforeDeleteSchedule: function (e) {
             console.log('beforeDeleteSchedule', e);
-            calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+            //calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
             // TODO: implement this on emacs side
+            alert('Sorry, not supported yet.');
         },
         afterRenderSchedule: function (e) {
             console.log('after render', e);
