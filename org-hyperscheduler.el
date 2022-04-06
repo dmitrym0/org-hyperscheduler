@@ -147,7 +147,7 @@ Takes _WS and FRAME as arguments."
   (let* ((title (alist-get 'title data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
     (save-window-excursion
-      (find-file "~/org-roam/inbox.org")
+      (find-file (concat org-directory "/inbox.org"))
       (goto-char (point-max))
       (insert (format "* TODO %s\n" title))
       (schedule-at-point timestamp)))
