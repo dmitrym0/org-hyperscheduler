@@ -118,17 +118,16 @@ function getUnixTimestampFromDate(date) {
 // fetch agenda
 // TODO: it would be nice if we could start working with cache while loading from emacs.
 function getAgenda() {
-    // make "loading" nicer.
+    // expect this set from localStorage.
+    schedule = JSON.parse(schedule);
+    calendar.createSchedules(schedule);
+    fetchNewAgenda();
+}
+
+
+function fetchNewAgenda()
+{
     $("body").addClass("loading");
-    if (schedule === null) {
-        $("body").addClass("loading");
-    } else {
-        schedule = JSON.parse(schedule);
-        console.log(`[hs] Loading schedule from localStorage, ${schedule.length} entries.`);
-        calendar.createSchedules(schedule);
-    }
-    console.log("[open] Connection established");
-    console.log("Sending to server");
     socket.send(JSON.stringify({"command":"get-agenda"}));
 }
 
@@ -149,7 +148,7 @@ calendar.on({
             e.startUnix = getUnixTimestampFromDate(e.start);
             e.endUnix =  getUnixTimestampFromDate(e.end);
             socket.send(JSON.stringify({"command":"add-scheduled-event", data: e}));
-            getAgenda();
+            fetchNewAgenda();
         },
         beforeDeleteSchedule: function (e) {
             console.log('beforeDeleteSchedule', e);
