@@ -72,7 +72,6 @@ org-roam treats all entries with an ~:ID:~ property as as roam nodes. This is no
   (setq org-roam-db-node-include-function
         (lambda ()
           (not (member "DO_NOT_ORG_ROAM" (org-get-tags)))))
-  )
 #+end_src
 
 ** Configuration
