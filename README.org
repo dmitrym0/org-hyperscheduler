@@ -62,6 +62,19 @@ For now you can either download the source and install it manually or with ~use-
 
 You can then invoke ~M-x org-hyperscheduler-open~ to invoke the web view.
 
+
+*** Hiding calendar entries from org-roam
+
+org-roam treats all entries with an ~:ID:~ property as as roam nodes. This is not what I wanted. Each calendar entry processed by org-hyperscheduler gets a ~DO_NOT_ORG_ROAM~ tag. Subsequently, we tell org-roam to ignore all entries with this tag:
+
+#+begin_src elisp
+  (require 'org-roam-protocol)
+  (setq org-roam-db-node-include-function
+        (lambda ()
+          (not (member "DO_NOT_ORG_ROAM" (org-get-tags)))))
+  )
+#+end_src
+
 ** Configuration
 
 
