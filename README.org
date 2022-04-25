@@ -44,6 +44,22 @@ and then visualize them to ensure that capacity is available:
 
 ** Installation
 
+org-hyperschedule is *not* currently available in MELPA. Once the package matures, it will be added.
+
+For now you can either download the source and install it manually or with ~use-package~ and [[https://github.com/raxod502/straight.el][straight.el]]:
+
+#+begin_src elisp
+  (use-package org-hyperscheduler
+    :ensure t
+    :straight
+    (:repo "dmitrym0/org-hyperscheduler"
+     :host github
+     :type git))
+
+
+#+end_src
+
+
 ** Configuration
 
 
