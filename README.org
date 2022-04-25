@@ -60,6 +60,8 @@ For now you can either download the source and install it manually or with ~use-
 #+end_src
 
 
+You can then invoke ~M-x org-hyperscheduler-open~ to invoke the web view.
+
 ** Configuration
 
 
@@ -71,8 +73,6 @@ Use ~M-x customize-group org-hyperscheduler~ to configure this module.
 org-hyperscheduler is able to update entries in Emacs when using the web UI. To suppor this functionality, org-hyperscheduler must create IDs for each scheduled entry. If you are not ok with org-hyperscheduler modifying your data, keep ~org-hyperscheduler-readonly-mode~ turned on. In this mode you can visualize your agenda, but cannot make any changes in web UI.:w
 
 
-
-
 ** Development
 
 
@@ -81,3 +81,15 @@ org-hyperscheduler is able to update entries in Emacs when using the web UI. To 
 1. Install [[https://github.com/cask/cask][cask]] (~brew install cask~).
 2. Run ~cask~ to install dependencies.
 3. Run ~cask exec buttercup -L .~
+
+
+
+** See also
+*** org-roam-ui
+
+org-hyperscheduler was heavily inspired by [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]. If you're using [[https://github.com/org-roam/org-roam-ui][org-roam]] it's worth adding org-roam-ui.
+
+*** calfw
+
+[[https://github.com/kiwanami/emacs-calfw][calfw]] is a (textmode) calendaring framwork for emacs. I found it somewhat late into the development of org-hyperscheduler. If I found it earlier, I may have skipepd developing this.
+
