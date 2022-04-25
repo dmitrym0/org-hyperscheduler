@@ -259,11 +259,19 @@ Takes _WS and FRAME as arguments."
 
 ;; --- end links
 
+(defvar org-hyperscheduler-root-dir
+  (concat (file-name-directory
+           (expand-file-name (or
+                    load-file-name
+                    buffer-file-name)))
+          "."))
+
 
 (defun org-hs-open ()
   "Open org-hyperscheduler in the browser"
   (interactive)
-  (browse-url "file:///Users/dmitry/workspace/org-hyperscheduler/calendar/index.html"))
+  (let ((html-file-path  (format "file://%s/calendar/index.html" org-hyperscheduler-root-dir)))
+  (browse-url html-file-path)))
 
 
 (provide 'org-hyperscheduler)
