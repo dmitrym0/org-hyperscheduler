@@ -53,10 +53,9 @@ For now you can either download the source and install it manually or with ~use-
     :ensure t
     :straight
     (:repo "dmitrym0/org-hyperscheduler"
-     :host github
-     :type git))
-
-
+           :host github
+           :type git
+           :files ("*")))
 #+end_src
 
 
