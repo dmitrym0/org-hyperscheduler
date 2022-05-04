@@ -125,7 +125,7 @@ Takes _WS and FRAME as arguments."
 (defun org-hs--ws-on-open (ws)
   "Open the websocket WS and send initial data."
   (progn
-    (setq org-roam-hs-ws-socket ws)
+    (setq org-hs-ws-socket ws)
     (message "--------")
     )
 )
@@ -157,7 +157,7 @@ Takes _WS and FRAME as arguments."
   (message "org-hs--ws-on-close"))
 
 (defun org-hs--get-agenda ()
-  (websocket-send-text org-roam-hs-ws-socket (json-encode (get-calendar-entries 'agenda))))
+  (websocket-send-text org-hs-ws-socket (json-encode (get-calendar-entries 'agenda))))
 
 (defun find-event-by-id (id)
   "Find a event by ID so we can modify it."
