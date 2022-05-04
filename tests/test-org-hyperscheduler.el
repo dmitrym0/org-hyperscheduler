@@ -111,3 +111,20 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
 (describe "time stamp generation"
           (it "can create a proper emacs timestamp from unix timestamp"
               (expect (get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30-15:16>")))
+
+
+
+(describe "webservices functionality"
+          (it "can get agenda via webservices"
+
+              (let* ((command "{\"command\":\"get-agenda\"}")
+                     (frame (websocket-read-frame (websocket-encode-frame
+                                                   (make-websocket-frame :opcode 'text
+                                                                         :payload (encode-coding-string command 'raw-text)
+                                                                         :completep t)
+                                                   t))))
+                                        ; TODO (expect (org-hs--ws-on-message nil frame) :not :to-be nil)
+                                        ; TODO refactor message handlers so we can pass mock webservices to it. for now, we expect a void-variable exception
+                (expect (org-hs--ws-on-message nil frame) :to-throw 'void-variable)
+                )))
+

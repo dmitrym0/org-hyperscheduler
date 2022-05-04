@@ -111,12 +111,12 @@ Takes _WS and FRAME as arguments."
     (message (format "Data: %s" data))
     (setq last-data data)
     (cond ((string= command "get-agenda")
-           (async-start (org-hs--get-agenda)))
+           (org-hs--get-agenda))
           ((string= command "update-event")
            (org-hs--update-event data))
           ((string= command "add-scheduled-event")
            (org-hs--add-scheduled-event data))
-          (t
+          (nil
            (message
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
 
