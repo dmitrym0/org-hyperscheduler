@@ -273,8 +273,6 @@ Takes _WS and FRAME as arguments."
   (let ((html-file-path  (format "file://%s/calendar/index.html" org-hyperscheduler-root-dir)))
   (browse-url html-file-path)))
 
-(defun org-hs-open ()
-  (org-hyperscheduler-open))
-
+(defalias 'org-hs-open #'org-hyperscheduler-open)
 
 (provide 'org-hyperscheduler)
