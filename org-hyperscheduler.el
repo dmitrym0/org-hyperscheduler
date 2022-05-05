@@ -267,13 +267,17 @@ Takes _WS and FRAME as arguments."
           "."))
 
 
+;;;###autoload
 (defun org-hyperscheduler-open ()
-  "Open org-hyperscheduler in the browser"
+  "Open org-hyperscheduler in the browser."
   (interactive)
   (let ((html-file-path  (format "file://%s/calendar/index.html" org-hyperscheduler-root-dir)))
   (browse-url html-file-path)))
 
+;;;###autoload
 (defun org-hs-open ()
+  "Open org-hyperscheduler in the browser. Alias for org-hs-open."
+  (interactive)
   (org-hyperscheduler-open))
 
 
