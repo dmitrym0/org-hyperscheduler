@@ -275,10 +275,6 @@ Takes _WS and FRAME as arguments."
   (browse-url html-file-path)))
 
 ;;;###autoload
-(defun org-hs-open ()
-  "Open org-hyperscheduler in the browser. Alias for org-hs-open."
-  (interactive)
-  (org-hyperscheduler-open))
-
+(defalias 'org-hs-open #'org-hyperscheduler-open)
 
 (provide 'org-hyperscheduler)
