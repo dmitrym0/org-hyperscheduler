@@ -184,8 +184,11 @@ socket.onopen = function() {
 
 // callback for when we get data
 socket.onmessage = function(event) {
-    for (let existingEvent of schedule) {
-        calendar.deleteSchedule(existingEvent.id, existingEvent.calendarId, false);
+    // TODO: what?
+    if (schedule !== null) {
+        for (let existingEvent of schedule) {
+            calendar.deleteSchedule(existingEvent.id, existingEvent.calendarId, false);
+        }
     }
     
     schedule = [];

@@ -107,9 +107,7 @@ Takes _WS and FRAME as arguments."
                (websocket-frame-text frame) :object-type 'alist))
          (command (alist-get 'command msg))
          (data (alist-get 'data msg)))
-    (message (format "Command: %s" command))
-    (message (format "Data: %s" data))
-    (setq last-data data)
+    (message (format "Command=[%s] Data=[%s]" command data))
     (cond ((string= command "get-agenda")
            (org-hs--get-agenda))
           ((string= command "update-event")
@@ -126,7 +124,7 @@ Takes _WS and FRAME as arguments."
   "Open the websocket WS and send initial data."
   (progn
     (setq org-hs-ws-socket ws)
-    (message "--------")
+    (message "org-hyperscheduler: connection from the browser")
     )
 )
 
@@ -157,7 +155,9 @@ Takes _WS and FRAME as arguments."
   (message "org-hs--ws-on-close"))
 
 (defun org-hs--get-agenda ()
-  (websocket-send-text org-hs-ws-socket (json-encode (get-calendar-entries 'agenda))))
+  (let* ((encoded-agenda (json-encode (get-calendar-entries 'agenda))))
+     (message (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
+     (websocket-send-text org-hs-ws-socket encoded-agenda)))
 
 (defun find-event-by-id (id)
   "Find a event by ID so we can modify it."
@@ -179,7 +179,7 @@ Takes _WS and FRAME as arguments."
   (let* ((props (org-entry-properties))
          (json-null json-false)
          (js-date (get-js-date-pair )))
-    (print props)
+    ;(print props)
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
