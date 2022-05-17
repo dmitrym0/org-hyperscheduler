@@ -38,6 +38,10 @@
   :group 'org-hyperscheduler
   :type 'string)
 
+(defcustom org-hyperscheduler-inbox-file (concat org-directory "/inbox.org")
+  "This is the file where newly created entries go (the ones created in the WebUI."
+  :group 'org-hyperscheduler
+  :type 'string)
 
 
 ;; ---------------------------------------------------------------------------------------------------
@@ -145,7 +149,7 @@ Takes _WS and FRAME as arguments."
   (let* ((title (alist-get 'title data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
     (save-window-excursion
-      (find-file (concat org-directory "/inbox.org"))
+      (find-file org-hyperscheduler-inbox-file)
       (goto-char (point-max))
       (insert (format "* TODO %s\n" title))
       (schedule-at-point timestamp)))

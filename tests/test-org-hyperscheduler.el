@@ -128,3 +128,10 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
                 (expect (org-hs--ws-on-message nil frame) :to-throw 'void-variable)
                 )))
 
+
+(describe "defaults"
+          (it "should have a default for the inbox file"
+              (expect org-hyperscheduler-inbox-file :to-equal "~/org/inbox.org"))
+          (it "should have a default for the agenda filter"
+              (expect org-hyperscheduler-agenda-filter :not :to-be nil))
+          )
