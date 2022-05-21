@@ -14,7 +14,14 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
 :PROPERTIES:
 :ID:       FAKE_ID1
 :END:
+
 ")
+
+(defvar mock-org-contents-unprocessed
+  "* TODO a task aaa
+SCHEDULED: <2022-01-23 Sun>
+")
+
 
 (setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"")
 
@@ -32,7 +39,7 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
                 (org-mode)
                 (insert mock-org-contents)
                 (let* ((todo-entries (get-calendar-entries nil))
-                  (second-entry (car (cdr todo-entries ))))
+                  (second-entry (car (cdr todo-entries))))
                   (expect (cdr (assoc "ID" second-entry)) :to-equal "FAKE_ID1"))))
 
           (it "can produce a json representation"
@@ -68,6 +75,14 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
                 (let* ((todo-entries (get-calendar-entries nil))
                   (tags (org-get-tags)))
                   (expect (member "DO_NOT_ORG_ROAM" tags) :not :to-be nil))))
+          (it "has the correct ID prefix"
+              (with-temp-buffer
+                (org-mode)
+                (insert mock-org-contents-unprocessed)
+                (let* ((todo-entries (get-calendar-entries nil))
+                       (current-id (org-id-get)))
+                  (message (buffer-string))
+                  (expect (string-match "org-hs-id-custom.*" current-id)))))
 
           (it "can update an existing scheduled event")
           (it "can insert a new scheduled event into the list")

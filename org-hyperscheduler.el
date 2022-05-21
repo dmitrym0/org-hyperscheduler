@@ -171,13 +171,11 @@ Takes _WS and FRAME as arguments."
 
 (defun get-agenda ()
   "Get an org agenda event and transform it into a form that is easily JSONable."
-                                        ; TODO: should we preserve the original value?
-  (setq org-id-prefix "org-hs-id-custom")
-                                        ; silently eat the error that org-id-get-create generates in temp buffers.
+  ; silently eat the error that org-id-get-create generates in temp buffers.
+  ; I'd like a custom prefix in case we ever have to filter all org-hs created properties out.
   (condition-case nil
-      (org-id-get-create)
+      (org-id-get (point) t "org-hs-id-custom")
     (error nil))
-  (setq org-id-prefix nil)
   ;; TODO: Make the ignore tag configurable 
   (org-set-tags (org-uniquify (cons "DO_NOT_ORG_ROAM" (org-get-tags))))
   (let* ((props (org-entry-properties))
