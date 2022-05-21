@@ -82,7 +82,6 @@ SCHEDULED: <2022-01-23 Sun>
                 (insert mock-org-contents-unprocessed)
                 (let* ((todo-entries (get-calendar-entries nil))
                        (current-id (org-id-get)))
-                  (message (buffer-string))
                   (expect (string-match "org-hs-id-custom.*" current-id)))))
 
           (it "can update an existing scheduled event")
