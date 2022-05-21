@@ -68,13 +68,14 @@ SCHEDULED: <2022-01-23 Sun>
                 )))
 
 
-          (it "has roam ignore tag"
+          (it "has roam ignore property"
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
                 (let* ((todo-entries (get-calendar-entries nil))
-                  (tags (org-get-tags)))
-                  (expect (member "DO_NOT_ORG_ROAM" tags) :not :to-be nil))))
+                  (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
+                  (expect roam-ignore-prop :not :to-be nil))))
+
           (it "has the correct ID prefix"
               (with-temp-buffer
                 (org-mode)

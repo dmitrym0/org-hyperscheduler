@@ -176,12 +176,11 @@ Takes _WS and FRAME as arguments."
   (condition-case nil
       (org-id-get (point) t "org-hs-id-custom")
     (error nil))
-  ;; TODO: Make the ignore tag configurable 
-  (org-set-tags (org-uniquify (cons "DO_NOT_ORG_ROAM" (org-get-tags))))
+  ; hide tasks from org-oram https://www.orgroam.com/manual.html#What-to-cache
+  (org-entry-put (point) "ROAM_EXCLUDE" "t")
   (let* ((props (org-entry-properties))
          (json-null json-false)
          (js-date (get-js-date-pair )))
-    ;(print props)
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
