@@ -23,6 +23,12 @@ SCHEDULED: <2022-01-23 Sun>
 ")
 
 
+;; this is how I ship org-hs: readonly mode enabled, org-roam exclusion disabled.
+(defun org-hs-default-state ()
+  (setq org-hyperscheduler-exclude-from-org-roam nil)
+  (setq org-hyperscheduler-readonly-mode t))
+
+
 (setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"")
 
 
@@ -68,12 +74,30 @@ SCHEDULED: <2022-01-23 Sun>
                 )))
 
 
+          (it "can update an existing scheduled event")
+          (it "can insert a new scheduled event into the list")
+          (it "can insert a new timestamped event into the list")
+          (it "can delete an existing event from the list")
+
+
+)
+
+
+(describe "read write mode"
+          (before-all
+              (setq org-hyperscheduler-exclude-from-org-roam t)
+              (setq org-hyperscheduler-readonly-mode nil))
+
+
+          (after-all
+           (org-hs-default-state))
+
           (it "has roam ignore property"
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
                 (let* ((todo-entries (get-calendar-entries nil))
-                  (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
+                       (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
                   (expect roam-ignore-prop :not :to-be nil))))
 
           (it "has the correct ID prefix"
@@ -84,13 +108,47 @@ SCHEDULED: <2022-01-23 Sun>
                        (current-id (org-id-get)))
                   (expect (string-match "org-hs-id-custom.*" current-id)))))
 
-          (it "can update an existing scheduled event")
-          (it "can insert a new scheduled event into the list")
-          (it "can insert a new timestamped event into the list")
-          (it "can delete an existing event from the list")
+          (it "does NOT have ROAM_EXCLUDE property when exclusion is disabled"
+              (setq org-hyperscheduler-exclude-from-org-roam nil)
+              (with-temp-buffer
+                (org-mode)
+                (insert mock-org-contents)
+                (let* ((todo-entries (get-calendar-entries nil))
+                       (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
+                  (expect roam-ignore-prop :to-be nil))))
+          )
 
 
-)
+
+
+(describe "readonly mode"
+
+          (before-all
+           (org-hs-default-state))
+
+
+          (after-all
+           (org-hs-default-state))
+
+          (it "does NOT have a generated ID"
+              (with-temp-buffer
+                (org-mode)
+                (insert mock-org-contents-unprocessed)
+                (let* ((todo-entries (get-calendar-entries nil))
+                       (current-id (org-id-get)))
+                  (expect current-id :to-be nil))))
+
+
+          (it "does NOT have ROAM_EXCLUDE property when the flag is set in READONLY mode"
+              (setq org-hyperscheduler-exclude-from-org-roam t)
+              (with-temp-buffer
+                (org-mode)
+                (insert mock-org-contents)
+                (let* ((todo-entries (get-calendar-entries nil))
+                       (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
+                  (expect roam-ignore-prop :to-be nil))))
+
+          )
 
 
 (describe "ISO8601 date formatting"

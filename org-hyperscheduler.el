@@ -32,6 +32,12 @@
   :group 'org-hyperscheduler
   :type 'boolean)
 
+(defcustom org-hyperscheduler-exclude-from-org-roam nil
+  "In org-roam any entry with an :ID: property is treated like a node. This is not desirable for calendar entries in most cases.
+   When this flag is set to true, org-hyperscheduler will insert a :ROAM_EXCLUDE: property to hide calendar entries from org-roam.
+   Read-only mode (org-hyperscheduler-readonly-mode) needs to be disabled for this setting to take effect."
+  :group 'org-hyperscheduler
+  :type 'boolean)
 
 (defcustom org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\""
   "This is a filter to use to generate a list of agenda tasks/entries to show in the calendar."
@@ -174,10 +180,14 @@ Takes _WS and FRAME as arguments."
   ; silently eat the error that org-id-get-create generates in temp buffers.
   ; I'd like a custom prefix in case we ever have to filter all org-hs created properties out.
   (condition-case nil
-      (org-id-get (point) t "org-hs-id-custom")
+      ; second param to org-id-get is whether to create an id or not
+      (org-id-get (point) (not org-hyperscheduler-readonly-mode) "org-hs-id-custom")
     (error nil))
-  ; hide tasks from org-oram https://www.orgroam.com/manual.html#What-to-cache
-  (org-entry-put (point) "ROAM_EXCLUDE" "t")
+  ; hide tasks from org-roam https://www.orgroam.com/manual.html#What-to-cache
+  (when (and
+         (not org-hyperscheduler-readonly-mode)
+         org-hyperscheduler-exclude-from-org-roam)
+    (org-entry-put (point) "ROAM_EXCLUDE" "t"))
   (let* ((props (org-entry-properties))
          (json-null json-false)
          (js-date (get-js-date-pair )))
