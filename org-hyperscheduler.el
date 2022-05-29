@@ -142,7 +142,7 @@ Takes _WS and FRAME as arguments."
   (message "org-hyperscheduler--ws-on-close"))
 
 (defun org-hyperscheduler--get-agenda ()
-  (let* ((encoded-agenda (json-encode (get-calendar-entries 'agenda))))
+  (let* ((encoded-agenda (json-encode (org-hyperscheduler-get-calendar-entries 'agenda))))
      (message (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
      (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
 
@@ -174,7 +174,7 @@ Takes _WS and FRAME as arguments."
     (push `(isReadOnly . ,org-hyperscheduler-readonly-mode) props)
     props))
 
-(defun get-calendar-entries (scope)
+(defun org-hyperscheduler-get-calendar-entries (scope)
   "Get all agenda entries using our filter and return a structure that is JSONable"
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
