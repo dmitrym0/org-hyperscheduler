@@ -172,9 +172,7 @@ Takes _WS and FRAME as arguments."
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
     (push `(isReadOnly . ,org-hyperscheduler-readonly-mode) props)
-    props
-    )
-  )
+    props))
 
 (defun get-calendar-entries (scope)
   "Get all agenda entries using our filter and return a structure that is JSONable"
