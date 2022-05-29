@@ -158,7 +158,7 @@ SCHEDULED: <2022-01-23 Sun>
             (insert mock-org-contents)
             (org-mode)
             (org-previous-visible-heading 1)
-            (let ((js-date (get-js-date-pair)))
+            (let ((js-date (org-hyperscheduler-get-js-date-pair)))
               (expect (cdr (assoc 'startDate js-date)) :to-equal "2022-01-23T14:00:00-07:00")
               (expect (cdr (assoc 'endDate js-date)) :to-equal "2022-01-23T15:00:00-07:00")
               (expect (cdr (assoc 'allDay js-date)) :to-equal "false")
@@ -174,7 +174,7 @@ SCHEDULED: <2022-01-23 Sun>
             (org-mode)
             (org-next-visible-heading -1) ;; seems kinda flaky?
             (beginning-of-buffer)
-            (let ((js-date (get-js-date-pair)))
+            (let ((js-date (org-hyperscheduler-get-js-date-pair)))
               (expect (cdr (assoc 'allDay js-date)) :to-equal "true")
               )
             )
@@ -183,7 +183,7 @@ SCHEDULED: <2022-01-23 Sun>
 
 (describe "time stamp generation"
           (it "can create a proper emacs timestamp from unix timestamp"
-              (expect (get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30-15:16>")))
+              (expect (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30-15:16>")))
 
 
 
