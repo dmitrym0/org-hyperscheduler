@@ -1,4 +1,4 @@
-;;; org-hyperscheduler.el --- UI (web) representation of org-agenda
+;;; org-hyperscheduler.el --- UI (web) representation of org-agenda  -*- lexical-binding: t; -*-
 ;; Copyright © 2022 Dmitry Markushevich
 
 ;; TODO: Add license.
@@ -95,7 +95,7 @@
 
 (defun org-hyperscheduler--ws-on-message (_ws frame)
   "Functions to run when the server receives a message.
-Takes _WS and FRAME as arguments."
+   Takes _WS and FRAME as arguments."
   (let* ((msg (json-parse-string
                (websocket-frame-text frame) :object-type 'alist))
          (command (alist-get 'command msg))
