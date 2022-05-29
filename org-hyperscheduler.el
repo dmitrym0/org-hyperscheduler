@@ -113,9 +113,7 @@ Takes _WS and FRAME as arguments."
   "Open the websocket WS and send initial data."
   (progn
     (setq org-hyperscheduler-ws-socket ws)
-    (message "org-hyperscheduler: connection from the browser")
-    )
-)
+    (message "org-hyperscheduler: connection from the browser")))
 
 (defun org-hyperscheduler--update-event (data)
   "Update the given event with the content provided."
@@ -124,7 +122,7 @@ Takes _WS and FRAME as arguments."
          (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
     (message (format "Updating ID: %s to timestamp: %s" id timestamp))
     (save-window-excursion
-      (find-event-by-id id)
+      (org-hyperscheduler-find-event-by-id id)
       (schedule-at-point timestamp)))
   (message "-org-hyperscheduler-update-event"))
              
@@ -148,7 +146,7 @@ Takes _WS and FRAME as arguments."
      (message (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
      (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
 
-(defun find-event-by-id (id)
+(defun org-hyperscheduler-find-event-by-id (id)
   "Find a event by ID so we can modify it."
   (let* ((location (org-id-find id)))
     (find-file (car location))
