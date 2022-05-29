@@ -37,14 +37,14 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
-                (let ((number-of-todo-entries (length (get-calendar-entries nil))))
+                (let ((number-of-todo-entries (length (org-hyperscheduler-get-calendar-entries nil))))
                   (expect number-of-todo-entries :to-be 2))))
 
           (it "has the correct properties"
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
-                (let* ((todo-entries (get-calendar-entries nil))
+                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                   (second-entry (car (cdr todo-entries))))
                   (expect (cdr (assoc "ID" second-entry)) :to-equal "FAKE_ID1"))))
 
@@ -52,7 +52,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                (org-mode)
                 (insert mock-org-contents)
-                (let ((json-representation (json-encode (get-calendar-entries nil))))
+                (let ((json-representation (json-encode (org-hyperscheduler-get-calendar-entries nil))))
                   (expect (string-match "a task aaa" json-representation) :not :to-be nil))))
           
 
@@ -96,7 +96,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
-                (let* ((todo-entries (get-calendar-entries nil))
+                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
                   (expect roam-ignore-prop :not :to-be nil))))
 
@@ -104,7 +104,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents-unprocessed)
-                (let* ((todo-entries (get-calendar-entries nil))
+                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (current-id (org-id-get)))
                   (expect (string-match "org-hyperscheduler-id.*" current-id)))))
 
@@ -113,7 +113,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
-                (let* ((todo-entries (get-calendar-entries nil))
+                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
                   (expect roam-ignore-prop :to-be nil))))
           )
@@ -134,7 +134,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents-unprocessed)
-                (let* ((todo-entries (get-calendar-entries nil))
+                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (current-id (org-id-get)))
                   (expect current-id :to-be nil))))
 
@@ -144,7 +144,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (insert mock-org-contents)
-                (let* ((todo-entries (get-calendar-entries nil))
+                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
                   (expect roam-ignore-prop :to-be nil))))
 
