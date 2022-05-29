@@ -1,7 +1,21 @@
-;;; org-hyperscheduler.el --- web representation of org-agenda
+;;; org-hyperscheduler.el --- UI (web) representation of org-agenda -*- lexical-binding: t -*-
 ;; Copyright © 2022 Dmitry Markushevich
 
 ;; TODO: Add license.
+
+
+;; Author: Dmitry Markushevich <dmitrym@gmail.com>
+;; Keywords: org-mode, calendar
+;; Version: 0
+;; Package-Requires: ((emacs "27.1") (websocket "1.13"))
+;; URL: https://github.com/dmitrym0/org-hyperscheduler
+
+;;; Commentary:
+;;
+;; Shows your org-mode agenda in a web-based calendar view.
+
+
+;;; Code:
 
 ;; ---------------------------------------------------------------------------------------------------
 (require 'org)
@@ -55,62 +69,27 @@
 
 (setq websocket-debug t)
 
-(defvar wstest-server-buffer (get-buffer-create "*wstest-server*"))
-(defvar wstest-server-name "wstest-server")
-
-(defun print-entries ()
-  (message (cdr (assoc "ITEM" (org-entry-properties)))))
-
-
-
-(defvar mock-org-contents-runtime
-  "* Heading 1
-** Subheading 2
-*** TODO a task
-")
-
+(defvar org-hyperscheduler-server-buffer (get-buffer-create "*org-hyperscheduler-server*"))
+(defvar org-hyperscheduler-server-name "org-hyperscheduler-server")
 
 ; modify the agenda filter if we want to hide done tasks.
 (and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
 
-
-(defun print-entries ()
-  (let* ((props (org-entry-properties))
-         (reslist ())
-         )
-    props
-    )
-  )
-
-(defun get-entries()
-  (org-entry-properties))
-
-
-; for testing
-(defun get-dummy-schedule ()
-  (with-temp-buffer
-    (org-mode)
-    (insert mock-org-contents-runtime)
-    (get-calendar-entries)
-    )
-  )
-
-
-(setq org-hs-ws-server
+(setq org-hyperscheduler-ws-server
     ; only run the server if we are not in test env.
     (unless (boundp 'org-hyperscheduler-test-env) 
           (websocket-server
            44445
            :host 'local
-           :on-open #'org-hs--ws-on-open
-           :on-message #'org-hs--ws-on-message
-           :on-close #'org-hs--ws-on-close)))
+           :on-open #'org-hyperscheduler--ws-on-open
+           :on-message #'org-hyperscheduler--ws-on-message
+           :on-close #'org-hyperscheduler--ws-on-close)))
 
-(defun org-hs-stop-server ()
+(defun org-hyperscheduler-stop-server ()
   (interactive)
-  (websocket-server-close org-hs-ws-server))
+  (websocket-server-close org-hyperscheduler-ws-server))
 
-(defun org-hs--ws-on-message (_ws frame)
+(defun org-hyperscheduler--ws-on-message (_ws frame)
   "Functions to run when the server receives a message.
 Takes _WS and FRAME as arguments."
   (let* ((msg (json-parse-string
@@ -119,39 +98,39 @@ Takes _WS and FRAME as arguments."
          (data (alist-get 'data msg)))
     (message (format "Command=[%s] Data=[%s]" command data))
     (cond ((string= command "get-agenda")
-           (org-hs--get-agenda))
+           (org-hyperscheduler--get-agenda))
           ((string= command "update-event")
-           (org-hs--update-event data))
+           (org-hyperscheduler--update-event data))
           ((string= command "add-scheduled-event")
-           (org-hs--add-scheduled-event data))
+           (org-hyperscheduler--add-scheduled-event data))
           (nil
            (message
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
 
 
 
-(defun org-hs--ws-on-open (ws)
+(defun org-hyperscheduler--ws-on-open (ws)
   "Open the websocket WS and send initial data."
   (progn
-    (setq org-hs-ws-socket ws)
+    (setq org-hyperscheduler-ws-socket ws)
     (message "org-hyperscheduler: connection from the browser")
     )
 )
 
-(defun org-hs--update-event (data)
+(defun org-hyperscheduler--update-event (data)
   "Update the given event with the content provided."
-  (message "+org-hs-update-event")
+  (message "+org-hyperscheduler-update-event")
   (let* ((id (alist-get 'id data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
     (message (format "Updating ID: %s to timestamp: %s" id timestamp))
     (save-window-excursion
       (find-event-by-id id)
       (schedule-at-point timestamp)))
-  (message "-org-hs-update-event"))
+  (message "-org-hyperscheduler-update-event"))
              
-(defun org-hs--add-scheduled-event (data)
+(defun org-hyperscheduler--add-scheduled-event (data)
   "Create a new event in an inbox."
-  (message "+org-hs--add-scheduled-event")
+  (message "+org-hyperscheduler--add-scheduled-event")
   (let* ((title (alist-get 'title data))
          (timestamp (get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
     (save-window-excursion
@@ -159,15 +138,15 @@ Takes _WS and FRAME as arguments."
       (goto-char (point-max))
       (insert (format "* TODO %s\n" title))
       (schedule-at-point timestamp)))
-  (message "-org-hs--add-scheduled-event"))
+  (message "-org-hyperscheduler--add-scheduled-event"))
 
-(defun org-hs--ws-on-close (_websocket)
-  (message "org-hs--ws-on-close"))
+(defun org-hyperscheduler--ws-on-close (_websocket)
+  (message "org-hyperscheduler--ws-on-close"))
 
-(defun org-hs--get-agenda ()
+(defun org-hyperscheduler--get-agenda ()
   (let* ((encoded-agenda (json-encode (get-calendar-entries 'agenda))))
      (message (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
-     (websocket-send-text org-hs-ws-socket encoded-agenda)))
+     (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
 
 (defun find-event-by-id (id)
   "Find a event by ID so we can modify it."
@@ -181,7 +160,7 @@ Takes _WS and FRAME as arguments."
   ; I'd like a custom prefix in case we ever have to filter all org-hs created properties out.
   (condition-case nil
       ; second param to org-id-get is whether to create an id or not
-      (org-id-get (point) (not org-hyperscheduler-readonly-mode) "org-hs-id-custom")
+      (org-id-get (point) (not org-hyperscheduler-readonly-mode) "org-hyperscheduler-id")
     (error nil))
   ; hide tasks from org-roam https://www.orgroam.com/manual.html#What-to-cache
   (when (and
@@ -247,29 +226,6 @@ Takes _WS and FRAME as arguments."
   "Schedule a heading at point with a given timestamp"
   (org-schedule nil timestamp))
 
-
-;; --- deal with exporting links
-;; WIP
-
-
-(defun get-link-location ()
- (org-element-property :contents-begin (car (org-element-map (org-element-headline-parser (point)) 'link #'identity))))
-
-
-
-(defun get-link-label ()
-(let* ((link-location (get-link-location)))
-(goto-char link-location)
-(get-link-label--)))
-
-(defun get-link-label-- ()
-  (let ((link (org-element-context)))
-     (buffer-substring-no-properties (org-element-property :contents-begin link)
-                                    (org-element-property :contents-end link))))
-
-
-;; --- end links
-
 (defvar org-hyperscheduler-root-dir
   (concat (file-name-directory
            (expand-file-name (or
@@ -286,6 +242,6 @@ Takes _WS and FRAME as arguments."
   (browse-url html-file-path)))
 
 ;;;###autoload
-(defalias 'org-hs-open #'org-hyperscheduler-open)
+(defalias 'org-hyperscheduler-open #'org-hyperscheduler-open)
 
 (provide 'org-hyperscheduler)

@@ -106,7 +106,7 @@ SCHEDULED: <2022-01-23 Sun>
                 (insert mock-org-contents-unprocessed)
                 (let* ((todo-entries (get-calendar-entries nil))
                        (current-id (org-id-get)))
-                  (expect (string-match "org-hs-id-custom.*" current-id)))))
+                  (expect (string-match "org-hyperscheduler-id.*" current-id)))))
 
           (it "does NOT have ROAM_EXCLUDE property when exclusion is disabled"
               (setq org-hyperscheduler-exclude-from-org-roam nil)
@@ -198,7 +198,7 @@ SCHEDULED: <2022-01-23 Sun>
                                                    t))))
                                         ; TODO (expect (org-hs--ws-on-message nil frame) :not :to-be nil)
                                         ; TODO refactor message handlers so we can pass mock webservices to it. for now, we expect a void-variable exception
-                (expect (org-hs--ws-on-message nil frame) :to-throw 'void-variable)
+                (expect (org-hyperscheduler--ws-on-message nil frame) :to-throw 'void-variable)
                 )))
 
 
