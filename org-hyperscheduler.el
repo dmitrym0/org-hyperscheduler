@@ -152,7 +152,7 @@ Takes _WS and FRAME as arguments."
     (find-file (car location))
     (goto-char (cdr location))))
 
-(defun get-agenda ()
+(defun org-hyperscheduler-get-agenda ()
   "Get an org agenda event and transform it into a form that is easily JSONable."
   ; silently eat the error that org-id-get-create generates in temp buffers.
   ; I'd like a custom prefix in case we ever have to filter all org-hs created properties out.
@@ -178,7 +178,7 @@ Takes _WS and FRAME as arguments."
 
 (defun get-calendar-entries (scope)
   "Get all agenda entries using our filter and return a structure that is JSONable"
-  (org-map-entries #'get-agenda org-hyperscheduler-agenda-filter scope))
+  (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
 
 (defun get-js-date-pair ()
