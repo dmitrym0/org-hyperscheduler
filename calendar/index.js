@@ -168,7 +168,7 @@ calendar.on({
 
 // are we in readonly mode?
 function isReadOnly() {
-    return agenda.at(0).isReadOnly;
+    return agenda.length === 0 || agenda.at(0).isReadOnly;
 }
 
 

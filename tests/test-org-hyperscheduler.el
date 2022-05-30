@@ -79,7 +79,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-temp-buffer
                 (org-mode)
                 (let* ((encoded-agenda (org-hyperscheduler--encode-agenda)))
-                  (expect encoded-agenda :to-equal "{}"))))
+                  (expect encoded-agenda :to-equal "[]"))))
 
 
           (it "can update an existing scheduled event")

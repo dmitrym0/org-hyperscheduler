@@ -149,7 +149,8 @@
 
 (defun org-hyperscheduler--encode-agenda ()
   "Encode our agenda to JSON"
-  (json-encode-list (org-hyperscheduler-get-calendar-entries 'agenda)))
+  ;; want json-encode-array here in case we get an empty list. then we want "[]"
+  (json-encode-array (org-hyperscheduler-get-calendar-entries 'agenda)))
 
 (defun org-hyperscheduler--get-agenda ()
   "Get the agenda and send it through to the client."
