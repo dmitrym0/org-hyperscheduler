@@ -146,11 +146,16 @@
   "This the websocket connection callback."
   (message "org-hyperscheduler--ws-on-close"))
 
+
+(defun org-hyperscheduler--encode-agenda ()
+  "Encode our agenda to JSON"
+  (json-encode-list (org-hyperscheduler-get-calendar-entries 'agenda)))
+
 (defun org-hyperscheduler--get-agenda ()
   "Get the agenda and send it through to the client."
-  (let* ((encoded-agenda (json-encode (org-hyperscheduler-get-calendar-entries 'agenda))))
+  (let* ((encoded-agenda org-hyperscheduler--encode-agenda)))
      (message (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
-     (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
+     (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda))
 
 (defun org-hyperscheduler-find-event-by-id (id)
   "Find a event by ID so we can modify it."
@@ -181,7 +186,7 @@
     props))
 
 (defun org-hyperscheduler-get-calendar-entries (scope)
-  "Get all agenda entries using our filter and SCOPE and return a structure that is JSONable."
+  "Get all agenda entries using our filter and org-mode SCOPE and return a structure that is JSONable."
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
 

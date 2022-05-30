@@ -74,6 +74,14 @@ SCHEDULED: <2022-01-23 Sun>
                 )))
 
 
+
+          (it "can encode empty agenda correctly"
+              (with-temp-buffer
+                (org-mode)
+                (let* ((encoded-agenda (org-hyperscheduler--encode-agenda)))
+                  (expect encoded-agenda :to-equal "{}"))))
+
+
           (it "can update an existing scheduled event")
           (it "can insert a new scheduled event into the list")
           (it "can insert a new timestamped event into the list")
