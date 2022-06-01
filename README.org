@@ -42,6 +42,14 @@ and then visualize them to ensure that capacity is available:
 
 
 
+** Screen Cast
+
+
+Real quick demo of what the package does
+
+https://www.youtube.com/watch?v=8vhhIYIS0zY
+
+
 ** Installation
 
 org-hyperschedule is *not* currently available in MELPA. Once the package matures, it will be added.
@@ -61,32 +69,30 @@ For now you can either download the source and install it manually or with ~use-
 You can then invoke ~M-x org-hyperscheduler-open~ to invoke the web view.
 
 
-*** Hiding calendar entries from org-roam
-
-org-roam treats all entries with an ~:ID:~ property as as roam nodes. This is not what I wanted. Each calendar entry processed by org-hyperscheduler gets a ~DO_NOT_ORG_ROAM~ tag. Subsequently, we tell org-roam to ignore all entries with this tag:
-
-#+begin_src elisp
-  (require 'org-roam-protocol)
-  (setq org-roam-db-node-include-function
-        (lambda ()
-          (not (member "DO_NOT_ORG_ROAM" (org-get-tags)))))
-#+end_src
-
 ** Configuration
 
 
 Use ~M-x customize-group org-hyperscheduler~ to configure this module.
 
 
-*Readonly mode*
+*** Read only mode
 
-org-hyperscheduler is able to update entries in Emacs when using the web UI. To suppor this functionality, org-hyperscheduler must create IDs for each scheduled entry. If you are not ok with org-hyperscheduler modifying your data, keep ~org-hyperscheduler-readonly-mode~ turned on. In this mode you can visualize your agenda, but cannot make any changes in web UI.:w
+org-hyperscheduler is able to update entries in Emacs when using the web UI. To suppor this functionality, org-hyperscheduler must create IDs for each scheduled entry. If you are not ok with org-hyperscheduler modifying your data, keep ~org-hyperscheduler-readonly-mode~ turned on. In this mode you can visualize your agenda, but cannot make any changes in web UI.
 
+*** Hiding calendar entries from org-roam
+
+org-roam treats all entries with an ~:ID:~ property as roam nodes. This is not what I wanted. org-roam excludes all entries with the G
+
+See ~org-hyperscheduler-exclude-from-org-roam~ through ~M-x customize-group org-hyperscheduler~ or
+
+~(setq org-hyperscheduler-exclude-from-org-roam t)~
+
+**Note**: Read only mode must be disabled for this to take effect.
 
 ** Development
 
 
-** Running tests
+*** Running tests
 
 1. Install [[https://github.com/cask/cask][cask]] (~brew install cask~).
 2. Run ~cask~ to install dependencies.
@@ -94,12 +100,12 @@ org-hyperscheduler is able to update entries in Emacs when using the web UI. To 
 
 
 
-** See also
-*** org-roam-ui
+*** See also
+**** org-roam-ui
 
 org-hyperscheduler was heavily inspired by [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]. If you're using [[https://github.com/org-roam/org-roam-ui][org-roam]] it's worth adding org-roam-ui.
 
-*** calfw
+**** calfw
 
 [[https://github.com/kiwanami/emacs-calfw][calfw]] is a (textmode) calendaring framwork for emacs. I found it somewhat late into the development of org-hyperscheduler. If I found it earlier, I may have skipepd developing this.
 
