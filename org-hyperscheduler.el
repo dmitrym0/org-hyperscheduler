@@ -35,6 +35,7 @@
 
 ;; ---------------------------------------------------------------------------------------------------
 (require 'org)
+(require 'org-element)
 (require 'websocket)
 (require 'cl-lib)
 
@@ -99,16 +100,17 @@ this setting to take effect."
 ; modify the agenda filter if we want to hide done tasks.
 (and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
 
-(setq org-hyperscheduler-ws-server
-    ; only run the server if we are not in test env.
-    (unless (boundp 'org-hyperscheduler-test-env)
-          (websocket-server
-           44445
-           :host 'local
-           :on-open #'org-hyperscheduler--ws-on-open
-           :on-message #'org-hyperscheduler--ws-on-message
-           :on-close #'org-hyperscheduler--ws-on-close)))
+(defvar org-hyperscheduler-ws-server
+  ;; only run the server if we are not in test env.
+  (unless (boundp 'org-hyperscheduler-test-env)
+    (websocket-server
+     44445
+     :host 'local
+     :on-open #'org-hyperscheduler--ws-on-open
+     :on-message #'org-hyperscheduler--ws-on-message
+     :on-close #'org-hyperscheduler--ws-on-close)))
 
+(defvar org-hyperscheduler-ws-socket nil)
 
 (defun org-hyperscheduler-stop-server ()
   "Stops the websocket server and closed connections."
