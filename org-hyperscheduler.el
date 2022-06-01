@@ -43,7 +43,7 @@
 ;; options
 
 (defgroup org-hyperscheduler nil
-  "org-hyperscheduler"
+  "Org-hyperscheduler."
   :group 'org-hyperscheduler
   :prefix "org-hyperscheduler-"
   :link '(url-link :tag "Github" "https://github.com/dmitrym0/org-hyperscheduler"))
@@ -209,7 +209,7 @@ Takes _WS and FRAME as arguments."
     props))
 
 (defun org-hyperscheduler-get-calendar-entries (scope)
-  "Get all agenda entries using our filter and org-mode SCOPE and return a structure that is JSONable."
+  "Get all agenda entries using our filter and `org-mode' SCOPE and return a structure that is JSONable."
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
 
@@ -235,7 +235,13 @@ Takes _WS and FRAME as arguments."
 
 ; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
 (defun org-hyperscheduler-date-time-to-iso8601-js-like  (seconds minutes hour day month year)
-  "Convert time stamps to ISO8601 format."
+  "Convert time stamps to ISO8601 format.
+Argument SECONDS seconds.
+Argument MINUTES minutes.
+Argument HOUR minutes.
+Argument DAY day of the month.
+Argument MONTH month.
+Argument YEAR year."
   ;; (message (format "params %s %s %s %s %s %s" seconds minutes hour day month year))
   (let* ((minutes (or minutes 0))
          (hour (or hour 0)))
