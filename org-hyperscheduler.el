@@ -33,11 +33,13 @@
 
 (defcustom org-hyperscheduler-readonly-mode t
   "If true, the web interface becomes read only.
-   In Read-only mode, changes to agenda entries can only be made from Emacs.
-   In Read-write mode, changes can be made either in Emacs or in the web-interface.
-   **NOTE** that for bidirectional changes to work each eligible agenda entry must have an ~org-id~.
-   This org-id will be added automatically by org-hyperscheduler. If you don't want org-hyperscheduler
-   to modify your agenda entries, keep the read-only mode enabled."
+In Read-only mode, changes to agenda entries can only be made from Emacs.
+In Read-write mode, changes can be made either in Emacs or in the web-interface.
+
+**NOTE** that for bidirectional changes to work each eligible agenda entry must have an ~org-id~.
+
+This org-id will be added automatically by org-hyperscheduler.  If you don't want org-hyperscheduler
+to modify your agenda entries, keep the read-only mode enabled."
   :group 'org-hyperscheduler
   :type 'boolean)
 
@@ -48,10 +50,13 @@
 
 (defcustom org-hyperscheduler-exclude-from-org-roam nil
   "In org-roam any entry with an :ID: property is treated like a node.
-   This is not desirable for calendar entries in most cases.
-   When this flag is set to true, org-hyperscheduler will insert a :ROAM_EXCLUDE:
-   property to hide calendar entries from org-roam. Read-only mode
-   (org-hyperscheduler-readonly-mode) needs to be disabled for this setting to take effect."
+This is not desirable for calendar entries in most cases.
+
+When this flag is set to true, org-hyperscheduler will insert a :ROAM_EXCLUDE:
+property to hide calendar entries from org-roam.
+
+Read-only mode (org-hyperscheduler-readonly-mode) needs to be disabled for
+this setting to take effect."
   :group 'org-hyperscheduler
   :type 'boolean)
 
@@ -95,7 +100,7 @@
 
 (defun org-hyperscheduler--ws-on-message (_ws frame)
   "Functions to run when the server receives a message.
-   Takes _WS and FRAME as arguments."
+Takes _WS and FRAME as arguments."
   (let* ((msg (json-parse-string
                (websocket-frame-text frame) :object-type 'alist))
          (command (alist-get 'command msg))
@@ -148,7 +153,7 @@
 
 
 (defun org-hyperscheduler--encode-agenda ()
-  "Encode our agenda to JSON"
+  "Encode our agenda to JSON."
   ;; want json-encode-array here in case we get an empty list. then we want "[]"
   (json-encode-array (org-hyperscheduler-get-calendar-entries 'agenda)))
 

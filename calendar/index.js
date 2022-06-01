@@ -168,6 +168,7 @@ calendar.on({
 
 // are we in readonly mode?
 function isReadOnly() {
+    // TODO: this will fail for new users with no agenda, and read only mode disabled.
     return agenda.length === 0 || agenda.at(0).isReadOnly;
 }
 
