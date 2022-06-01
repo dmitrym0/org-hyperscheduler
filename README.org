@@ -57,9 +57,9 @@ and then visualize them to ensure that capacity is available:
 ** Screen Cast
 
 
-Real quick demo of what the package does
+Real quick demo of what the package does:
 
-https://www.youtube.com/watch?v=8vhhIYIS0zY
+[![org-hyperscheduler screencast](https://www.youtube.com/watch?v=8vhhIYIS0zY)
 
 
 ** Installation
