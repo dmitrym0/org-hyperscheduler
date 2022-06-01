@@ -59,7 +59,7 @@ and then visualize them to ensure that capacity is available:
 
 Real quick demo of what the package does:
 
-[[https://www.youtube.com/watch?v=8vhhIYIS0zY][https://www.youtube.com/watch?v=8vhhIYIS0zY]]
+[[https://www.youtube.com/watch?v=8vhhIYIS0zY][https://img.youtube.com/vi/8vhhIYIS0zY/0.jpg]]
 
 
 ** Installation
