@@ -11,6 +11,18 @@
 Hyperscheduling is the idea of fully planning your day using a calendar. Every minute of the day is assigned to some task using a calendar.
 #+end_quote
 
+
+
+** Table of Contents                                                   :TOC:
+- [[#org-hyperscheduler][org-hyperscheduler]]
+  - [[#what-is-hyperscheduling][What is Hyperscheduling]]
+  - [[#what-does-org-hyperscheduler-do][What does org-hyperscheduler do?]]
+  - [[#planning-a-day][Planning A Day]]
+  - [[#screen-cast][Screen Cast]]
+  - [[#installation][Installation]]
+  - [[#configuration][Configuration]]
+  - [[#development][Development]]
+
 ** What does org-hyperscheduler do?
 
 org-hyperscheduler presents a web UI that allows agenda entries to be visualized and moved around easily.
