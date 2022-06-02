@@ -196,18 +196,28 @@ SCHEDULED: <2022-01-23 Sun>
 
 
 (describe "webservices functionality"
-          (it "can get agenda via webservices"
+          (before-each
+           ;; intercept websocket-send-text. 
+           (spy-on 'websocket-send-text :and-call-fake (lambda (socket text)
+                                                         (setq __agenda text)
+                                                         )))
 
+          ;; TODO
+          ;; I have mixed feelings about this text. There's too much low level messing about with webservices.
+          ;; Maybe it's worth extracting message marshalling/unmarshaling, then we don't have to test ws internals.
+          (it "can get agenda via webservices"
               (let* ((command "{\"command\":\"get-agenda\"}")
                      (frame (websocket-read-frame (websocket-encode-frame
                                                    (make-websocket-frame :opcode 'text
                                                                          :payload (encode-coding-string command 'raw-text)
                                                                          :completep t)
                                                    t))))
-                                        ; TODO (expect (org-hs--ws-on-message nil frame) :not :to-be nil)
-                                        ; TODO refactor message handlers so we can pass mock webservices to it. for now, we expect a void-variable exception
-                (expect (org-hyperscheduler--ws-on-message nil frame) :to-throw 'void-variable)
+                (org-hyperscheduler--ws-on-message nil frame)
+                (expect 'websocket-send-text :to-have-been-called)
+                (expect __agenda :to-equal "[]") ;; no agenda, empty array
                 )))
+
+
 
 
 (describe "defaults"
