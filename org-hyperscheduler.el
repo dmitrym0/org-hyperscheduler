@@ -215,7 +215,6 @@ Takes _WS and FRAME as arguments."
     props))
 
 (defun org-hyperscheduler-get-calendar-entries (scope)
-  "Get all agenda entries using our filter and `org-mode' SCOPE and return a structure that is JSONable."
   "Get all agenda entries using our filter and `org-mode' SCOPE
 and return a structure that is JSONable."
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
