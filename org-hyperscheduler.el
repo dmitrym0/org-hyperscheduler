@@ -52,17 +52,21 @@
 (defcustom org-hyperscheduler-readonly-mode t
   "If true, the web interface becomes read only.
 In Read-only mode, changes to agenda entries can only be made from Emacs.
+
 In Read-write mode, changes can be made either in Emacs or in the web-interface.
 
-**NOTE** that for bidirectional changes to work each eligible agenda entry must have an ~org-id~.
+**NOTE**
+For bidirectional changes to work each eligible agenda entry must have an ~ID~.
 
-This org-id will be added automatically by org-hyperscheduler.  If you don't want org-hyperscheduler
-to modify your agenda entries, keep the read-only mode enabled."
+This org-id will be added automatically by org-hyperscheduler.
+If you don't want org-hyperscheduler to modify your agenda entries,
+keep the read-only mode enabled."
   :group 'org-hyperscheduler
   :type 'boolean)
 
 (defcustom org-hyperscheduler-hide-done-tasks t
-  "If true, once a task transitions from TODO to DONE it disappears from the web calendar."
+  "If true, once a task transitions from TODO to DONE it disappears
+from the web calendar."
   :group 'org-hyperscheduler
   :type 'boolean)
 
@@ -78,8 +82,9 @@ this setting to take effect."
   :group 'org-hyperscheduler
   :type 'boolean)
 
-(defcustom org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-31>\"|SCHEDULED>=\"<2022-01-31>\""
-  "This is a filter to use to generate a list of agenda tasks/entries to show in the calendar."
+(defcustom org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-04-31>\"|SCHEDULED>=\"<2022-04-31>\""
+  "This is a filter to use to generate a list of agenda
+tasks/entries to show in the calendar."
   :group 'org-hyperscheduler
   :type 'string)
 
@@ -139,9 +144,8 @@ Takes _WS and FRAME as arguments."
 
 (defun org-hyperscheduler--ws-on-open (ws)
   "Open the websocket WS and send initial data."
-  (progn
     (setq org-hyperscheduler-ws-socket ws)
-    (message "org-hyperscheduler: connection from the browser")))
+    (message "org-hyperscheduler: connection from the browser"))
 
 (defun org-hyperscheduler--update-event (data)
   "Update the given event with the DATA provided."
@@ -212,6 +216,8 @@ Takes _WS and FRAME as arguments."
 
 (defun org-hyperscheduler-get-calendar-entries (scope)
   "Get all agenda entries using our filter and `org-mode' SCOPE and return a structure that is JSONable."
+  "Get all agenda entries using our filter and `org-mode' SCOPE
+and return a structure that is JSONable."
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
 
