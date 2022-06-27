@@ -32,7 +32,21 @@ SCHEDULED: <2022-01-23 Sun>
 (setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"")
 
 
+;; this is a convenience method for unit tests. sets up a temp buffer with mock contents and execs the lambda
+(defun with-mock-contents (contents lambda)
+  (with-temp-buffer
+    (org-mode)
+    (insert contents)
+    (funcall lambda)))
+
 (describe "Agenda functionality"
+          (it "can get the correct entries"
+              (with-mock-contents
+               mock-org-contents
+               '(lambda () (let ((number-of-todo-entries (length (org-hyperscheduler-get-calendar-entries nil))))
+                             (expect number-of-todo-entries :to-be 2)))))
+
+
           (it "can get the correct entries"
               (with-temp-buffer
                 (org-mode)
