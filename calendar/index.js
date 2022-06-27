@@ -1,3 +1,38 @@
+/*
+
+ index.js - companion to the org-hyperscheduler.el
+
+ Copyright © 2022 Dmitry Markushevich
+
+ Author: Dmitry Markushevich <dmitrym@gmail.com>
+ Keywords: org-mode, calendar
+ URL: https://github.com/dmitrym0/org-hyperscheduler
+
+ This file is NOT part of GNU Emacs.
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3, or (at your option)
+ any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with GNU Emacs; see the file COPYING.  If not, write to the
+ Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ Boston, MA 02110-1301, USA.
+
+
+ Commentary:
+
+ This is the javascript code that talks to Emacs via websockets to render agenda.
+
+ More info https://github.com/dmitrym0/org-hyperscheduler
+
+*/
 // get the schedule from local storage so we can display something immediately.
 let schedule = window.localStorage.getItem('schedule');
 let agenda;
