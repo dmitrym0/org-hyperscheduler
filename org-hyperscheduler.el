@@ -4,7 +4,7 @@
 ;; Author: Dmitry Markushevich <dmitrym@gmail.com>
 ;; Keywords: org-mode, calendar
 ;; Version: 1.0
-;; Package-Requires: ((emacs "27.1") (websocket "1.13"))
+;; Package-Requires: ((emacs "27.1") (websocket "1.13") (log4e "0.3.3"))
 ;; URL: https://github.com/dmitrym0/org-hyperscheduler
 
 
@@ -38,6 +38,7 @@
 (require 'org-element)
 (require 'websocket)
 (require 'cl-lib)
+(require 'log4e)
 
 ;; ---------------------------------------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------------------------
@@ -99,6 +100,11 @@ tasks/entries to show in the calendar."
 
 (setq websocket-debug t)
 
+; turn on logging and create org-hs--log-* methods
+(log4e:deflogger "org-hs" "org-hyperscheduler %t [%l] %m" "%H:%M:%S")
+(org-hs--log-enable-logging)
+(org-hs--log-enable-messaging)
+
 (defvar org-hyperscheduler-server-buffer (get-buffer-create "*org-hyperscheduler-server*"))
 (defvar org-hyperscheduler-server-name "org-hyperscheduler-server")
 
@@ -129,7 +135,7 @@ Takes _WS and FRAME as arguments."
                (websocket-frame-text frame) :object-type 'alist))
          (command (alist-get 'command msg))
          (data (alist-get 'data msg)))
-    (message (format "Command=[%s] Data=[%s]" command data))
+    (org-hs--log-debug (format "Command=[%s] Data=[%s]" command data))
     (cond ((string= command "get-agenda")
            (org-hyperscheduler--get-agenda))
           ((string= command "update-event")
@@ -137,30 +143,28 @@ Takes _WS and FRAME as arguments."
           ((string= command "add-scheduled-event")
            (org-hyperscheduler--add-scheduled-event data))
           (nil
-           (message
+           (org-hs--log-fatal
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
-
-
 
 (defun org-hyperscheduler--ws-on-open (ws)
   "Open the websocket WS and send initial data."
     (setq org-hyperscheduler-ws-socket ws)
-    (message "org-hyperscheduler: connection from the browser"))
+    (org-hs--log-debug "org-hyperscheduler: connection from the browser"))
 
 (defun org-hyperscheduler--update-event (data)
   "Update the given event with the DATA provided."
-  (message "+org-hyperscheduler-update-event")
+  (org-hs--log-debug "+org-hyperscheduler-update-event")
   (let* ((id (alist-get 'id data))
          (timestamp (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event (alist-get 'start data) (alist-get 'end data))))
-    (message (format "Updating ID: %s to timestamp: %s" id timestamp))
+    (org-hs--log-debug (format "Updating ID: %s to timestamp: %s" id timestamp))
     (save-window-excursion
       (org-hyperscheduler-find-event-by-id id)
       (org-hyperscheduler-schedule-at-point timestamp)))
-  (message "-org-hyperscheduler-update-event"))
+  (org-hs--log-debug "-org-hyperscheduler-update-event"))
              
 (defun org-hyperscheduler--add-scheduled-event (data)
   "Create a new event from DATA in an inbox."
-  (message "+org-hyperscheduler--add-scheduled-event")
+  (org-hs--log-debug "+org-hyperscheduler--add-scheduled-event")
   (let* ((title (alist-get 'title data))
          (timestamp (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
     (save-window-excursion
@@ -168,11 +172,11 @@ Takes _WS and FRAME as arguments."
       (goto-char (point-max))
       (insert (format "* TODO %s\n" title))
       (org-hyperscheduler-schedule-at-point timestamp)))
-  (message "-org-hyperscheduler--add-scheduled-event"))
+  (org-hs--log-debug "-org-hyperscheduler--add-scheduled-event"))
 
 (defun org-hyperscheduler--ws-on-close (_websocket)
   "This the websocket connection callback."
-  (message "org-hyperscheduler--ws-on-close"))
+  (org-hs--log-debug "org-hyperscheduler--ws-on-close"))
 
 
 (defun org-hyperscheduler--encode-agenda ()
@@ -183,7 +187,7 @@ Takes _WS and FRAME as arguments."
 (defun org-hyperscheduler--get-agenda ()
   "Get the agenda and send it through to the client."
   (let* ((encoded-agenda (org-hyperscheduler--encode-agenda)))
-     (message (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
+     (org-hs--log-debug (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
      (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
 
 (defun org-hyperscheduler-find-event-by-id (id)
