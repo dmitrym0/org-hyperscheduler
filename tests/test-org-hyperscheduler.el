@@ -121,7 +121,7 @@ SCHEDULED: <2022-01-23 Sun>
                   (org-hyperscheduler-find-event-by-id "FAKE_ID1")
                   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
                          (rawvalue (plist-get plist :raw-value)))
-                    (message "%s" plist)
+                    ;(message "%s" plist)
                     (expect rawvalue :to-equal "<2030-05-05 Sun 14:30-01:50>")))))
 
           (it "can insert a new scheduled event into the list")
