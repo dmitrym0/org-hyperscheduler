@@ -1,6 +1,8 @@
 (setq org-hyperscheduler-test-env t)
 
 (require 'org-hyperscheduler)
+(require 'org-id)
+
 
 
 (defvar mock-org-contents
@@ -33,18 +35,34 @@ SCHEDULED: <2022-01-23 Sun>
 
 
 ;; this is a convenience method for unit tests. sets up a temp buffer with mock contents and execs the lambda
+;;
+;; initially tried to use with-temp-buffer, but org-id doesn't like transient buffers and seems to need
+;; actual files. so here we are.
 (defun with-mock-contents (contents lambda)
-  (with-temp-buffer
-    (org-mode)
-    (insert contents)
-    (funcall lambda)))
+  (org-mode)
+  (setq org-id-track-globally t)
+
+  (let* ((tempfile (make-temp-file "org-hs" nil ".org" contents)))
+    (setq org-agenda-files (list tempfile))
+    (find-file tempfile)
+    (funcall lambda)
+    (kill-current-buffer)
+  ))
+
+
+(defun find-by-id (id)
+  (let* ((location (org-id-find id)))
+    (goto-char (cdr location))))
+
+
 
 (describe "Agenda functionality"
           (it "can get the correct entries"
               (with-mock-contents
                mock-org-contents
                '(lambda () (let ((number-of-todo-entries (length (org-hyperscheduler-get-calendar-entries nil))))
-                             (expect number-of-todo-entries :to-be 2)))))
+                             (expect number-of-todo-entries :to-be 2))))
+              )
 
 
           (it "can get the correct entries"
@@ -90,13 +108,22 @@ SCHEDULED: <2022-01-23 Sun>
 
 
           (it "can encode empty agenda correctly"
-              (with-temp-buffer
-                (org-mode)
-                (let* ((encoded-agenda (org-hyperscheduler--encode-agenda)))
-                  (expect encoded-agenda :to-equal "[]"))))
+              (with-mock-contents "" '(lambda ()
+                                        (let* ((encoded-agenda (org-hyperscheduler--encode-agenda)))
+                                          (expect encoded-agenda :to-equal "[]")))))
 
 
-          (it "can update an existing scheduled event")
+          (it "can update an existing scheduled event"
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
+                  (org-hyperscheduler--update-event '(( id . "FAKE_ID1") (start . 1904247000 ) (end . 1904547000)))
+                  (org-hyperscheduler-find-event-by-id "FAKE_ID1")
+                  (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
+                         (rawvalue (plist-get plist :raw-value)))
+                    ;(message "%s" plist)
+                    (expect rawvalue :to-equal "<2030-05-05 Sun 14:30-01:50>")))))
+
           (it "can insert a new scheduled event into the list")
           (it "can insert a new timestamped event into the list")
           (it "can delete an existing event from the list")
@@ -220,6 +247,8 @@ SCHEDULED: <2022-01-23 Sun>
           ;; I have mixed feelings about this text. There's too much low level messing about with webservices.
           ;; Maybe it's worth extracting message marshalling/unmarshaling, then we don't have to test ws internals.
           (it "can get agenda via webservices"
+              (setq org-agenda-files nil)
+              (org-element-cache-reset t)
               (let* ((command "{\"command\":\"get-agenda\"}")
                      (frame (websocket-read-frame (websocket-encode-frame
                                                    (make-websocket-frame :opcode 'text
@@ -240,3 +269,11 @@ SCHEDULED: <2022-01-23 Sun>
           (it "should have a default for the agenda filter"
               (expect org-hyperscheduler-agenda-filter :not :to-be nil))
           )
+
+
+(describe "misc"
+          (it "should find IDs in transient buffers"
+              (with-mock-contents mock-org-contents '(lambda() (org-hyperscheduler-find-event-by-id "FAKE_ID1")))
+              ))
+
+
