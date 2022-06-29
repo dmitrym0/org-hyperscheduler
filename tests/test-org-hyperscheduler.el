@@ -255,6 +255,17 @@ SCHEDULED: <2022-01-23 Sun>
 
 
 
+; a utility method to generate websocket frame for later consumption.
+(defun make-ws-frame (payload)
+  (message "Payload: %s" payload)
+  (websocket-read-frame (websocket-encode-frame
+                         (make-websocket-frame :opcode 'text
+                                               :payload (encode-coding-string payload 'raw-text)
+                                               :completep t)
+                         t)))
+
+
+
 (describe "webservices functionality"
           (before-each
            ;; intercept websocket-send-text. 
