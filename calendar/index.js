@@ -187,9 +187,9 @@ calendar.on({
         },
         beforeDeleteSchedule: function (e) {
             console.log('beforeDeleteSchedule', e);
-            //calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
-            // TODO: implement this on emacs side
-            alert('Sorry, not supported yet.');
+            calendar.deleteSchedule(e.schedule.id, e.schedule.calendarId);
+            socket.send(JSON.stringify({"command":"remove-event", data: {id: e.schedule.id}}));
+            return true;
         },
         afterRenderSchedule: function (e) {
             console.log('after render', e);
