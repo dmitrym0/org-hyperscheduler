@@ -40,6 +40,8 @@ SCHEDULED: <2022-01-23 Sun>
 ;;
 ;; initially tried to use with-temp-buffer, but org-id doesn't like transient buffers and seems to need
 ;; actual files. so here we are.
+;;
+;; TODO: asserts can fail and that kills the stack, catch the exception so that we can do proper cleanup.
 (defun with-mock-contents (contents lambda)
   (org-mode)
   (setq org-id-track-globally t)
@@ -53,11 +55,14 @@ SCHEDULED: <2022-01-23 Sun>
     (delete-file tempfile)
   ))
 
-
-(defun find-by-id (id)
-  (let* ((location (org-id-find id)))
-    (goto-char (cdr location))))
-
+; utility method to generate websocket frame for later consumption.
+(defun make-ws-frame (payload)
+  (message "Payload: %s" payload)
+  (websocket-read-frame (websocket-encode-frame
+                         (make-websocket-frame :opcode 'text
+                                               :payload (encode-coding-string payload 'raw-text)
+                                               :completep t)
+                         t)))
 
 
 (describe "Agenda functionality"
@@ -256,15 +261,6 @@ SCHEDULED: <2022-01-23 Sun>
               (expect (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30-15:16>")))
 
 
-
-; a utility method to generate websocket frame for later consumption.
-(defun make-ws-frame (payload)
-  (message "Payload: %s" payload)
-  (websocket-read-frame (websocket-encode-frame
-                         (make-websocket-frame :opcode 'text
-                                               :payload (encode-coding-string payload 'raw-text)
-                                               :completep t)
-                         t)))
 
 
 
