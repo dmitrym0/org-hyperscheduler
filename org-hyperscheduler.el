@@ -142,6 +142,8 @@ Takes _WS and FRAME as arguments."
            (org-hyperscheduler--update-event data))
           ((string= command "add-scheduled-event")
            (org-hyperscheduler--add-scheduled-event data))
+          ((string= command "remove-event")
+           (org-hyperscheduler--remove-event (alist-get 'id data)))
           (nil
            (org-hs--log-fatal
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))

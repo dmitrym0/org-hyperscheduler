@@ -287,6 +287,14 @@ SCHEDULED: <2022-01-23 Sun>
                 ))
 
 
+          (it "can remove events by id via websocket"
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
+                  (org-hyperscheduler--ws-on-message nil (make-ws-frame "{\"command\":\"remove-event\", \"data\":{\"id\":\"FAKE_ID1\"}}"))
+                  (expect (org-id-find "FAKE_ID1") :to-be nil))))
+
+)
 
 
 
