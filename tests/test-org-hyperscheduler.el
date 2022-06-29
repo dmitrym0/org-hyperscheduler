@@ -126,7 +126,18 @@ SCHEDULED: <2022-01-23 Sun>
                     ;(message "%s" plist)
                     (expect rawvalue :to-equal "<2030-05-05 Sun 14:30-01:50>")))))
 
-          (it "can insert a new scheduled event into the list")
+          (it "can insert a new scheduled event into the list"
+              (with-mock-contents
+               ""
+               '(lambda ()
+                  (let* ((old_inbox org-hyperscheduler-inbox-file))
+                    (setq org-hyperscheduler-inbox-file tempfile) ;; tempfile is set in with-mock-contents
+                    (org-hyperscheduler--add-scheduled-event '(( title . "test") (startUnix . 1904247000 ) (endUnix . 1904547000)))
+                    ; TODO should probably check for the right time stamps
+                    (expect (org-hyperscheduler-get-agenda) :not :to-be nil)
+                    ; we have to reset the inbox path, because "defaults" checks for it.
+                    (setq org-hyperscheduler-inbox-file old_inbox)))))
+
           (it "can insert a new timestamped event into the list")
           (it "can delete an existing event from the list"
               (with-mock-contents

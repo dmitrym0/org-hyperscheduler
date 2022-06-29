@@ -162,6 +162,7 @@ Takes _WS and FRAME as arguments."
       (org-hyperscheduler-schedule-at-point timestamp)))
   (org-hs--log-debug "-org-hyperscheduler-update-event"))
              
+; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
 (defun org-hyperscheduler--add-scheduled-event (data)
   "Create a new event from DATA in an inbox."
   (org-hs--log-debug "+org-hyperscheduler--add-scheduled-event")
