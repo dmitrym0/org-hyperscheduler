@@ -273,24 +273,17 @@ SCHEDULED: <2022-01-23 Sun>
                                                          (setq __agenda text)
                                                          )))
 
-          ;; TODO
-          ;; I have mixed feelings about this text. There's too much low level messing about with webservices.
-          ;; Maybe it's worth extracting message marshalling/unmarshaling, then we don't have to test ws internals.
-          ;;
           ;; TODO Use the with-mock-contents to insert actual agenda and verify the result
-          (it "can get agenda via webservices"
+          (it "can get agenda via websocket"
               (setq org-agenda-files nil)
               (org-element-cache-reset t)
-              (let* ((command "{\"command\":\"get-agenda\"}")
-                     (frame (websocket-read-frame (websocket-encode-frame
-                                                   (make-websocket-frame :opcode 'text
-                                                                         :payload (encode-coding-string command 'raw-text)
-                                                                         :completep t)
-                                                   t))))
+              (let* ((frame (make-ws-frame "{\"command\":\"get-agenda\"}")))
                 (org-hyperscheduler--ws-on-message nil frame)
                 (expect 'websocket-send-text :to-have-been-called)
+                ; agenda is set in ~before-each~
                 (expect __agenda :to-equal "[]") ;; no agenda, empty array
-                )))
+                ))
+
 
 
 
