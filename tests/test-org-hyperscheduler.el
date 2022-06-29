@@ -45,8 +45,10 @@ SCHEDULED: <2022-01-23 Sun>
   (let* ((tempfile (make-temp-file "org-hs" nil ".org" contents)))
     (setq org-agenda-files (list tempfile))
     (find-file tempfile)
+    (org-element-cache-reset)
     (funcall lambda)
     (kill-current-buffer)
+    (delete-file tempfile)
   ))
 
 
@@ -126,7 +128,13 @@ SCHEDULED: <2022-01-23 Sun>
 
           (it "can insert a new scheduled event into the list")
           (it "can insert a new timestamped event into the list")
-          (it "can delete an existing event from the list")
+          (it "can delete an existing event from the list"
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
+                  (expect (org-id-find "FAKE_ID1") :not :to-be nil) 
+                  (org-hyperscheduler--remove-event "FAKE_ID1")
+                  (expect (org-id-find "FAKE_ID1") :to-be nil))))
 
 
 )
@@ -246,6 +254,8 @@ SCHEDULED: <2022-01-23 Sun>
           ;; TODO
           ;; I have mixed feelings about this text. There's too much low level messing about with webservices.
           ;; Maybe it's worth extracting message marshalling/unmarshaling, then we don't have to test ws internals.
+          ;;
+          ;; TODO Use the with-mock-contents to insert actual agenda and verify the result
           (it "can get agenda via webservices"
               (setq org-agenda-files nil)
               (org-element-cache-reset t)

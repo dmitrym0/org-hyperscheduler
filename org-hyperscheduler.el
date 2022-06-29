@@ -174,6 +174,14 @@ Takes _WS and FRAME as arguments."
       (org-hyperscheduler-schedule-at-point timestamp)))
   (org-hs--log-debug "-org-hyperscheduler--add-scheduled-event"))
 
+
+(defun org-hyperscheduler--remove-event (event_id)
+  "Removes the heading specific by EVENT_ID (an org-id)"
+  (save-window-excursion
+    (org-hyperscheduler-find-event-by-id event_id)
+    (org-cut-subtree)))
+
+
 (defun org-hyperscheduler--ws-on-close (_websocket)
   "This the websocket connection callback."
   (org-hs--log-debug "org-hyperscheduler--ws-on-close"))
