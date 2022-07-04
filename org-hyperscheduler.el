@@ -66,8 +66,7 @@ keep the read-only mode enabled."
   :type 'boolean)
 
 (defcustom org-hyperscheduler-hide-done-tasks t
-  "If true, once a task transitions from TODO to DONE it disappears
-from the web calendar."
+  "If true, once a task transitions from TODO to DONE it is hidden."
   :group 'org-hyperscheduler
   :type 'boolean)
 
@@ -84,8 +83,7 @@ this setting to take effect."
   :type 'boolean)
 
 (defcustom org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-04-31>\"|SCHEDULED>=\"<2022-04-31>\""
-  "This is a filter to use to generate a list of agenda
-tasks/entries to show in the calendar."
+  "Filter to generate a list of agenda entries to show in the calendar."
   :group 'org-hyperscheduler
   :type 'string)
 
@@ -98,9 +96,7 @@ tasks/entries to show in the calendar."
 ;; ---------------------------------------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------------------------
 
-(setq websocket-debug t)
-
-; turn on logging and create org-hs--log-* methods
+;; turn on logging and create org-hs--log-* methods
 (log4e:deflogger "org-hs" "org-hyperscheduler %t [%l] %m" "%H:%M:%S")
 (org-hs--log-enable-logging)
 (org-hs--log-enable-messaging)
@@ -108,7 +104,7 @@ tasks/entries to show in the calendar."
 (defvar org-hyperscheduler-server-buffer (get-buffer-create "*org-hyperscheduler-server*"))
 (defvar org-hyperscheduler-server-name "org-hyperscheduler-server")
 
-; modify the agenda filter if we want to hide done tasks.
+;; modify the agenda filter if we want to hide done tasks.
 (and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
 
 (defvar org-hyperscheduler-ws-server
@@ -164,7 +160,7 @@ Takes _WS and FRAME as arguments."
       (org-hyperscheduler-schedule-at-point timestamp)))
   (org-hs--log-debug "-org-hyperscheduler-update-event"))
              
-; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
+;; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
 (defun org-hyperscheduler--add-scheduled-event (data)
   "Create a new event from DATA in an inbox."
   (org-hs--log-debug "+org-hyperscheduler--add-scheduled-event")
@@ -177,18 +173,15 @@ Takes _WS and FRAME as arguments."
       (org-hyperscheduler-schedule-at-point timestamp)))
   (org-hs--log-debug "-org-hyperscheduler--add-scheduled-event"))
 
-
 (defun org-hyperscheduler--remove-event (event_id)
-  "Removes the heading specific by EVENT_ID (an org-id)"
+  "Remove the heading specific by EVENT_ID (an org-id)."
   (save-window-excursion
     (org-hyperscheduler-find-event-by-id event_id)
     (org-cut-subtree)))
 
-
 (defun org-hyperscheduler--ws-on-close (_websocket)
   "This the websocket connection callback."
   (org-hs--log-debug "org-hyperscheduler--ws-on-close"))
-
 
 (defun org-hyperscheduler--encode-agenda ()
   "Encode our agenda to JSON."
@@ -202,20 +195,20 @@ Takes _WS and FRAME as arguments."
      (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
 
 (defun org-hyperscheduler-find-event-by-id (id)
-  "Find a event by ID so we can modify it."
+  "Find the heading specified by ID and go to it."
   (let* ((location (org-id-find id)))
     (find-file (car location))
     (goto-char (cdr location))))
 
 (defun org-hyperscheduler-get-agenda ()
   "Get an org agenda event and transform it into a form that is easily JSONable."
-  ; silently eat the error that org-id-get-create generates in temp buffers.
-  ; I'd like a custom prefix in case we ever have to filter all org-hs created properties out.
+  ;; silently eat the error that org-id-get-create generates in temp buffers.
+  ;; I'd like a custom prefix in case we ever have to filter all org-hs created properties out.
   (condition-case nil
       ; second param to org-id-get is whether to create an id or not
       (org-id-get (point) (not org-hyperscheduler-readonly-mode) "org-hyperscheduler-id")
     (error nil))
-  ; hide tasks from org-roam https://www.orgroam.com/manual.html#What-to-cache
+  ;; hide tasks from org-roam https://www.orgroam.com/manual.html#What-to-cache
   (when (and
          (not org-hyperscheduler-readonly-mode)
          org-hyperscheduler-exclude-from-org-roam)
@@ -230,8 +223,8 @@ Takes _WS and FRAME as arguments."
     props))
 
 (defun org-hyperscheduler-get-calendar-entries (scope)
-  "Get all agenda entries using our filter and `org-mode' SCOPE
-and return a structure that is JSONable."
+  "Get all agenda entries using our filter and `org-mode' SCOPE.
+Return a structure that is JSONable."
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
 
@@ -251,11 +244,11 @@ and return a structure that is JSONable."
          (minute-end (plist-get plist :minute-end))
          (start (org-hyperscheduler-date-time-to-iso8601-js-like  0 minute-start hour-start day-start month-start year-start))
          (end (org-hyperscheduler-date-time-to-iso8601-js-like  0 minute-end hour-end day-end month-end year-end) )
-         (all-day (if (eq hour-start nil) "true" "false"))
+         (all-day (if (not hour-start) "true" "false"))
          (combined `((startDate . ,start) ( endDate . ,end) (allDay . ,all-day))))
     combined))
 
-; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
+;; from https://wilkesley.org/~ian/xah/emacs/elisp_datetime.html
 (defun org-hyperscheduler-date-time-to-iso8601-js-like  (seconds minutes hour day month year)
   "Convert time stamps to ISO8601 format.
 Argument SECONDS seconds.
@@ -272,13 +265,10 @@ Argument YEAR year."
      ((lambda (x) (concat (substring x 0 3) ":" (substring x 3 5)))
       (format-time-string "%z")))))
 
-
 (defun org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event (start-time-stamp stop-time-stamp)
   "Convert a unix START-TIME-STAMP and STOP-TIME-STAMP back to org format event."
   (concat (format-time-string "<%Y-%m-%d %a %H:%M" (seconds-to-time start-time-stamp))
           (format-time-string "-%H:%M>" (seconds-to-time stop-time-stamp))))
-
-
 
 (defun org-hyperscheduler-schedule-at-point (timestamp)
   "Schedule a heading at point with a given TIMESTAMP."
@@ -290,7 +280,6 @@ Argument YEAR year."
                     load-file-name
                     buffer-file-name)))
           "."))
-
 
 ;;;###autoload
 (defun org-hyperscheduler-open ()
