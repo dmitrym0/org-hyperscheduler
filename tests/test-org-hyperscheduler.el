@@ -27,6 +27,10 @@ SCHEDULED: <2022-01-23 Sun>
 
 (org-hs--log-set-level 'debug)
 
+
+;; set time zone. all expectations are for PST time.
+(set-time-zone-rule "US/Pacific")
+
 ;; this is how I ship org-hs: readonly mode enabled, org-roam exclusion disabled.
 (defun org-hs-default-state ()
   (setq org-hyperscheduler-exclude-from-org-roam nil)
