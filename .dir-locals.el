@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (nil . ((eval . (progn
                    (require 'projectile)
                    (puthash (projectile-project-root)
