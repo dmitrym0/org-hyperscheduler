@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -19,42 +19,36 @@ import {
 import { ReactQueryDevtools } from "react-query/devtools";
 
 
-const useReactQuerySubscription = () => {
-  console.log("useReactQuerySubscription");
-
-  const websocket = React.useRef<WebSocket>();
-  const queryClient = useQueryClient();
-
-
-  React.useEffect(() => {
-    console.log("useReactQuerySubscription::useEffect");
-    websocket.current = new WebSocket("ws://127.0.0.1:44445");
-    websocket.current.onopen = () => {
-      console.log('connected')
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity
     }
+  }
+});
+
+const bindWebSocket = () => {
+  console.log(" websocket INIT INIT INIT");
+  const websocket = new WebSocket("ws://127.0.0.1:44445");
+
+  websocket.onopen = () => {
+    console.log('connected')
+    websocket.send(JSON.stringify({"command":"get-agenda"}));
+  }
 
 
-    websocket.current.onmessage = (event) => {
-      console.log("ON MESSAGE");
-      // const data = JSON.parse(event.data)
-      // const queryKey = [...data.entity, data.id].filter(Boolean)
-  //    queryClient.invalidateQueries(queryKey)
+  websocket.onmessage = (event) => {
+    console.log("ON MESSAGE");
+    // const data = JSON.parse(event.data)
+    // const queryKey = [...data.entity, data.id].filter(Boolean)
+    // queryClient.invalidateQueries(queryKey)
 
-      const agenda = JSON.parse(event.data);
-      console.log(`- ${agenda.length} items in agenda.`);
-    }
+    const agenda = JSON.parse(event.data);
+    console.log(`- ${agenda.length} items in agenda.`);
+  }
 
-    return () => {
-      console.log("Closing socket");
-      //websocket.current?.close();
-    }
-  }, [queryClient])
+  return websocket;
 
-
-  return (input) => {
-    console.log(`Sending a command through : ` + input);
-    websocket.current?.send(JSON.stringify(input));
-  };
 }
 
 
@@ -77,13 +71,18 @@ const calendars = [
     },
 ];
 
+export function MyCalendar(props) {
 
-export function MyCalendar() {
-  // const send = useReactQuerySubscription();
+  const [websocket, setSocket] = useState(() => {
+    return bindWebSocket();
+  });
 
-  // send({"command":"get-agenda"});
-
-
+  // useEffect(() => {
+  //   console.log(`websocket.readyState = ${websocket.readyState}`);
+  //   if (websocket.readyState == websocket.OPEN) {
+  //     websocket.send(JSON.stringify({"command":"get-agenda"}));
+  //   }
+//  },[websocket.readyState])
 
   return (
     <div>
@@ -104,20 +103,13 @@ export function MyCalendar() {
 }
 
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity
-    }
-  }
-});
 
 
 
 export default function App() {
+
   return (
     <QueryClientProvider client={queryClient}>
-      {useReactQuerySubscription()}
       <MyCalendar />
       <ReactQueryDevtools  />
     </QueryClientProvider>
