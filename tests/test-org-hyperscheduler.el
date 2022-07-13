@@ -34,6 +34,7 @@ SCHEDULED: <2022-01-23 Sun>
 
 
 (setq org-hyperscheduler-agenda-filter "TIMESTAMP>=\"<2022-01-01>\"|SCHEDULED>=\"<2022-01-01>\"")
+(setq org-hs-test-file nil)
 
 
 ;; this is a convenience method for unit tests. sets up a temp buffer with mock contents and execs the lambda
@@ -46,8 +47,16 @@ SCHEDULED: <2022-01-23 Sun>
   (org-mode)
   (setq org-id-track-globally t)
 
+
+  ;; TODO: when an assert fails in buttercup, an exception (??) is thrown,
+  ;; so temp file isnt being cleaned up. This is the sledgehammer approach.
+  ;; Needs to be fixed so that it's cleaned up properly.
+  (when org-hs-test-file (delete-file org-hs-test-file))
+
+
   (let* ((tempfile (make-temp-file "org-hs" nil ".org" contents)))
     (setq org-agenda-files (list tempfile))
+    (setq org-hs-test-file tempfile)
     (find-file tempfile)
     (org-element-cache-reset)
     (funcall lambda)
@@ -95,7 +104,7 @@ SCHEDULED: <2022-01-23 Sun>
                 (insert mock-org-contents)
                 (let ((json-representation (json-encode (org-hyperscheduler-get-calendar-entries nil))))
                   (expect (string-match "a task aaa" json-representation) :not :to-be nil))))
-          
+
 
 
           (it "can insert org-id into a heading"
@@ -103,7 +112,7 @@ SCHEDULED: <2022-01-23 Sun>
                 (org-mode)
                 (insert mock-org-contents)
                 (condition-case nil
-                    (org-id-get-create) 
+                    (org-id-get-create)
                   (error nil))
                 (expect (org-id-get-create) :not :to-be nil)))
 
@@ -150,7 +159,7 @@ SCHEDULED: <2022-01-23 Sun>
               (with-mock-contents
                mock-org-contents
                '(lambda ()
-                  (expect (org-id-find "FAKE_ID1") :not :to-be nil) 
+                  (expect (org-id-find "FAKE_ID1") :not :to-be nil)
                   (org-hyperscheduler--remove-event "FAKE_ID1")
                   (expect (org-id-find "FAKE_ID1") :to-be nil))))
 
@@ -266,7 +275,7 @@ SCHEDULED: <2022-01-23 Sun>
 
 (describe "webservices functionality"
           (before-each
-           ;; intercept websocket-send-text. 
+           ;; intercept websocket-send-text.
            (spy-on 'websocket-send-text :and-call-fake (lambda (socket text)
                                                          (setq __agenda text)
                                                          )))
@@ -306,5 +315,3 @@ SCHEDULED: <2022-01-23 Sun>
           (it "should find IDs in transient buffers"
               (with-mock-contents mock-org-contents '(lambda() (org-hyperscheduler-find-event-by-id "FAKE_ID1")))
               ))
-
-
