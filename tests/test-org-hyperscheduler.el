@@ -292,7 +292,7 @@ SCHEDULED: <2022-01-23 Sun>
                 (org-hyperscheduler--ws-on-message nil frame)
                 (expect 'websocket-send-text :to-have-been-called)
                 ; agenda is set in ~before-each~
-                (expect __agenda :to-equal "[]") ;; no agenda, empty array
+                (expect __agenda :to-equal "{\"agenda\":[]}") ;; no agenda, empty array
                 ))
 
 

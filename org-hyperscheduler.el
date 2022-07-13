@@ -190,9 +190,10 @@ Takes _WS and FRAME as arguments."
 
 (defun org-hyperscheduler--get-agenda ()
   "Get the agenda and send it through to the client."
-  (let* ((encoded-agenda (org-hyperscheduler--encode-agenda)))
+  (let* ((encoded-agenda (org-hyperscheduler--encode-agenda))
+         (response (concat "{\"agenda\":" encoded-agenda "}")))
      (org-hs--log-debug (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
-     (websocket-send-text org-hyperscheduler-ws-socket encoded-agenda)))
+     (websocket-send-text org-hyperscheduler-ws-socket response)))
 
 (defun org-hyperscheduler-find-event-by-id (id)
   "Find the heading specified by ID and go to it."
