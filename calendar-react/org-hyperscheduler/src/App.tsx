@@ -92,7 +92,25 @@ const syncSend = (payload) => {
   return promise;
 }
 
-export const useAgenda = () => useQuery(["agenda"],
+
+
+const useNewEvent = (payload) => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    () => {
+      const string_payload = JSON.stringify(payload);
+      websocket.send(payload);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['agenda'])
+      },
+    }
+  )
+}
+
+const useAgenda = () => useQuery(["agenda"],
   fetchAgenda,
   {
     //staleTime: 30 * 1000,
