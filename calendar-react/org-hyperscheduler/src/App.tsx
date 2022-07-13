@@ -39,6 +39,12 @@ export const queryClient = new QueryClient({
   },
 })
 
+// convert javascript date to unix time stamp because that's easier to pass around.
+function getUnixTimestampFromDate(date) {
+    return date.getTime() / 1000;
+}
+
+
 const localStoragePersistor = createWebStoragePersistor({
   storage: window.localStorage,
 })
@@ -94,10 +100,7 @@ const syncSend = (payload) => {
 
 
 
-const useNewEvent = (payload) => {
-  const queryClient = useQueryClient()
-
-  return useMutation(
+const useNewEvent = (payload) => useMutation(
     () => {
       const string_payload = JSON.stringify(payload);
       websocket.send(payload);
@@ -107,8 +110,8 @@ const useNewEvent = (payload) => {
         queryClient.invalidateQueries(['agenda'])
       },
     }
-  )
-}
+);
+
 
 const useAgenda = () => useQuery(["agenda"],
   fetchAgenda,
@@ -235,6 +238,17 @@ export function MyCalendar(props) {
 
 
     });
+
+    // TODO: This definitely doesn't feel very React.
+    calendarRef.current.on({
+      beforeCreateSchedule: function(e) {
+        console.log('beforeCreateSchedule', e);
+        e.startUnix = getUnixTimestampFromDate(e.start);
+        e.endUnix = getUnixTimestampFromDate(e.end);
+        useNewEvent(JSON.stringify({ "command": "add-scheduled-event", data: e }));
+      }
+    });
+
 
 
     if (calendarRef.current) {
