@@ -95,32 +95,32 @@ const fetchAgenda = () => {
 
 // a helper that turns websocket messaging into a synchronous affair.
 const syncSend = (payload) => {
-  console.log(`[websocket] syncSend ${JSON.stringify(payload)}`);
-  const string_payload = JSON.stringify(payload);
-  websocket.send(string_payload);
-  var promise = new Promise(function(resolve, reject) {
-    let syncResponseHandler = (event) => {
-      console.log(`[websocket] Response for ${string_payload}`);
-      const data = JSON.parse(event.data);
-      resolve(data);
-      websocket.removeEventListener('message', syncResponseHandler);
-    }
-    websocket.addEventListener('message', syncResponseHandler);
-  });
-  return promise;
+    console.log(`[websocket] syncSend ${JSON.stringify(payload)}`);
+    const string_payload = JSON.stringify(payload);
+    websocket.send(string_payload);
+    var promise = new Promise(function(resolve, reject) {
+        let syncResponseHandler = (event) => {
+            console.log(`[websocket] Response for ${string_payload}`);
+            const data = JSON.parse(event.data);
+            resolve(data);
+            websocket.removeEventListener('message', syncResponseHandler);
+        }
+        websocket.addEventListener('message', syncResponseHandler);
+    });
+    return promise;
 }
 
 
 
 const useNewEvent = (payload) => useMutation(
     () => {
-      const string_payload = JSON.stringify(payload);
-      websocket.send(payload);
+        const string_payload = JSON.stringify(payload);
+        websocket.send(payload);
     },
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['agenda'])
-      },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['agenda'])
+        },
     }
 );
 
@@ -147,15 +147,6 @@ const calendars = [
     borderColor: '#9e5000',
     customStyle: {'fontSize': '99px'}
 
-    // customStyle: "background-color: #00a9ff; color: #fff;"
-
-    // customStyle: {
-    //   'overflowWrap': "break-word",
-    //   'fontStyle': 'italic',
-    //   'fontSize': '99px',
-    // }
-
-  },
   {
     id: '2',
     name: 'Timestamped Items',
@@ -166,6 +157,7 @@ const calendars = [
 ];
 
 
+// take the JSON that's sent via websocket and turn it into something TUI Calendar will understand.
 const parseAgenda = (agenda) => {
     console.log("Parsing agenda...");
     const schedule = [];
