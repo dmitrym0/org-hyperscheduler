@@ -160,6 +160,11 @@ Takes _WS and FRAME as arguments."
       (org-hyperscheduler-schedule-at-point timestamp)))
   (org-hs--log-debug "-org-hyperscheduler-update-event"))
 
+
+(defun org-hyperscheduler--invalidate-remote-agenda ()
+  "Sends an invalidate event through the websocket."
+  (websocket-send-text org-hyperscheduler-ws-socket "{\"command\":\"invalidate\"}"))
+
 ;; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
 (defun org-hyperscheduler--add-scheduled-event (data)
   "Create a new event from DATA in an inbox."
@@ -290,5 +295,23 @@ Argument YEAR year."
   (browse-url html-file-path)))
 
 (provide 'org-hyperscheduler)
+
+
+
+;; register hooks
+
+;; List of hooks that should invalidate the agenda on the browser side.
+(setq org-hyperscheduler-agenda-invalidating-hooks '(org-after-todo-state-change-hook
+                                                     org-timer-done-hook
+                                                     org-clock-out-hook))
+
+
+(dolist (hook-to-bind-to org-hyperscheduler-agenda-invalidating-hooks)
+  (add-hook hook-to-bind-to  #'org-hyperscheduler--invalidate-remote-agenda))
+
+
+
+
+
 
 ;;; org-hyperscheduler.el ends here

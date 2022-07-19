@@ -3,6 +3,8 @@ import { useState, useEffect, useRef} from 'react'
 import logo from './logo.svg'
 import './App.css'
 
+// Bulma React Reference: https://react-bulma.dev/en/storybook
+// Bulma Full Ref: https://bulma.io/documentation/components/navbar/
 import 'bulma/css/bulma.min.css';
 import { Navbar, Level, Container,Link,  Button, Table } from 'react-bulma-components';
 
@@ -79,9 +81,17 @@ const bindWebSocket = () => {
   }
 
 
-  websocket.onmessage = (event) => {
-    console.log("[websocket] Global websocket handler");
-  }
+    websocket.onmessage = (event) => {
+        console.log("[websocket] Global websocket handler");
+        const payload = JSON.parse(event.data);
+
+        if (payload?.command) {
+            console.log(`[websocket] Got command =${payload.command}=`);
+            if (payload.command === 'invalidate') {
+                queryClient.invalidateQueries(['agenda']);
+            }
+        }
+    }
 
   return websocket;
 
@@ -146,7 +156,7 @@ const calendars = [
     dragBgColor: '#9e5fff',
     borderColor: '#9e5000',
     customStyle: {'fontSize': '99px'}
-
+  },
   {
     id: '2',
     name: 'Timestamped Items',
@@ -161,6 +171,12 @@ const calendars = [
 const parseAgenda = (agenda) => {
     console.log("Parsing agenda...");
     const schedule = [];
+
+    // so nice
+    if (Object.keys(agenda)?.at(0) === 'agenda') {
+        agenda = agenda.agenda;
+    }
+
     if (agenda === undefined) {
         console.warn("Empty agenda!");
         return;
@@ -210,6 +226,20 @@ export function ReactCalendar(props) {
 
     const getCalInstance = useCallback(() => calendarRef.current?.getInstance?.(), []);
 
+    const onBeforeUpdateSchedule = (payload) => {
+        const event = payload.event;
+        let changes = payload.changes;
+        if (changes.start === undefined) {
+            changes.start = updated_schedule.start;
+        }
+
+        console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
+
+        let update_event_data = {id: event.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
+        websocket.send(JSON.stringify({"command": "update-event", "data":update_event_data}));
+        getCalInstance().updateEvent(event.id, event.calendarId, changes);
+    };
+
 
     const updateSchedule = (agenda) => {
         console.log("Updating schedule.");
@@ -225,7 +255,7 @@ export function ReactCalendar(props) {
     if (isLoading) {
         return <div> Loading </div>
     } else {
-        let parsedAgenda = parseAgenda(data["agenda"]);
+        let parsedAgenda = parseAgenda(data);
         // TODO: this needs to be refactored. Neither the useEffect, nor useState are necessary for agenda because it comes
         // from react query. I can't quite figure out how to force a refresh cleanly though.
         useEffect(() => {
@@ -312,7 +342,8 @@ export function ReactCalendar(props) {
         // onClickSchedule={onClickSchedule}
         // onBeforeCreateSchedule={onBeforeCreateSchedule}
         // onBeforeDeleteSchedule={onBeforeDeleteSchedule}
-        // onBeforeUpdateSchedule={onBeforeUpdateSchedule}
+        //onBeforeUpdateSchedule={onBeforeUpdateSchedule}
+        onBeforeUpdateEvent={onBeforeUpdateSchedule}
             />
             </Container>
             </div>
