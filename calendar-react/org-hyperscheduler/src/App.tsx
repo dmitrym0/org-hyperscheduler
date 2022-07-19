@@ -3,20 +3,32 @@ import { useState, useEffect, useRef} from 'react'
 import logo from './logo.svg'
 import './App.css'
 
-import Calendar from "tui-calendar";
-
-import "tui-calendar/dist/tui-calendar.css";
-
-import './index.css'
-
+import 'bulma/css/bulma.min.css';
+import { Navbar, Level, Container,Link,  Button, Table } from 'react-bulma-components';
 
 import { createWebStoragePersistor } from "react-query/createWebStoragePersistor-experimental"
 
 import { persistQueryClient } from 'react-query/persistQueryClient-experimental'
 
+import { useCallback  } from 'react';
+
+
+import TUICalendar from "@toast-ui/react-calendar";
+
+// import "tui-calendar/dist/tui-calendar.css";
+// import "tui-date-picker/dist/tui-date-picker.css";
+// import "tui-time-picker/dist/tui-time-picker.css";
 
 
 import { ReactQueryDevtools } from "react-query/devtools";
+
+import "tui-calendar/dist/tui-calendar.css";
+import "tui-date-picker/dist/tui-date-picker.css";
+import "tui-time-picker/dist/tui-time-picker.css";
+
+import '@toast-ui/calendar/dist/toastui-calendar.min.css';
+
+
 
 
 import {
@@ -116,161 +128,204 @@ const useNewEvent = (payload) => useMutation(
 const useAgenda = () => useQuery(["agenda"],
   fetchAgenda,
   {
-    //staleTime: 30 * 1000,
-    // placeholderData: () => {
-    //   console.log("[rQuery] placeholder data");
-    // },
-    // initialData: () => {
-    //   console.log("[rQuery] checking initial data");
-    //   // Get the query state
-    //   const state = queryClient.getQueryState(['agenda'])
-
-    //   // // If the query exists and has data that is no older than 10 seconds...
-    //   // if (state && Date.now() - state.dataUpdatedAt <= 10 * 1000) {
-    //   //   // return the individual todo
-    //   //   return state.data.find(d => d.id === todoId)
-    //   //}
-
-      // Otherwise, return undefined and let it fetch from a hard loading state!
-    //},
+      // in milliseconds
+      // docs here: https://react-query-v3.tanstack.com/guides/important-defaults
+      //
+      // Query instances via useQuery or useInfiniteQuery by default consider cached data as stale. staleTime configures that.
+      staleTime: 60 * 60 * 1000,
+      // Query results that have no more active instances of useQuery, useInfiniteQuery or query observers are labeled as "inactive"
+      // and remain in the cache in case they are used again at a later time. cacheTime configures this.
+      cacheTime: 60 * 60 * 1000,
   });
 
 const calendars = [
-    {
-        id: '1',
-        name: 'Scheduled Items',
-        color: '#ffffff',
-        bgColor: '#9e5fff',
-        dragBgColor: '#9e5fff',
-        borderColor: '#9e5fff'
-    },
-    {
-        id: '2',
-        name: 'Timestamped Items',
-        color: '#000000',
-        bgColor: '#00a9ff',
-        dragBgColor: '#00a9ff',
-        borderColor: '#00a9ff'
-    },
+  {
+    id: '1',
+    name: 'Scheduled Items',
+    backgroundColor: '#9e5fff',
+    dragBgColor: '#9e5fff',
+    borderColor: '#9e5000',
+    customStyle: {'fontSize': '99px'}
+
+    // customStyle: "background-color: #00a9ff; color: #fff;"
+
+    // customStyle: {
+    //   'overflowWrap': "break-word",
+    //   'fontStyle': 'italic',
+    //   'fontSize': '99px',
+    // }
+
+  },
+  {
+    id: '2',
+    name: 'Timestamped Items',
+    backgroundColor: '#00a9ff',
+    dragColor: '#00a9ff',
+    borderColor: '#00a9ff'
+  }
 ];
 
 
 const parseAgenda = (agenda) => {
-  const schedule = [];
-  if (agenda === undefined) {
-    console.warn("Empty agenda!");
-    return;
-  }
-
-  for (const agendaItem of agenda) {
-    let calendarItem = {
-      id: agendaItem["ID"],
-      calendarId: 1,
-      dueDateClass: '',
-      // sad attempt at removing links. *TODO*
-      title: agendaItem["ITEM"].replaceAll(/\[\[.*:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
-      category: 'time',
-      start: agendaItem["startDate"],
-      end: agendaItem["endDate"],
-      //isReadOnly: agendaItem["isReadOnly"],
-      //isAllDay: agendaItem["allDay"]
-    };
-
-
-    if (agendaItem["allDay"] === "true") {
-      calendarItem.category = 'allday';
+    console.log("Parsing agenda...");
+    const schedule = [];
+    if (agenda === undefined) {
+        console.warn("Empty agenda!");
+        return;
     }
 
-    if (agendaItem["SCHEDULED"] === undefined) {
-      calendarItem.calendarId = 2;
+    console.log(`${agenda.length} items in agenda.`);
+    for (const agendaItem of agenda) {
+        let calendarItem = {
+            id: agendaItem["ID"],
+            calendarId: "1",
+            dueDateClass: '',
+            // sad attempt at removing links. *TODO*
+            title: agendaItem["ITEM"].replaceAll(/\[\[.*:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
+            category: 'time',
+            start: agendaItem["startDate"],
+            end: agendaItem["endDate"],
+            //isReadOnly: agendaItem["isReadOnly"],
+            //isAllDay: agendaItem["allDay"]
+        };
+
+
+        if (agendaItem["allDay"] === "true") {
+            calendarItem.category = 'allday';
+        }
+
+        if (agendaItem["SCHEDULED"] === undefined) {
+            calendarItem.calendarId = "2";
+        }
+        schedule.push(calendarItem);
     }
-    schedule.push(calendarItem);
-  }
 
 
-  return schedule;
+    return schedule;
 }
 
 
-export function MyCalendar(props) {
-  const containerRef = useRef(); // TODO: Magic, how does this work?
-  const calendarRef = useRef(); // TODO: Magic, how does this work?
+
+export function ReactCalendar(props) {
+    console.log("Rendering ReactCalendar");
 
 
-  const updateSchedule = (agenda) => {
-    if (agenda !== undefined) {
-      calendarRef.current?.clear();
-      calendarRef.current?.createSchedules(agenda);
-    }
-  }
+    const [calendarView, onCalendarViewChange] = useState("week");
+    const [agenda, setAgenda] = useState([]);
 
 
+    const calendarRef = useRef(null);
 
-  const { isLoading, error, data } = useAgenda();
-
-  if ( isLoading ) {
-    return <div> Loading </div>
-  } else {
-    updateSchedule(parseAgenda(data["agenda"]));
-  }
-
- console.log("- Rendering MyCalendar " + calendarRef.current);
-
-  useEffect(() => {
-    console.log("Creating calendar instance.");
-    calendarRef.current = new Calendar(containerRef.current, {
-      calendars: calendars,
-      defaultView: 'week', // set 'month'
-      month: {
-        visibleWeeksCount: 2 // visible week count in monthly
-      },
-
-      useCreationPopup: true,
-      useDetailPopup: true,
-      taskView: false,
-      usageStatistics: false,
-      isReadOnly: false,
-      week: {
-        narrowWeekend: true,
-        startDayOfWeek: 1 // monday
-      },
-      scheduleView: ['allday', 'time'],
+    const getCalInstance = useCallback(() => calendarRef.current?.getInstance?.(), []);
 
 
-    });
-
-    // TODO: This definitely doesn't feel very React.
-    calendarRef.current.on({
-      beforeCreateSchedule: function(e) {
-        console.log('beforeCreateSchedule', e);
-        e.startUnix = getUnixTimestampFromDate(e.start);
-        e.endUnix = getUnixTimestampFromDate(e.end);
-        useNewEvent(JSON.stringify({ "command": "add-scheduled-event", data: e }));
-      }
-    });
-
-
-
-    if (calendarRef.current) {
-      updateSchedule(parseAgenda(data["agenda"]));
+    const updateSchedule = (agenda) => {
+        console.log("Updating schedule.");
+        if (agenda !== undefined && getCalInstance()) {
+            getCalInstance().clear();
+            getCalInstance().createEvents(agenda);
+            console.log("Schedule updated.");
+        }
     }
 
-    return () => {
-      if (calendarRef.current) {
-        console.log("Destroying calendar.");
-        calendarRef.current.destroy();
-      }
-    };
-  }, []);
+    const { isLoading, error, data } = useAgenda();
+
+    if (isLoading) {
+        return <div> Loading </div>
+    } else {
+        let parsedAgenda = parseAgenda(data["agenda"]);
+        // TODO: this needs to be refactored. Neither the useEffect, nor useState are necessary for agenda because it comes
+        // from react query. I can't quite figure out how to force a refresh cleanly though.
+        useEffect(() => {
+            if (parsedAgenda) {
+                console.log("Setting initial agenda.");
+                setAgenda(parsedAgenda);
+            }
+        }, []);
+        updateSchedule(parsedAgenda);
+    }
+
+    const eventStyle = {
+        overflowWrap: "break-word",
+        fontStyle: 'italic',
+        fontSize: '15px',
+    }
+
+    return (
+            <div>
+
+            <Navbar>
+            <Navbar.Menu>
+            <Navbar.Container>
+            <Navbar.Item>
+            <Button.Group hasAddons={true}>
+            <Button color="primery" renderAs={Link} onClick={() => getCalInstance().prev() } >Previous</Button>
+            <Button color="primery" renderAs={Link} onClick={() => getCalInstance().today() } >Today</Button>
+            <Button color="primery" renderAs={Link} onClick={() => getCalInstance().next() } >Next</Button>
+
+        </Button.Group>
+            </Navbar.Item>
+            </Navbar.Container>
+
+            <Navbar.Container align="end">
+
+            <Navbar.Item>
+            <Button.Group hasAddons={true}>
+            <Button color="primery" renderAs={Link} onClick={() => onCalendarViewChange('day')}>Day</Button>
+            <Button color="primery" renderAs={Link} onClick={() => onCalendarViewChange('week')}>Week</Button>
+            <Button color="primery" renderAs={Link} onClick={() => onCalendarViewChange('month')}>Month</Button>
+            </Button.Group>
+            </Navbar.Item>
+            </Navbar.Container>
+            </Navbar.Menu>
+            </Navbar>
+
+            <Container>
+            <TUICalendar
+        height="800px"
+        usageStatistics={false}
+        isReadOnly={false}
+        ref={calendarRef}
+        useCreationPopup={true}
+        useDetailPopup={true}
+        calendars={calendars}
+        month={{ startDayOfWeek: 1 }}
+        view={calendarView}
+        week={{
+            showTimezoneCollapseButton: false,
+            timezonesCollapsed: false,
+            eventView: true,
+            taskView: false,
+            startDayOfWeek: 1
+        }}
+        template={{
+            time(event) {
+                return `<div style="word-wrap: break-word;">${event.title}</div>`;
+            },
+        }}
+        timezones={[
+            {
+                timezoneOffset: 540,
+                displayLabel: 'GMT+09:00',
+                tooltip: 'Seoul',
+            },
+            {
+                timezoneOffset: -420,
+                displayLabel: 'GMT-08:00',
+                tooltip: 'Los Angeles',
+            },
+        ]}
 
 
-
-  return (
-    <div ref={containerRef} />
-  );
+        // onClickSchedule={onClickSchedule}
+        // onBeforeCreateSchedule={onBeforeCreateSchedule}
+        // onBeforeDeleteSchedule={onBeforeDeleteSchedule}
+        // onBeforeUpdateSchedule={onBeforeUpdateSchedule}
+            />
+            </Container>
+            </div>
+    );
 }
-
-
 
 
 
@@ -278,7 +333,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MyCalendar />
+      <ReactCalendar />
       <ReactQueryDevtools  />
     </QueryClientProvider>
   )
