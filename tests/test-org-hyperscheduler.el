@@ -46,6 +46,7 @@ SCHEDULED: <2022-01-23 Sun>
 ;; TODO: asserts can fail and that kills the stack, catch the exception so that we can do proper cleanup.
 (defun with-mock-contents (contents lambda)
   (org-mode)
+  (setenv "TZ" "US/Pacific")
   ;; set time zone. all expectations are for PST time.
   ; (set-time-zone-rule "US/Pacific")
 
