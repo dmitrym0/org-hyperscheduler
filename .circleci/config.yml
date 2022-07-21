@@ -15,7 +15,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     resource_class: small
     environment:
-      TZ: "/usr/share/zoneinfo/America/Vancouver"
+      TZ: "America/Los_Angeles"
     steps:
       - checkout
       - run:
