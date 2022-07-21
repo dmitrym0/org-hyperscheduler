@@ -275,9 +275,10 @@ SCHEDULED: <2022-01-23 Sun>
           ))
 
 
+;; note that this is not technically a correct result, because i"m hardcoding the pacific summer time (see set-time-zone above.)
 (describe "time stamp generation"
           (it "can create a proper emacs timestamp from unix timestamp"
-              (expect (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 11:30-15:16>")))
+              (expect (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event 1643657400 (seconds-to-time 1643757400)) :to-equal "<2022-01-31 Mon 12:30-16:16>")))
 
 
 
