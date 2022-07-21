@@ -6,26 +6,21 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   org-hyperscheduler-test:
-    docker:
-      - image: silex/emacs:27.2-ci-cask
-        environment:
-          TZ: "/usr/share/zoneinfo/America/Vancouver"
-
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    resource_class: small
     environment:
       TZ: "America/Los_Angeles"
+    docker:
+      - image: silex/emacs:27.2-ci-cask
+    resource_class: small
     steps:
       - checkout
       - run:
           name: "Fetch cask depedencies"
           command: "cask"
       - run:
+          environment:
+            TZ: "America/Los_Angeles"
           name: "Run unit tests"
           command: "cask exec buttercup -L ."
-
-
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
