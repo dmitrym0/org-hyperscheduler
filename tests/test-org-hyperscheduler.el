@@ -47,7 +47,7 @@ SCHEDULED: <2022-01-23 Sun>
 (defun with-mock-contents (contents lambda)
   (org-mode)
   ;; set time zone. all expectations are for PST time.
-  (set-time-zone-rule "US/Pacific")
+  ; (set-time-zone-rule "US/Pacific")
 
   (message (format "\nCurrent time zone: %s\n" (current-time-zone)))
 
