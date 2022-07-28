@@ -168,7 +168,8 @@ Takes _WS and FRAME as arguments."
 
 (defun org-hyperscheduler--invalidate-remote-agenda ()
   "Sends an invalidate event through the websocket."
-  (websocket-send-text org-hyperscheduler-ws-socket "{\"command\":\"invalidate\"}"))
+  (when (websocket-openp org-hyperscheduler-ws-socket)
+    (websocket-send-text org-hyperscheduler-ws-socket "{\"command\":\"invalidate\"}")))
 
 ;; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
 (defun org-hyperscheduler--add-scheduled-event (data)
