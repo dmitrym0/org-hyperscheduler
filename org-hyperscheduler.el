@@ -196,8 +196,6 @@ Takes _WS and FRAME as arguments."
 
 (defun org-hyperscheduler--encode-agenda ()
   "Encode our agenda to JSON."
-  ;; want json-encode-array here in case we get an empty list. then we want "[]"
-  (json-encode-array (org-hyperscheduler-get-calendar-entries 'agenda)))
   ;; convert agenda list to an array so that json.el does it's thing
   (json-encode (cl-map 'array #'identity (org-hyperscheduler-get-calendar-entries 'agenda))))
 
