@@ -306,6 +306,14 @@ Argument YEAR year."
 
 
 
+(defun org-hyperscheduler--get-settings ()
+  "Get current settigns so they can be fired off to the UI"
+  `(
+    ( calendarView . week)
+    ( showDone . ,t)
+    ( showClocked . ,t)
+    )
+  )
 ;; register hooks
 
 ;; List of hooks that should invalidate the agenda on the browser side.
