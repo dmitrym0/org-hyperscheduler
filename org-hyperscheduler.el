@@ -145,6 +145,8 @@ Takes _WS and FRAME as arguments."
            (org-hyperscheduler--add-scheduled-event data))
           ((string= command "remove-event")
            (org-hyperscheduler--remove-event (alist-get 'id data)))
+          ((string= command "get-settings")
+           (org-hyperscheduler--send-settings))
           (nil
            (org-hs--log-fatal
             "Something went wrong when receiving a message from org-hyperscheduler-ui")))))
@@ -205,6 +207,18 @@ Takes _WS and FRAME as arguments."
          (response (concat "{\"agenda\":" encoded-agenda "}")))
      (org-hs--log-debug (format "Length of encoded agenda=%d bytes" (length encoded-agenda)))
      (websocket-send-text org-hyperscheduler-ws-socket response)))
+
+(defun org-hyperscheduler--send-settings ()
+  "Send settings to the web UI."
+  (org-hs--log-debug "Sending settings")
+  (websocket-send-text org-hyperscheduler-ws-socket (json-encode (org-hyperscheduler--get-settings))))
+
+(defun org-hyperscheduler--get-settings ()
+  "Get current settigns so they can be fired off to the UI"
+  `(( defaultCalendarView . week)
+    ( showDone . ,t)
+    ( showClocked . ,t)))
+
 
 (defun org-hyperscheduler-find-event-by-id (id)
   "Find the heading specified by ID and go to it."
@@ -300,18 +314,9 @@ Argument YEAR year."
   (let ((html-file-path  (format "file://%s/calendar/index.html" org-hyperscheduler-root-dir)))
   (browse-url html-file-path)))
 
-(provide 'org-hyperscheduler)
 
 
 
-(defun org-hyperscheduler--get-settings ()
-  "Get current settigns so they can be fired off to the UI"
-  `(
-    ( calendarView . week)
-    ( showDone . ,t)
-    ( showClocked . ,t)
-    )
-  )
 ;; register hooks
 
 ;; List of hooks that should invalidate the agenda on the browser side.
@@ -328,4 +333,5 @@ Argument YEAR year."
 
 
 
+(provide 'org-hyperscheduler)
 ;;; org-hyperscheduler.el ends here

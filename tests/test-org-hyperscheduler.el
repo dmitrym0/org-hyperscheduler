@@ -288,7 +288,7 @@ SCHEDULED: <2022-01-23 Sun>
           (before-each
            ;; intercept websocket-send-text.
            (spy-on 'websocket-send-text :and-call-fake (lambda (socket text)
-                                                         (setq __agenda text)
+                                                         (setq __response text)
                                                          )))
 
           ;; TODO Use the with-mock-contents to insert actual agenda and verify the result
@@ -299,7 +299,7 @@ SCHEDULED: <2022-01-23 Sun>
                 (org-hyperscheduler--ws-on-message nil frame)
                 (expect 'websocket-send-text :to-have-been-called)
                 ; agenda is set in ~before-each~
-                (expect __agenda :to-equal "{\"agenda\":[]}") ;; no agenda, empty array
+                (expect __response :to-equal "{\"agenda\":[]}") ;; no agenda, empty array
                 ))
 
 
@@ -309,6 +309,16 @@ SCHEDULED: <2022-01-23 Sun>
                '(lambda ()
                   (org-hyperscheduler--ws-on-message nil (make-ws-frame "{\"command\":\"remove-event\", \"data\":{\"id\":\"FAKE_ID1\"}}"))
                   (expect (org-id-find "FAKE_ID1") :to-be nil))))
+
+
+          (it "can send settings."
+              (let* ((frame (make-ws-frame "{\"command\":\"get-settings\"}")))
+                (org-hyperscheduler--ws-on-message nil frame)
+                (expect 'websocket-send-text :to-have-been-called)
+                ; agenda is set in ~before-each~
+                (expect (string-match "defaultCalendarView.*" __response))
+                ))
+
 
 )
 
@@ -326,3 +336,8 @@ SCHEDULED: <2022-01-23 Sun>
           (it "should find IDs in transient buffers"
               (with-mock-contents mock-org-contents '(lambda() (org-hyperscheduler-find-event-by-id "FAKE_ID1")))
               ))
+
+
+(describe "settigns"
+          (it "should be able to get settings"
+              (expect (org-hyperscheduler--get-settings) :not :to-be nil)))
