@@ -211,7 +211,8 @@ Takes _WS and FRAME as arguments."
 (defun org-hyperscheduler--send-settings ()
   "Send settings to the web UI."
   (org-hs--log-debug "Sending settings")
-  (websocket-send-text org-hyperscheduler-ws-socket (json-encode (org-hyperscheduler--get-settings))))
+  (websocket-send-text org-hyperscheduler-ws-socket (json-encode `((command . "update-settings")
+                                                                   (data . ,(org-hyperscheduler--get-settings))))))
 
 (defun org-hyperscheduler--get-settings ()
   "Get current settigns so they can be fired off to the UI"
