@@ -76,6 +76,10 @@ persistQueryClient({
 ////////////////////////
 export function ReactCalendar(props) {
 
+    const invalidateCachedAgenda = () => {
+        queryClient.invalidateQueries(['agenda']);
+    }
+
     const bindWebSocket = () => {
         console.log("[websocket] Initializing..");
 
@@ -242,8 +246,6 @@ export function ReactCalendar(props) {
         return schedule;
     }
 
-
-
     console.log("Rendering ReactCalendar");
 
     const [settings, onSettingsChange] = useState({
@@ -269,10 +271,26 @@ export function ReactCalendar(props) {
         console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
 
         let update_event_data = {id: event.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
-        websocket.send(JSON.stringify({"command": "update-event", "data":update_event_data}));
+        // websocket.send(JSON.stringify({"command": "update-event", "data":update_event_data}));
+        syncSend({"command": "update-event", "data":update_event_data});
         getCalInstance().updateEvent(event.id, event.calendarId, changes);
     };
 
+
+    const onBeforeCreateEvent = (event) => {
+        event.startUnix = getUnixTimestampFromDate(event.start);
+        event.endUnix =  getUnixTimestampFromDate(event.end);
+
+        // websocket.send(JSON.stringify({"command":"add-scheduled-event", data: e}));
+        syncSend({"command":"add-scheduled-event", data: event});
+
+        invalidateCachedAgenda();
+    };
+
+    const onBeforeDeleteEvent = (event) => {
+        syncSend({"command":"remove-event", data: {id: event.id}});
+        invalidateCachedAgenda();
+    };
 
     const updateSchedule = (agenda) => {
         console.log("Updating schedule.");
@@ -331,6 +349,7 @@ export function ReactCalendar(props) {
                     isReadOnly={false}
                     ref={calendarRef}
                     useCreationPopup={true}
+                    useFormPopup={true}
                     useDetailPopup={true}
                     calendars={calendars}
                     events={parsedAgenda}
@@ -366,7 +385,9 @@ export function ReactCalendar(props) {
                     // onBeforeCreateSchedule={onBeforeCreateSchedule}
                     // onBeforeDeleteSchedule={onBeforeDeleteSchedule}
                     //onBeforeUpdateSchedule={onBeforeUpdateSchedule}
+                    onBeforeDeleteEvent={onBeforeDeleteEvent}
                     onBeforeUpdateEvent={onBeforeUpdateSchedule}
+                    onBeforeCreateEvent={onBeforeCreateEvent}
                 />
             </Container>
         </div>
