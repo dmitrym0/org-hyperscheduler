@@ -242,7 +242,7 @@ Takes _WS and FRAME as arguments."
     (org-entry-put (point) "ROAM_EXCLUDE" "t"))
   (let* ((props (org-entry-properties))
          (json-null json-false)
-         (js-date (org-hyperscheduler-get-js-date-pair )))
+         (js-date (org-hyperscheduler-get-js-date-pair-for-headline )))
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
@@ -255,11 +255,16 @@ Return a structure that is JSONable."
   (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 
 
-(defun org-hyperscheduler-get-js-date-pair ()
-  "Convert from org timestamp to the format that TUI.calendar expects."
+(defun org-hyperscheduler-get-js-date-pair-for-headline ()
+  "Converts headline's timestamp into JS format."
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
-         (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP"))))))
-         (year-start (plist-get plist :year-start))
+         (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP")))))))
+    (org-hyperscheduler-get-js-date-pair-from-plist plist)))
+
+
+(defun org-hyperscheduler-get-js-date-pair-from-plist (plist)
+  "Convert from org timestamp to the format that TUI.calendar expects."
+  (let* ((year-start (plist-get plist :year-start))
          (month-start (plist-get plist :month-start))
          (day-start (plist-get plist :day-start))
          (hour-start (plist-get plist :hour-start))
