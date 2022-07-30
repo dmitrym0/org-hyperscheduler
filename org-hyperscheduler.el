@@ -110,7 +110,7 @@ this setting to take effect."
 (defvar org-hyperscheduler-server-name "org-hyperscheduler-server")
 
 ;; modify the agenda filter if we want to hide done tasks.
-(and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
+;;(and org-hyperscheduler-hide-done-tasks (setq org-hyperscheduler-agenda-filter (format "%s/-DONE" org-hyperscheduler-agenda-filter)))
 
 (defvar org-hyperscheduler-ws-server
   ;; only run the server if we are not in test env.
@@ -242,11 +242,14 @@ Takes _WS and FRAME as arguments."
     (org-entry-put (point) "ROAM_EXCLUDE" "t"))
   (let* ((props (org-entry-properties))
          (json-null json-false)
-         (js-date (org-hyperscheduler-get-js-date-pair-for-headline )))
+         (js-date (org-hyperscheduler-get-js-date-pair-for-headline))
+         (clocked-list (org-hyperscheduler--get-clocked-times-for-headline-js))
+         )
     (push `(startDate . ,(cdr (assoc 'startDate js-date))) props)
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
     (push `(isReadOnly . ,org-hyperscheduler-readonly-mode) props)
+    (push `(clockedList . ,clocked-list) props)
     props))
 
 (defun org-hyperscheduler-get-calendar-entries (scope)
@@ -260,6 +263,21 @@ Return a structure that is JSONable."
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
          (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP")))))))
     (org-hyperscheduler-get-js-date-pair-from-plist plist)))
+
+
+(defun org-hyperscheduler--get-clocked-times-for-headline-js ()
+  "Generates a list of js-dates pairs from clocked entries.
+   Suitable for sending over to the UI."
+  (save-excursion
+    (goto-char (org-log-beginning))
+    (let ((logbook (org-element-at-point))
+          (js-dates '()))
+      ;; TODO: this seems questionable. We need to escape goto-char when there's no logbook.
+      (goto-char (or (org-element-property :contents-begin logbook) 0))
+      (while (eq 'clock (car (org-element-at-point)))
+        (push (org-hyperscheduler-get-js-date-pair-from-plist (car (cdr (org-element-property :value (org-element-at-point))))) js-dates)
+        (forward-line))
+      js-dates)))
 
 
 (defun org-hyperscheduler-get-js-date-pair-from-plist (plist)

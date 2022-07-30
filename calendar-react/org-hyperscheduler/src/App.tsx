@@ -196,7 +196,15 @@ export function ReactCalendar(props) {
             backgroundColor: '#00a9ff',
             dragColor: '#00a9ff',
             borderColor: '#00a9ff'
+        },
+        {
+            id: '3',
+            name: 'Timestamped Items',
+            backgroundColor: '#fefefe',
+            dragColor: '#00a9ff',
+            borderColor: '#00a9ff'
         }
+
     ];
 
 
@@ -239,7 +247,28 @@ export function ReactCalendar(props) {
             if (agendaItem["SCHEDULED"] === undefined) {
                 calendarItem.calendarId = "2";
             }
-            schedule.push(calendarItem);
+
+            if (agendaItem.clockedList) {
+                for (const clockedItem of agendaItem.clockedList) {
+                    let clockedEntry = {
+                        id: agendaItem["ID"],
+                        calendarId: "3",
+                        // sad attempt at removing links. *TODO*
+                        title: agendaItem["ITEM"].replaceAll(/\[\[.*:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
+                        category: 'time',
+                        start: clockedItem["startDate"],
+                        end: clockedItem["endDate"],
+                        isReadOnly: true
+                    };
+                    schedule.push(clockedEntry);
+
+
+                }
+            }
+
+            if (agendaItem.TODO !== "DONE") {
+                schedule.push(calendarItem);
+            }
         }
 
 
