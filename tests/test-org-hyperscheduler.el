@@ -164,6 +164,10 @@ SCHEDULED: <2022-01-23 Sun>
                     ; we have to reset the inbox path, because "defaults" checks for it.
                     (setq org-hyperscheduler-inbox-file old_inbox)))))
 
+
+          (it "can deal with clocked entries")
+          (it "can deal with no clocked entries")
+
           (it "can insert a new timestamped event into the list")
           (it "can delete an existing event from the list"
               (with-mock-contents
