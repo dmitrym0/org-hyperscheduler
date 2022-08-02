@@ -6,7 +6,7 @@ import './App.css'
 // Bulma React Reference: https://react-bulma.dev/en/storybook
 // Bulma Full Ref: https://bulma.io/documentation/components/navbar/
 import 'bulma/css/bulma.min.css';
-import { Navbar, Level, Container,Link,  Button, Table } from 'react-bulma-components';
+import { Footer, Navbar, Level, Container,Link,  Button, Table } from 'react-bulma-components';
 
 import { createWebStoragePersistor } from "react-query/createWebStoragePersistor-experimental"
 
@@ -199,11 +199,20 @@ export function ReactCalendar(props) {
         },
         {
             id: '3',
-            name: 'Timestamped Items',
-            backgroundColor: '#fefefe',
+            name: 'Clocked Entries',
+            backgroundColor: '#DCDCDC',
             dragColor: '#00a9ff',
             borderColor: '#00a9ff'
+        },
+        {
+            id: '4',
+            name: 'Done Entries',
+            backgroundColor: '#DCDCDC',
+            dragColor: '#00a9ff',
+            borderColor: '#00a9ff'
+
         }
+
 
     ];
 
@@ -223,8 +232,8 @@ export function ReactCalendar(props) {
             agenda = agenda.agenda;
         }
 
-
         console.log(`${agenda.length} items in agenda.`);
+
         for (const agendaItem of agenda) {
             let calendarItem = {
                 id: agendaItem["ID"],
@@ -248,6 +257,10 @@ export function ReactCalendar(props) {
                 calendarItem.calendarId = "2";
             }
 
+            if (agendaItem.TODO === "DONE") {
+                calendarItem.calendarId = "4";
+            }
+
             if (agendaItem.clockedList) {
                 for (const clockedItem of agendaItem.clockedList) {
                     let clockedEntry = {
@@ -261,16 +274,14 @@ export function ReactCalendar(props) {
                         isReadOnly: true
                     };
                     schedule.push(clockedEntry);
-
-
                 }
             }
 
-            if (agendaItem.TODO !== "DONE") {
+            // dont show done tasks when it has clocked entries
+            if (!(calendarItem.calendarId === "4" && !calendarItem.clockedList)) {
                 schedule.push(calendarItem);
             }
         }
-
 
         return schedule;
     }
@@ -284,7 +295,6 @@ export function ReactCalendar(props) {
     });
     const [calendarView, onCalendarViewChange] = useState("week");
     const [agenda, setAgenda] = useState([]);
-
 
     const calendarRef = useRef(null);
 
@@ -304,7 +314,6 @@ export function ReactCalendar(props) {
         syncSend({"command": "update-event", "data":update_event_data});
         getCalInstance().updateEvent(event.id, event.calendarId, changes);
     };
-
 
     const onBeforeCreateEvent = (event) => {
         event.startUnix = getUnixTimestampFromDate(event.start);
@@ -330,7 +339,6 @@ export function ReactCalendar(props) {
         }
     }
 
-
     const { isLoading, error, data } = useAgenda();
 
     let parsedAgenda = parseAgenda(data);
@@ -344,6 +352,7 @@ export function ReactCalendar(props) {
 
     return (
         <div>
+            <Container breakpoint="fluid">
 
             <Navbar>
                 <Navbar.Menu>
@@ -408,22 +417,45 @@ export function ReactCalendar(props) {
                             tooltip: 'Los Angeles',
                         },
                     ]}
-
-
-                    // onClickSchedule={onClickSchedule}
-                    // onBeforeCreateSchedule={onBeforeCreateSchedule}
-                    // onBeforeDeleteSchedule={onBeforeDeleteSchedule}
-                    //onBeforeUpdateSchedule={onBeforeUpdateSchedule}
                     onBeforeDeleteEvent={onBeforeDeleteEvent}
                     onBeforeUpdateEvent={onBeforeUpdateSchedule}
                     onBeforeCreateEvent={onBeforeCreateEvent}
                 />
             </Container>
+            <Footer>
+            <Container>
+            <Navbar>
+                <Navbar.Menu>
+                    <Navbar.Container>
+                        <Navbar.Item>
+                            <Button.Group hasAddons={true}>
+                                <Button color="primery" renderAs={Link} onClick={() => getCalInstance().prev()} >Previous</Button>
+                                <Button color="primery" renderAs={Link} onClick={() => getCalInstance().today()} >Today</Button>
+                                <Button color="primery" renderAs={Link} onClick={() => getCalInstance().next()} >Next</Button>
+
+                            </Button.Group>
+                        </Navbar.Item>
+                    </Navbar.Container>
+
+                    <Navbar.Container align="end">
+
+                        <Navbar.Item>
+                            <Button.Group hasAddons={true}>
+                                <Button color="" renderAs={Link} onClick={() => onSettingsChange({"defaultCalendarView": "day"})}>Day</Button>
+                                <Button color="" renderAs={Link} onClick={() => onSettingsChange({ "defaultCalendarView": "week" })}>Week</Button>
+                                <Button color="" renderAs={Link} onClick={() => onSettingsChange({ "defaultCalendarView": "month" })}>Month</Button>
+                            </Button.Group>
+                        </Navbar.Item>
+                    </Navbar.Container>
+                </Navbar.Menu>
+
+        </Navbar>
+            </Container>
+            </Footer>
+            </Container>
         </div>
     );
 }
-
-
 
 export default function App() {
 
