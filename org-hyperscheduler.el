@@ -94,7 +94,7 @@ this setting to take effect."
 
 (defcustom org-hyperscheduler-default-calendar-view 'week
   "Default view for the web calendar: day, week, month"
-  :options '('day, 'week, 'month)
+  :options '(day week month)
   :group 'org-hyperscheduler)
 
 
