@@ -228,8 +228,13 @@ export function ReactCalendar(props) {
         }
 
         // so nice
-        if (Object.keys(agenda)?.at(0) === 'agenda') {
+        if (Object.keys(agenda)[0] === 'agenda') {
             agenda = agenda.agenda;
+        }
+
+        if (agenda.length === undefined) {
+          console.warn("Argh, bad agenda!");
+          return;
         }
 
         console.log(`${agenda.length} items in agenda.`);
