@@ -106,6 +106,8 @@ this setting to take effect."
 (org-hs--log-enable-logging)
 (org-hs--log-enable-messaging)
 
+(setq org-hs-debounce-invalidate nil)
+
 (defvar org-hyperscheduler-server-buffer (get-buffer-create "*org-hyperscheduler-server*"))
 (defvar org-hyperscheduler-server-name "org-hyperscheduler-server")
 
@@ -168,10 +170,14 @@ Takes _WS and FRAME as arguments."
   (org-hs--log-debug "-org-hyperscheduler-update-event"))
 
 
-(defun org-hyperscheduler--invalidate-remote-agenda ()
+(defun org-hyperscheduler--invalidate-remote-agenda (&optional one two three four)
   "Sends an invalidate event through the websocket."
-  (when (websocket-openp org-hyperscheduler-ws-socket)
-    (websocket-send-text org-hyperscheduler-ws-socket "{\"command\":\"invalidate\"}")))
+  (org-hs-debounce org-hs-debounce-invalidate 1 (progn
+                                                   (org-hs--log-debug "org-hyperscheduler--invalidate-remote-agenda invoked.")
+                                                   (when (websocket-openp org-hyperscheduler-ws-socket)
+                                                     (progn
+                                                       (org-hs--log-debug "invalidating remote agenda.")
+                                                       (websocket-send-text org-hyperscheduler-ws-socket "{\"command\":\"invalidate\"}"))))))
 
 ;; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
 (defun org-hyperscheduler--add-scheduled-event (data)
@@ -331,6 +337,24 @@ Argument YEAR year."
                     buffer-file-name)))
           "."))
 
+
+
+;; borrowed from treemacs.
+(defmacro org-hs-debounce (guard delay &rest body)
+  "Debounce a function call.
+Based on a timer GUARD variable run function with the given DELAY and BODY."
+  (declare (indent 2))
+  `(unless ,guard
+     (setf ,guard
+           (run-with-idle-timer
+            ,delay nil
+            (lambda ()
+              (unwind-protect
+                  (progn ,@body)
+                (setf ,guard nil)))))))
+
+
+
 ;;;###autoload
 (defun org-hyperscheduler-open ()
   "Open org-hyperscheduler in the browser."
@@ -346,7 +370,11 @@ Argument YEAR year."
 ;; List of hooks that should invalidate the agenda on the browser side.
 (setq org-hyperscheduler-agenda-invalidating-hooks '(org-after-todo-state-change-hook
                                                      org-timer-done-hook
-                                                     org-clock-out-hook))
+                                                     org-clock-out-hook
+                                                     org-trigger-hook
+                                                     org-property-changed-functions
+                                                     org-insert-heading-hook
+                                                     ))
 
 
 (dolist (hook-to-bind-to org-hyperscheduler-agenda-invalidating-hooks)
