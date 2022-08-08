@@ -159,8 +159,10 @@ SCHEDULED: <2022-01-23 Sun>
                   (let* ((old_inbox org-hyperscheduler-inbox-file))
                     (setq org-hyperscheduler-inbox-file tempfile) ;; tempfile is set in with-mock-contents
                     (org-hyperscheduler--add-scheduled-event '(( title . "test") (startUnix . 1904247000 ) (endUnix . 1904547000)))
-                    ; TODO should probably check for the right time stamps
-                    (expect (org-hyperscheduler-get-agenda) :not :to-be nil)
+
+                    (expect (alist-get "ITEM" (org-hyperscheduler-get-agenda) nil nil 'equal) :to-equal "test")
+                    (expect (alist-get 'startDate (org-hyperscheduler-get-agenda)) :to-equal "2030-05-05T14:30:00-07:00")
+
                     ; we have to reset the inbox path, because "defaults" checks for it.
                     (setq org-hyperscheduler-inbox-file old_inbox)))))
 
