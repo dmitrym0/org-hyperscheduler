@@ -144,7 +144,6 @@ Takes _WS and FRAME as arguments."
           ((string= command "update-event")
            (org-hyperscheduler--update-event data))
           ((string= command "add-scheduled-event")
-           (org-hyperscheduler--add-scheduled-event data))
            (org-hyperscheduler--respond-with "new-event" (org-hyperscheduler--add-scheduled-event data)))
           ((string= command "remove-event")
            (org-hyperscheduler--remove-event (alist-get 'id data)))
