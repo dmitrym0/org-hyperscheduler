@@ -267,7 +267,6 @@ Takes _WS and FRAME as arguments."
     (push `(endDate . ,(cdr (assoc 'endDate js-date))) props)
     (push `(allDay . ,(cdr (assoc 'allDay js-date))) props)
     (push `(isReadOnly . ,org-hyperscheduler-readonly-mode) props)
-    (push `(clockedList . ,clocked-list) props)
     ;; TODO list to array.
     (push `(clockedList . ,(cl-map 'array #'identity clocked-list)) props)
     props))
