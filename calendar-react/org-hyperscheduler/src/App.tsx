@@ -6,7 +6,7 @@ import './App.css'
 // Bulma React Reference: https://react-bulma.dev/en/storybook
 // Bulma Full Ref: https://bulma.io/documentation/components/navbar/
 import 'bulma/css/bulma.min.css';
-import { Footer, Navbar, Level, Container,Link,  Button, Table } from 'react-bulma-components';
+import { Footer, Navbar, Level, Container,Link,  Button, Table, Modal, Content, Box } from 'react-bulma-components';
 
 import { createWebStoragePersistor } from "react-query/createWebStoragePersistor-experimental"
 
@@ -22,7 +22,7 @@ import TUICalendar from "@toast-ui/react-calendar";
 // import "tui-time-picker/dist/tui-time-picker.css";
 
 
-import { ReactQueryDevtools } from "react-query/devtools";
+// import { ReactQueryDevtools } from "react-query/devtools";
 
 import "tui-calendar/dist/tui-calendar.css";
 import "tui-date-picker/dist/tui-date-picker.css";
@@ -110,12 +110,7 @@ export function ReactCalendar(props) {
 
     }
 
-    // this seems pretty dumb
-    let websocket;
-    useEffect(() => {
-        websocket = bindWebSocket();
-    }, []);
-
+    const [websocket, setWebsocket] = useState(bindWebSocket);
 
     const fetchAgenda = () => {
         return syncSend({ "command": "get-agenda" });
@@ -126,13 +121,19 @@ export function ReactCalendar(props) {
     }
 
 
+    const asyncSend = (payload) => {
+        console.log(`[websocket] asyncSend ${JSON.stringify(payload)}`);
+        const string_payload = JSON.stringify(payload);
+        websocket.send(string_payload);
+    };
+
     // a helper that turns websocket messaging into a synchronous affair.
     const syncSend = (payload) => {
         console.log(`[websocket] syncSend ${JSON.stringify(payload)}`);
         const string_payload = JSON.stringify(payload);
         websocket.send(string_payload);
         var promise = new Promise(function(resolve, reject) {
-            let syncResponseHandler = (event) => {
+            const syncResponseHandler = (event) => {
                 console.log(`[websocket] Response for ${string_payload}`);
                 const data = JSON.parse(event.data);
                 console.log(data);
@@ -147,18 +148,16 @@ export function ReactCalendar(props) {
 
 
     // send througha  new event via react query
-    const useNewEvent = (payload) => useMutation(
-        () => {
-            const string_payload = JSON.stringify(payload);
-            websocket.send(payload);
+    const useNewEvent = useMutation(payload => {
+        const string_payload = JSON.stringify(payload);
+        return syncSend(payload);
+    },
+    {
+        onSuccess: (event) => {
+            queryClient.setQueryData(['agenda', event.id], event)
         },
-        {
-            onSuccess: () => {
-                queryClient.invalidateQueries(['agenda'])
-            },
-        }
+    }
     );
-
 
     const useAgenda = () => useQuery(["agenda"],
         fetchAgenda,
@@ -308,15 +307,16 @@ export function ReactCalendar(props) {
     const onBeforeUpdateSchedule = (payload) => {
         const event = payload.event;
         let changes = payload.changes;
+
+        // if we change the event by dragging the bottom handle in the UI we only get the end date.
         if (changes.start === undefined) {
-            changes.start = updated_schedule.start;
+            changes.start = event.start;
         }
 
         console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
 
         let update_event_data = {id: event.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
-        // websocket.send(JSON.stringify({"command": "update-event", "data":update_event_data}));
-        syncSend({"command": "update-event", "data":update_event_data});
+        asyncSend({"command": "update-event", "data":update_event_data});
         getCalInstance().updateEvent(event.id, event.calendarId, changes);
     };
 
@@ -324,15 +324,18 @@ export function ReactCalendar(props) {
         event.startUnix = getUnixTimestampFromDate(event.start);
         event.endUnix =  getUnixTimestampFromDate(event.end);
 
-        // websocket.send(JSON.stringify({"command":"add-scheduled-event", data: e}));
-        syncSend({"command":"add-scheduled-event", data: event});
-
-        invalidateCachedAgenda();
+        // optimistic add. add the even to the calendar immediately with the
+        // assumption that it will succeed on the emacs side.
+        getCalInstance().createEvents([event]);
+        //asyncSend({"command":"add-scheduled-event", data: event});
+        // TODO: Can we also add this to the react-query collection so we don't get the flashign?
+        useNewEvent.mutate({"command":"add-scheduled-event", data: event});
+        return true;
     };
 
     const onBeforeDeleteEvent = (event) => {
-        syncSend({"command":"remove-event", data: {id: event.id}});
-        invalidateCachedAgenda();
+        getCalInstance().deleteEvent(event.id, event.calendarId);
+        asyncSend({"command":"remove-event", data: {id: event.id}});
     };
 
     const updateSchedule = (agenda) => {
@@ -356,7 +359,10 @@ export function ReactCalendar(props) {
     }
 
     return (
+
         <div>
+
+            <NoConnectionModal message="You're in read-only mode. No changes can be made. See.." visible={true}/>
             <Container breakpoint="fluid">
 
             <Navbar>
@@ -462,12 +468,31 @@ export function ReactCalendar(props) {
     );
 }
 
+
+function NoConnectionModal(props) {
+    const [visible, setVisibility] = useState(props.visible);
+
+    return (
+        <Modal show={visible}>
+            <Modal.Content>
+            <Box>
+            {props.message}
+        <br />
+            <Button.Group align="right">
+            <Button color="light" onClick={() => setVisibility(false)}> Dismiss </Button>
+            </Button.Group>
+        </Box>
+            </Modal.Content>
+            </Modal>
+    );
+}
+
+
 export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
       <ReactCalendar />
-      <ReactQueryDevtools  />
     </QueryClientProvider>
   )
 }
