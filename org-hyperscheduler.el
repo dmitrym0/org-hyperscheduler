@@ -380,7 +380,25 @@ Based on a timer GUARD variable run function with the given DELAY and BODY."
 (dolist (hook-to-bind-to org-hyperscheduler-agenda-invalidating-hooks)
   (add-hook hook-to-bind-to  #'org-hyperscheduler--invalidate-remote-agenda))
 
+(advice-add 'org-schedule :after #'org-hyperscheduler-update-remote-agenda)
 
+(advice-remove 'org-schedule #'org-hyperscheduler-update-remote-agenda)
+
+(defun org-hyperscheduler-update-remote-agenda (&rest params)
+  "Ask web UI to update it's agenda."
+  (org-hs--log-debug "org-hyperscheduler-update-remote-agenda")
+  (org-hyperscheduler--invalidate-remote-agenda))
+
+
+(defun dm-echo (&rest params) (message "----- asdf") (org-hyperscheduler--invalidate-remote-agenda))
+
+(advice-add 'org-schedule :after #'dm-echo)
+
+
+(defun org-hyperscheduler-clear-hooks ()
+  "Remove all hooks that org-hyperscheduler binds to."
+  (dolist (hook-to-bind-to org-hyperscheduler-agenda-invalidating-hooks)
+    (remove-hook hook-to-bind-to  #'org-hyperscheduler--invalidate-remote-agenda)))
 
 
 
