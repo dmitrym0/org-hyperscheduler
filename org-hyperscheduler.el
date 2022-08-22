@@ -220,6 +220,16 @@ Takes _WS and FRAME as arguments."
   (websocket-send-text org-hyperscheduler-ws-socket (json-encode `((command . "update-settings")
                                                                    (data . ,(org-hyperscheduler--get-settings))))))
 
+(defun org-hyperscheduler--send-ack ()
+  "Send an ok to the client."
+  (websocket-send-text org-hyperscheduler-ws-socket (json-encode `((command . "response")
+                                                                   (data . "ok")))))
+
+(defun org-hyperscheduler--respond-with (c d)
+  "Send a COMMAND with DATA to the client."
+  (message "-------")
+  (websocket-send-text org-hyperscheduler-ws-socket (json-encode `((command . ,c)
+                                                                   (data . ,d)))))
 (defun org-hyperscheduler--get-settings ()
   "Get current settigns so they can be fired off to the UI"
   `(( defaultCalendarView . week)
