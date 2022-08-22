@@ -104,7 +104,10 @@ this setting to take effect."
 ;; turn on logging and create org-hs--log-* methods
 (log4e:deflogger "org-hs" "org-hyperscheduler %t [%l] %m" "%H:%M:%S")
 (org-hs--log-enable-logging)
+(org-hs--log-enable-debugging)
 (org-hs--log-enable-messaging)
+(org-hs--log-set-level 'debug)
+(org-hs--log-debug "org-hs")
 
 (setq org-hs-debounce-invalidate nil)
 
