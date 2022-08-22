@@ -171,18 +171,21 @@ Takes _WS and FRAME as arguments."
   (org-hs--log-debug "-org-hyperscheduler-update-event"))
 
 
-(defun org-hyperscheduler--invalidate-remote-agenda (&optional one two three four)
+(defun org-hyperscheduler--invalidate-remote-agenda (&rest params)
   "Sends an invalidate event through the websocket."
+  (interactive)
+  (org-hs--log-debug "org-hyperscheduler--invalidate-remote-agenda.")
   (org-hs-debounce org-hs-debounce-invalidate 1 (progn
-                                                   (org-hs--log-debug "org-hyperscheduler--invalidate-remote-agenda invoked.")
+                                                   (org-hs--log-debug "debounced org-hyperscheduler--invalidate-remote-agenda invoked.")
                                                    (when (websocket-openp org-hyperscheduler-ws-socket)
                                                      (progn
                                                        (org-hs--log-debug "invalidating remote agenda.")
                                                        (websocket-send-text org-hyperscheduler-ws-socket "{\"command\":\"invalidate\"}"))))))
 
+
 ;; TODO: fix the event structure. Structure for the event is inconsistent between this and update event (eg start vs startUnix).
 (defun org-hyperscheduler--add-scheduled-event (data)
-  "Create a new event from DATA in an inbox."
+  "Create & return a new event from DATA in an inbox."
   (org-hs--log-debug "+org-hyperscheduler--add-scheduled-event")
   (let* ((title (alist-get 'title data))
          (timestamp (org-hyperscheduler-get-scheduled-timestamp-for-scheduled-event (cdr (assoc 'startUnix data)) (cdr (assoc 'endUnix data)))))
