@@ -189,8 +189,10 @@ Takes _WS and FRAME as arguments."
       (find-file org-hyperscheduler-inbox-file)
       (goto-char (point-max))
       (insert (format "* TODO %s\n" title))
-      (org-hyperscheduler-schedule-at-point timestamp)))
-  (org-hs--log-debug "-org-hyperscheduler--add-scheduled-event"))
+      (org-hyperscheduler-schedule-at-point timestamp)
+      (org-previous-visible-heading 1)
+      (org-hyperscheduler-get-agenda))))
+  ;; (org-hs--log-debug "-org-hyperscheduler--add-scheduled-event"))
 
 (defun org-hyperscheduler--remove-event (event_id)
   "Remove the heading specific by EVENT_ID (an org-id)."
