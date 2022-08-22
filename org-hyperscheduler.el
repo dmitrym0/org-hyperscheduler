@@ -369,11 +369,11 @@ Based on a timer GUARD variable run function with the given DELAY and BODY."
 
 ;; List of hooks that should invalidate the agenda on the browser side.
 (setq org-hyperscheduler-agenda-invalidating-hooks '(org-after-todo-state-change-hook
-                                                     org-timer-done-hook
-                                                     org-clock-out-hook
-                                                     org-trigger-hook
-                                                     org-property-changed-functions
-                                                     org-insert-heading-hook
+;;                                                      org-timer-done-hook
+;;                                                      org-clock-out-hook
+;;                                                      org-trigger-hook
+;;                                                      org-property-changed-functions
+;;                                                      org-insert-heading-hook
                                                      ))
 
 
