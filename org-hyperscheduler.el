@@ -287,7 +287,8 @@ Return a structure that is JSONable."
   "Converts headline's timestamp into JS format."
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
          (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP")))))))
-    (org-hyperscheduler-get-js-date-pair-from-plist plist)))
+    (when plist
+      (org-hyperscheduler-get-js-date-pair-from-plist plist))))
 
 
 (defun org-hyperscheduler--get-clocked-times-for-headline-js ()
@@ -296,13 +297,15 @@ Return a structure that is JSONable."
   (save-excursion
     (goto-char (org-log-beginning))
     (let ((logbook (org-element-at-point))
-          (js-dates '()))
-      ;; TODO: this seems questionable. We need to escape goto-char when there's no logbook.
-      (goto-char (or (org-element-property :contents-begin logbook) 0))
-      (while (eq 'clock (car (org-element-at-point)))
-        (push (org-hyperscheduler-get-js-date-pair-from-plist (car (cdr (org-element-property :value (org-element-at-point))))) js-dates)
-        (forward-line))
-      js-dates)))
+          (js-dates '())
+          (drawer (re-search-forward org-logbook-drawer-start-re (save-excursion (org-end-of-subtree)) t)))
+      (when drawer
+        ;; drawer gets us the end of the :LOGBOOK: so +1 should get us to the first :CLOCK: entry if it exists
+        (goto-char (+ 1 drawer))
+        (while (eq 'clock (car (org-element-at-point)))
+          (push (org-hyperscheduler-get-js-date-pair-from-plist (car (cdr (org-element-property :value (org-element-at-point))))) js-dates)
+          (forward-line))
+        js-dates))))
 
 
 (defun org-hyperscheduler-get-js-date-pair-from-plist (plist)
