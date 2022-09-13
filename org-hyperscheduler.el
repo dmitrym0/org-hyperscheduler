@@ -280,7 +280,25 @@ Takes _WS and FRAME as arguments."
 (defun org-hyperscheduler-get-calendar-entries (scope)
   "Get all agenda entries using our filter and `org-mode' SCOPE.
 Return a structure that is JSONable."
-  (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
+
+
+  (org-hs--log-debug "collecting agenda..")
+
+;; (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
+;; (org-ql-select  "~/org-roam/daily/2022-09-06.org" '(or (todo "DONE" "TODO") (planning)) :action #'org-hyperscheduler-get-agenda))
+  (let ((entries (org-ql-select org-agenda-files '(or
+                                                   (ts-active)
+                                                   (clocked)
+                                                   (and
+                                                    (todo "TODO" "DONE")
+                                                    (or
+                                                     (scheduled) (planning)))
+                                                   ) :action #'org-hyperscheduler-get-agenda)))
+  (-each entries (lambda (entry)
+                   (org-hs--log-debug "-> %s" (json-encode entry))))
+  entries))
+
+
 
 
 (defun org-hyperscheduler-get-js-date-pair-for-headline ()
