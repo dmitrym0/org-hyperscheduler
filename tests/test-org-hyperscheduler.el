@@ -2,6 +2,7 @@
 
 (require 'org-hyperscheduler)
 (require 'org-id)
+(require 'org-ql)
 
 
 
@@ -16,7 +17,37 @@ SCHEDULED: <2022-01-23 Sun 14:00-15:00>
 :PROPERTIES:
 :ID:       FAKE_ID1
 :END:
+")
 
+
+(defvar mock-org-contents-org-ql-test
+"* This heading should be returned because it has a time stamp
+:PROPERTIES:
+:ID:       org-hyperscheduler-id:99F9F5B6-5DF8-4E07-8BA1-1AF24361B266
+:ROAM_EXCLUDE: t
+<2022-09-06 Tue 18:30>
+:END:
+* This heading should NOT be there because it doesn't have any scheduling info
+:PROPERTIES:
+:END:
+* This heading should be there because it's got clocking info
+:LOGBOOK:
+CLOCK: [2022-09-06 Tue 16:34]--[2022-09-06 Tue 17:03] =>  0:29
+CLOCK: [2022-09-06 Tue 16:02]--[2022-09-06 Tue 16:31] =>  0:29
+:END:
+* TODO This heading shouldn't be there because it doesn't have any scheduling info
+* TODO This heading should be there because it contains scheduling info with time
+SCHEDULED: <2026-01-23 Sun 14:00-15:00>
+:PROPERTIES:
+:ID:       FAKE_ID1
+:END:
+* TODO This heading should be there because it contains scheduling info, all day
+SCHEDULED: <2026-01-23 Sun>
+:PROPERTIES:
+:ID:       FAKE_ID2
+:END:
+* This heading shouldn't be there because it has an inactive time stamp
+[2022-09-06 Tue]
 ")
 
 (defvar mock-org-contents-unprocessed
@@ -45,33 +76,43 @@ SCHEDULED: <2022-01-23 Sun>
 ;;
 ;; TODO: asserts can fail and that kills the stack, catch the exception so that we can do proper cleanup.
 (defun with-mock-contents (contents lambda)
-  (org-mode)
   ;;  (setenv "TZ" "America/Los_Angeles")
   ;; set time zone. all expectations are for PST.
   ; (set-time-zone-rule "US/Pacific")
 
   (set-time-zone-rule '(-25200 "PST"))
 
+  (message "--------------------------------------------")
   (message (format "\nCurrent time zone: %s\n" (current-time-zone)))
 
 
-  (setq org-id-track-globally t)
 
 
   ;; TODO: when an assert fails in buttercup, an exception (??) is thrown,
   ;; so temp file isnt being cleaned up. This is the sledgehammer approach.
   ;; Needs to be fixed so that it's cleaned up properly.
-  (when org-hs-test-file (delete-file org-hs-test-file))
+  (when org-hs-test-file
+    (progn
+      (message (format "Removing org-hs-test-file: %s\n" org-hs-test-file))
+      (delete-file org-hs-test-file)))
 
 
   (let* ((tempfile (make-temp-file "org-hs" nil ".org" contents)))
+    (message (format "Creating a tempfile: %s\n" tempfile))
     (setq org-agenda-files (list tempfile))
     (setq org-hs-test-file tempfile)
+    (setq org-id-track-globally t)
+    (org-mode)
+    (message "Opening the file..")
     (find-file tempfile)
     (org-element-cache-reset)
+    (message "Starting the test..")
     (funcall lambda)
+    (message "About to kill buffer..")
     (kill-current-buffer)
+    (message (format "Removing tempfile %s" tempfile))
     (delete-file tempfile)
+    (message "+++++++++++++++++++++++++++++++++++++++++")
   ))
 
 ; utility method to generate websocket frame for later consumption.
@@ -93,27 +134,21 @@ SCHEDULED: <2022-01-23 Sun>
               )
 
 
-          (it "can get the correct entries"
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents)
-                (let ((number-of-todo-entries (length (org-hyperscheduler-get-calendar-entries nil))))
-                  (expect number-of-todo-entries :to-be 2))))
-
           (it "has the correct properties"
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents)
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
                 (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                   (second-entry (car (cdr todo-entries))))
-                  (expect (cdr (assoc "ID" second-entry)) :to-equal "FAKE_ID1"))))
+                  (expect (cdr (assoc "ID" second-entry)) :to-equal "FAKE_ID1")))))
+
 
           (it "can produce a json representation"
-              (with-temp-buffer
-               (org-mode)
-                (insert mock-org-contents)
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
                 (let ((json-representation (json-encode (org-hyperscheduler-get-calendar-entries nil))))
-                  (expect (string-match "a task aaa" json-representation) :not :to-be nil))))
+                  (expect (string-match "a task aaa" json-representation) :not :to-be nil)))))
 
 
 
@@ -193,29 +228,30 @@ SCHEDULED: <2022-01-23 Sun>
            (org-hs-default-state))
 
           (it "has roam ignore property"
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents)
-                (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
-                       (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
-                  (expect roam-ignore-prop :not :to-be nil))))
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
+                  (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
+                         (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
+                    (expect roam-ignore-prop :not :to-be nil)))))
 
           (it "has the correct ID prefix"
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents-unprocessed)
+              (with-mock-contents
+               mock-org-contents-unprocessed
+               '(lambda ()
                 (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (current-id (org-id-get)))
-                  (expect (string-match "org-hyperscheduler-id.*" current-id)))))
+                  (expect (string-match "org-hyperscheduler-id.*" current-id))))))
 
           (it "does NOT have ROAM_EXCLUDE property when exclusion is disabled"
               (setq org-hyperscheduler-exclude-from-org-roam nil)
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents)
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
+
                 (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
-                  (expect roam-ignore-prop :to-be nil))))
+                  (expect roam-ignore-prop :to-be nil)))))
           )
 
 
@@ -231,23 +267,23 @@ SCHEDULED: <2022-01-23 Sun>
            (org-hs-default-state))
 
           (it "does NOT have a generated ID"
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents-unprocessed)
+              (with-mock-contents
+               mock-org-contents-unprocessed
+               '(lambda ()
+
                 (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (current-id (org-id-get)))
-                  (expect current-id :to-be nil))))
+                  (expect current-id :to-be nil)))))
 
 
           (it "does NOT have ROAM_EXCLUDE property when the flag is set in READONLY mode"
               (setq org-hyperscheduler-exclude-from-org-roam t)
-              (with-temp-buffer
-                (org-mode)
-                (insert mock-org-contents)
+              (with-mock-contents
+               mock-org-contents
+               '(lambda ()
                 (let* ((todo-entries (org-hyperscheduler-get-calendar-entries nil))
                        (roam-ignore-prop  (org-entry-get (point) "ROAM_EXCLUDE")))
-                  (expect roam-ignore-prop :to-be nil))))
-
+                  (expect roam-ignore-prop :to-be nil)))))
           )
 
 
@@ -347,3 +383,13 @@ SCHEDULED: <2022-01-23 Sun>
 (describe "settigns"
           (it "should be able to get settings"
               (expect (org-hyperscheduler--get-settings) :not :to-be nil)))
+
+
+(describe "org-ql"
+          (it "can get the right entries"
+              (with-mock-contents
+               mock-org-contents-org-ql-test
+               '(lambda () (let ((number-of-todo-entries (length (org-hyperscheduler-get-calendar-entries nil))))
+                             (expect number-of-todo-entries :to-be 4))))
+              )
+          )

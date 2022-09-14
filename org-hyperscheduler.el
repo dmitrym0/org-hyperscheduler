@@ -98,6 +98,10 @@ this setting to take effect."
   :group 'org-hyperscheduler)
 
 
+(defconst org-hyperscheduler-logbook-drawer-start-re "^[ \t]*:LOGBOOK:[ \t]*$"
+  "Regular expression matching the first line of a clock drawer.")
+
+
 ;; ---------------------------------------------------------------------------------------------------
 ;; ---------------------------------------------------------------------------------------------------
 
@@ -313,10 +317,8 @@ Return a structure that is JSONable."
   "Generates a list of js-dates pairs from clocked entries.
    Suitable for sending over to the UI."
   (save-excursion
-    (goto-char (org-log-beginning))
-    (let ((logbook (org-element-at-point))
-          (js-dates '())
-          (drawer (re-search-forward org-logbook-drawer-start-re (save-excursion (org-end-of-subtree)) t)))
+    (let ((js-dates '())
+          (drawer (re-search-forward org-hyperscheduler-logbook-drawer-start-re (save-excursion (org-end-of-subtree)) t)))
       (when drawer
         ;; drawer gets us the end of the :LOGBOOK: so +1 should get us to the first :CLOCK: entry if it exists
         (goto-char (+ 1 drawer))
