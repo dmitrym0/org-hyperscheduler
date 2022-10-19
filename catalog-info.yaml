@@ -5,6 +5,7 @@ metadata:
   annotations:
     github.com/project-slug: dmitrym0/org-hyperscheduler
     backstage.io/techdocs-ref: dir:.
+    circleci.com/project-slug: github/dmitrym0/org-hyperscheduler
   links:
     - url: https://dashboard.example.com
       title: My Dashboard
