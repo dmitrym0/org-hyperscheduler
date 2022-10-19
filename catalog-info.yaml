@@ -6,6 +6,10 @@ metadata:
     github.com/project-slug: dmitrym0/org-hyperscheduler
   annotations:
     backstage.io/techdocs-ref: value
+  links:
+    - url: https://dashboard.example.com
+      title: My Dashboard
+      icon: dashboard  
 spec:
   type: other
   lifecycle: unknown
