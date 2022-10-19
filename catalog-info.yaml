@@ -1,5 +1,5 @@
 apiVersion: backstage.io/v1alpha1
-kind: Service
+kind: Component
 metadata:
   name: org-hyperscheduler
   annotations:
