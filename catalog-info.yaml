@@ -4,12 +4,11 @@ metadata:
   name: org-hyperscheduler
   annotations:
     github.com/project-slug: dmitrym0/org-hyperscheduler
-  annotations:
     backstage.io/techdocs-ref: value
   links:
     - url: https://dashboard.example.com
       title: My Dashboard
-      icon: dashboard  
+      icon: dashboard
 spec:
   type: other
   lifecycle: unknown
