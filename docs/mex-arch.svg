@@ -1,0 +1,1806 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1444px" preserveAspectRatio="none" style="width:2884px;height:1444px;background:#FFFFFF;" version="1.1" viewBox="0 0 2884 1444" width="2884px" zoomAndPan="magnify"><defs/><g><!--MD5=[d3c7e7666fa3f68c4fc45bba2365bdb0]
+cluster ads--><g id="cluster_ads"><rect fill="none" height="189" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="384" x="2335" y="7"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="32" x="2511" y="44.4688">Ads</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="53" x="2500.5" y="59.4453">[System]</text></g><!--MD5=[dbef4f2f11dcac481c28d4057577ea72]
+cluster vt--><g id="cluster_vt"><rect fill="none" height="864" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="1329" x="682" y="523"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="142" x="1275.5" y="560.4688">varsitytutors.com</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="53" x="1320" y="575.4453">[System]</text></g><!--MD5=[c9a90633f6fa270d36395c8924bf7cd1]
+cluster marketing--><g id="cluster_marketing"><rect fill="none" height="915.5" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="843" x="2035" y="266"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="120" x="2396.5" y="303.4688">Marketing &amp; BI</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="53" x="2430" y="318.4453">[System]</text></g><!--MD5=[aab1cbd24ad2dd7ccb90f85968ec014e]
+cluster ft--><g id="cluster_ft"><rect fill="none" height="154" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="325" x="333" y="548"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="122" x="434.5" y="585.4688">firsttutors.com</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="53" x="469" y="600.4453">[System]</text></g><!--MD5=[174335887bc41613319dbaba25c8bc6a]
+cluster ut--><g id="cluster_ut"><rect fill="none" height="433" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="294" x="7" y="540"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="186" x="61" y="577.4688">Universitytutors.com??</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="53" x="127.5" y="592.4453">[System]</text></g><!--MD5=[015c390806871cb6c011350b5cb2e7ad]
+entity facebook--><g id="elem_facebook"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="97" x="2578.5" y="86"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2601" y="107.6016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="77" x="2588.5" y="125.6016">Facebook</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2625" y="142.5117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="2616" y="159">Ads</text></g><!--MD5=[fe4d4757f17ad1ff20eeccacaff789eb]
+entity google--><g id="elem_google"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="77" x="2466.5" y="86"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2479" y="107.6016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="57" x="2476.5" y="125.6016">Google</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2503" y="142.5117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="2494" y="159">Ads</text></g><!--MD5=[98e67c542ab3234b61054231630d291e]
+entity bing--><g id="elem_bing"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="72" x="2359" y="86"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2369" y="107.6016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="37" x="2376.5" y="125.6016">Bing</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2393" y="142.5117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="2384" y="159">Ads</text></g><!--MD5=[a4c7a81c6af92d996906fb19bd4dd8ef]
+entity mex_components--><g id="elem_mex_components"><rect fill="#85BBF0" height="116.5742" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="213" x="1417.5" y="1064"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1486" y="1085.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="148" x="1450" y="1103.6016">MEX_Components</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="1506.5" y="1118.5781">[Gem]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1522" y="1134.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="189" x="1427.5" y="1151.1328">Provides Atlas, components</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="1485.5" y="1167.6211">and engine</text></g><!--MD5=[692f0ec35b715a07fdc5c98bc807cb83]
+entity vt_router--><g id="elem_vt_router"><rect fill="#85BBF0" height="116.5742" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="219" x="1408.5" y="594"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1480" y="615.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="75" x="1480.5" y="633.6016">vt-router</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="1498.5" y="648.5781">[nginx]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1516" y="664.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="192" x="1420" y="681.1328">Router for varsitytutors.com</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="199" x="1418.5" y="697.6211">and all web facing properties</text></g><!--MD5=[91673c9a290dcbf86a6c4e519b93b75b]
+entity vt_apigw--><g id="elem_vt_apigw"><rect fill="#85BBF0" height="100.0859" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="174" x="698" y="865.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="747" y="887.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="75" x="747.5" y="905.1016">vt-apigw</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="39" x="765.5" y="920.0781">[nginx]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="783" y="936.1445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="708" y="952.6328">Router for API services</text></g><!--MD5=[52ebc75d9b8deb29b4eaecaf10a1d1ae]
+entity vt_homepage--><g id="elem_vt_homepage"><rect fill="#85BBF0" height="116.5742" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="145" x="1618.5" y="857"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1653" y="878.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="111" x="1635.5" y="896.6016">vt-homepage</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="1673.5" y="911.5781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1689" y="927.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121" x="1628.5" y="944.1328">Serves the root of</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="1632" y="960.6211">varsitytutors.com</text></g><!--MD5=[d58c7bb69d5dfdbc81f9ff6901a821ac]
+entity vt_ecom--><g id="elem_vt_ecom"><rect fill="#85BBF0" height="116.5742" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="196" x="1799" y="857"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1859" y="878.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="69" x="1862.5" y="896.6016">vt-ecom</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="1879.5" y="911.5781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1895" y="927.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="1809" y="944.1328">Tutor galleries, about us;</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="96" x="1849" y="960.6211">organic traffic</text></g><!--MD5=[be2d4efe250b845ba2901a7ad28eef93]
+entity llt_atlas--><g id="elem_llt_atlas"><rect fill="#85BBF0" height="116.5742" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="219" x="1118.5" y="857"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1190" y="878.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="62" x="1197" y="896.6016">llt_atlas</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="1210.5" y="911.5781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1226" y="927.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="199" x="1128.5" y="944.1328">Hosts PPC landing pages and</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="1185" y="960.6211">experiments</text></g><!--MD5=[de2b418a10131391508ca094a55683bf]
+entity vt_leadform--><g id="elem_vt_leadform"><rect fill="#85BBF0" height="100.0859" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="181" x="699.5" y="1072.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="752" y="1094.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="99" x="740.5" y="1112.1016">vt-leadform</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="772.5" y="1127.0781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="788" y="1143.1445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="161" x="709.5" y="1159.6328">Lead Forms as a service</text></g><!--MD5=[81958c803aac7f7974169f00f3f2f372]
+entity vt_leadform_builder--><g id="elem_vt_leadform_builder"><rect fill="#85BBF0" height="100.0859" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="188" x="698" y="1271"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="754" y="1292.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="168" x="708" y="1310.6016">vt-leadform-builder</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="774.5" y="1325.5781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="790" y="1341.6445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="124" x="730" y="1358.1328">Builds Lead Forms</text></g><!--MD5=[79a650f749a707fa1965ce0b2e126468]
+entity llt_reach--><g id="elem_llt_reach"><rect fill="#85BBF0" height="100.0859" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="210" x="1373" y="865.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1440" y="887.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="69" x="1443.5" y="905.1016">llt_reach</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="1460.5" y="920.0781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1476" y="936.1445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="190" x="1383" y="952.6328">New business opportunities</text></g><!--MD5=[84e7b8e036cd01078f72b747893653bf]
+entity vtwa--><g id="elem_vtwa"><rect fill="#85BBF0" height="100.0859" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="174" x="1821" y="602.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1870" y="624.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="38" x="1889" y="642.1016">vtwa</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="35" x="1890.5" y="657.0781">[Rails]</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1906" y="673.1445"> </text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="154" x="1831" y="689.6328">The original Monolith?</text></g><!--MD5=[bbe6e2f560f56f7b7051f1c1fc577b6a]
+entity vt_contact--><g id="elem_vt_contact"><rect fill="#85BBF0" height="52.9766" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="105" x="1268.5" y="626"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1283" y="647.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="85" x="1278.5" y="665.6016">vt-contact</text></g><!--MD5=[c4cfb2f576529b7263ad7e8c04627b28]
+entity vt_cms_proxy--><g id="elem_vt_cms_proxy"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="135" x="1098.5" y="619"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1128" y="640.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="115" x="1108.5" y="658.6016">vt-cms-proxy</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="91" x="1120.5" y="673.5781">[proxy for dato]</text></g><!--MD5=[79d992aafb16c7dc885ea1fdb39f7f1a]
+entity vt_mce--><g id="elem_vt_mce"><rect fill="#85BBF0" height="85.9531" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="218" x="845" y="609.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="916" y="631.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="198" x="855" y="649.1016">MCE (marketing content</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="62" x="923" y="667.9453">engine)</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="169" x="869.5" y="682.9219">[old system for page content]</text></g><!--MD5=[89e6445b3569749d0be890ea707de560]
+entity vt_dynamodb--><g id="elem_vt_dynamodb"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="111" x="1841.5" y="1079.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="1871" y="1101.1016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="91" x="1851.5" y="1119.1016">DyanmoDB</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1895" y="1136.0117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="18" x="1890" y="1152.5">???</text></g><!--MD5=[c32fcac0104a1c062148bc03269f7e8b]
+entity aws_cloudfront--><g id="elem_aws_cloudfront"><rect fill="#1168BD" height="102.4414" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="111" x="698.5" y="601.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="728" y="623.1016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="752" y="639.168"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="91" x="708.5" y="657.5898">CloudFront</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="752" y="674.5"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30" x="741" y="690.9883">AWS</text></g><!--MD5=[5e2911130cff5b0023d8eec0f7b0c389]
+entity dato--><g id="elem_dato"><rect fill="#1168BD" height="102.4414" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="176" x="907" y="864.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="969" y="886.1016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="38" x="976" y="904.1016">Dato</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="993" y="921.0117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="148" x="921" y="937.5">Content Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="971" y="953.9883">System</text></g><!--MD5=[96816fe2c53edfa824011b54cf3b5b18]
+entity bi_s3--><g id="elem_bi_s3"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="110" x="2288" y="609.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2317" y="631.1016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="20" x="2333" y="649.1016">S3</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2341" y="666.0117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="2302" y="682.5">BI Data store</text></g><!--MD5=[bd574c821dd0190ac12195e6ce385d09]
+entity vt_bid--><g id="elem_vt_bid"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="206" x="2656" y="337"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2733" y="358.6016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="52" x="2733" y="376.6016">vt-bid</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2757" y="393.5117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="2670" y="410">Managing marketing data?</text></g><!--MD5=[05b7dd0062ff86adc55452840a0758cb]
+entity looker--><g id="elem_looker"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="72" x="2307" y="1079.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2317" y="1101.1016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="51" x="2317.5" y="1119.1016">looker</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2341" y="1136.0117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="12" x="2339" y="1152.5">BI</text></g><!--MD5=[32269fdc7a94db95226ca3930d334b2c]
+entity redshift--><g id="elem_redshift"><rect fill="#1168BD" height="85.9531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="129" x="2278.5" y="872.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="2317" y="894.1016">«system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="65" x="2310.5" y="912.1016">redshift</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="2341" y="929.0117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="105" x="2292.5" y="945.5">datawarehouse</text></g><!--MD5=[daff30143f40cb3eb2a525e9ba88113f]
+entity llt_3p_datafeeds--><g id="elem_llt_3p_datafeeds"><rect fill="#85BBF0" height="81.2422" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="159" x="2051.5" y="339.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="2093" y="361.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="138" x="2062" y="379.1016">llt-3p-datafeeds</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="69" x="2094.5" y="394.0781">[VTWA &lt;-&gt;</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="139" x="2061.5" y="408.2109">Facebook/google/bing?]</text></g><!--MD5=[2e91c272870c7fe88fd40fa28d639e8e]
+entity llt_3p_datafeed_jobs--><g id="elem_llt_3p_datafeed_jobs"><rect fill="#85BBF0" height="81.2422" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="194" x="2246" y="339.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="2305" y="361.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="174" x="2256" y="379.1016">llt-3p-datafeed-jobs</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="69" x="2306.5" y="394.0781">[VTWA &lt;-&gt;</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="139" x="2273.5" y="408.2109">Facebook/google/bing?]</text></g><!--MD5=[173316c7c99e4e950ab9f67fccf761ac]
+entity mktg_extractor--><g id="elem_mktg_extractor"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="145" x="2475.5" y="346.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="2510" y="368.1016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="125" x="2485.5" y="386.1016">mktg-extractor</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="95" x="2500.5" y="401.0781">[Ads-&gt;S3 for BI]</text></g><!--MD5=[a2c946de690bc0b1db5945494fb6e5f4]
+entity ft_rails--><g id="elem_ft_rails"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="96" x="546" y="619"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="556" y="640.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="58" x="565" y="658.6016">ft-rails</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="13" x="587.5" y="673.5781">[?]</text></g><!--MD5=[44cf389df7c1eb99e9138b099631728e]
+entity ft_php_app--><g id="elem_ft_php_app"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="161" x="349.5" y="619"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="392" y="640.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="141" x="359.5" y="658.6016">ft-php-web-app</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="13" x="423.5" y="673.5781">[?]</text></g><!--MD5=[9d1f5029eb98680de6cd37bd49dd3261]
+entity ralphie--><g id="elem_ralphie"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="96" x="50" y="619"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="60" y="640.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="57" x="69.5" y="658.6016">ralphie</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="13" x="91.5" y="673.5781">[?]</text></g><!--MD5=[4cd01442e37a67049839a295df28f2a6]
+entity ut_ppc--><g id="elem_ut_ppc"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="96" x="181" y="619"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="191" y="640.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="58" x="200" y="658.6016">ut-ppc</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="13" x="222.5" y="673.5781">[?]</text></g><!--MD5=[f6b67ec7bdb02125697795709ed00bc6]
+entity ut_galleries--><g id="elem_ut_galleries"><rect fill="#85BBF0" height="67.1094" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:0.5;" width="116" x="50" y="882"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="70" y="903.6016">«component»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="96" x="60" y="921.6016">ut-galleries</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="13" x="101.5" y="936.5781">[?]</text></g><!--MD5=[8fc3522a43f8c7199df5e09e5bb0188e]
+entity user--><g id="elem_user"><rect fill="#08427B" height="133.9531" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="96" x="584" y="313"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="52" x="606" y="334.6016">«person»</text><image height="48" width="48" x="608" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="337.1328"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="37" x="613.5" y="400.6016">User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="630" y="417.5117"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="72" x="598" y="434">web traffic</text></g><!--MD5=[3790ef0a58ee8d3f93aaad557a39f3fc]
+reverse link facebook to mktg_extractor--><g id="link_facebook_mktg_extractor"><path d="M2611.14,179.98 C2595.41,229.56 2571.76,304.11 2558.31,346.49 " fill="none" id="facebook-backto-mktg_extractor" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2613.6,172.24,2608.326,178.962,2614.0463,180.7723,2613.6,172.24" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="49" x="2597" y="232.6016">extracts</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="29" x="2607" y="246.7344">[ads]</text></g><!--MD5=[82bb78e6d5493e7d41bb2a0227126341]
+link mktg_extractor to bi_s3--><g id="link_mktg_extractor_bi_s3"><path d="M2526.19,413.56 C2508.75,439.27 2483.42,475.87 2460,507 C2435.47,539.59 2406.65,575.22 2383.75,602.94 " fill="none" id="mktg_extractor-to-bi_s3" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2378.36,609.45,2385.7735,605.2027,2381.1528,601.3753,2378.36,609.45" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="39" x="2514" y="489.6016">stores</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="107" x="2480" y="503.7344">[ads performance]</text></g><!--MD5=[b39c9eb01e5f8cfc89622b11996620ed]
+link llt_3p_datafeed_jobs to bi_s3--><g id="link_llt_3p_datafeed_jobs_bi_s3"><path d="M2343,420.62 C2343,468.4 2343,548.77 2343,600.97 " fill="none" id="llt_3p_datafeed_jobs-to-bi_s3" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2343,609.09,2346,601.09,2340,601.09,2343,609.09" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="39" x="2378" y="489.6016">stores</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="107" x="2344" y="503.7344">[ads performance]</text></g><!--MD5=[f5cf416caaeaa9cce5df308b29845301]
+link llt_3p_datafeeds to bi_s3--><g id="link_llt_3p_datafeeds_bi_s3"><path d="M2160.39,420.71 C2178.99,445.65 2203.65,478.4 2226,507 C2251.32,539.39 2280.4,575.32 2303.24,603.25 " fill="none" id="llt_3p_datafeeds-to-bi_s3" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2308.31,609.45,2305.5578,601.3614,2300.9179,605.1655,2308.31,609.45" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="39" x="2261" y="489.6016">stores</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="107" x="2227" y="503.7344">[ads performance]</text></g><!--MD5=[d0c02ee93f35197b5a96d1e5c77fad97]
+link vt_bid to ads--><g id="link_vt_bid_ads"><path d="M2750.86,336.79 C2744.09,301.65 2734.2625,250.67 2726.06,208.1225 C2724.0094,197.4856 2722.0603,187.3758 2720.286,178.1722 C2720.0642,177.0218 2719.8451,175.8855 2719.6289,174.7641 C2719.5208,174.2034 2719.4135,173.6465 2719.3068,173.0933 C2719.2535,172.8167 2719.2004,172.5411 2719.1474,172.2665 " fill="none" id="vt_bid-to-ads" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2719.1474,172.2665,2717.7161,180.6897,2723.6076,179.5539,2719.1474,172.2665" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50" x="2734" y="232.6016">uploads</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="33" x="2742.5" y="246.7344">[bids]</text></g><!--MD5=[cc1f6ba820d0ae8b62c1c5a09319e8bd]
+link redshift to looker--><g id="link_redshift_looker"><path d="M2343,958.98 C2343,991.66 2343,1036.91 2343,1071.36 " fill="none" id="redshift-to-looker" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2343,1079.43,2346,1071.43,2340,1071.43,2343,1079.43" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="93" x="2344" y="1023.6016">source of truth</text></g><!--MD5=[3ea60c22e72cd034b68eb6e2ad23d5ff]
+link bi_s3 to redshift--><g id="link_bi_s3_redshift"><path d="M2343,695.72 C2343,741.69 2343,815.15 2343,864.1 " fill="none" id="bi_s3-to-redshift" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="2343,872.34,2346,864.34,2340,864.34,2343,872.34" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50" x="2344" y="788.6016">uploads</text></g><!--MD5=[ba62727402420965c2d551c76af9569b]
+link user to vt_router--><g id="link_user_vt_router"><path d="M680.25,385.48 C827.13,399.75 1266.32,447.2 1391,515 C1423.12,532.47 1451.61,561.09 1473.44,587.63 " fill="none" id="user-to-vt_router" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1478.55,593.96,1475.8498,585.8539,1471.1855,589.6282,1478.55,593.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="1379" y="489.6016">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="46" x="1371" y="503.7344">[HTTPS]</text></g><!--MD5=[308c507f65f3cb5dc55a216460324200]
+link user to aws_cloudfront--><g id="link_user_aws_cloudfront"><path d="M661.84,447.17 C682.12,492.12 708.66,550.98 728.06,593.98 " fill="none" id="user-to-aws_cloudfront" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="731.35,601.27,730.7959,592.744,725.3264,595.2106,731.35,601.27" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="694" y="489.6016">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="46" x="686" y="503.7344">[HTTPS]</text></g><!--MD5=[498c84d3dd651fe232376b8477e11330]
+link user to ft_php_app--><g id="link_user_ft_php_app"><path d="M583.95,442.77 C566.5,465.39 546.73,491.25 529,515 C504.78,547.44 477.84,584.66 458.18,612.03 " fill="none" id="user-to-ft_php_app" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="453.35,618.77,460.448,614.0142,455.5707,610.5196,453.35,618.77" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="565" y="489.6016">Uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="46" x="557" y="503.7344">[HTTPS]</text></g><!--MD5=[dfbffba109624f6a154d58040ac3591a]
+link user to ut--><g id="link_user_ut"><path d="M583.79,384.86 C455.21,396.2 108.78,433.81 34,515 C28.8937,520.5438 24.7564,526.7898 21.4268,533.4815 C20.5944,535.1544 19.8125,536.8552 19.0786,538.5798 C18.8951,539.0109 18.7146,539.4436 18.5371,539.8776 " fill="none" id="user-to-ut" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="18.5371,539.8776,24.3422,533.6086,18.7888,531.3373,18.5371,539.8776" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="30" x="85" y="496.6016">Uses</text></g><!--MD5=[ee42f755a33acc568124ede7cf5235a0]
+link vt_router to vt_homepage--><g id="link_vt_router_vt_homepage"><path d="M1613.74,711.26 C1623.93,720.26 1633.35,730.2 1641,741 C1663.4,772.61 1675.83,814.14 1682.69,848.64 " fill="none" id="vt_router-to-vt_homepage" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1684.23,856.79,1685.6914,848.3719,1679.7958,849.4867,1684.23,856.79" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="45" x="1690" y="781.6016">fetches</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="69" x="1678" y="795.7344">[homepage]</text></g><!--MD5=[efc4b564503f6097b0209c6a6d9ea65d]
+link vt_router to vt_ecom--><g id="link_vt_router_vt_ecom"><path d="M1627.67,680.28 C1670.25,694.02 1717.85,713.75 1756,741 C1796.73,770.1 1832.21,813.92 1857.39,850.23 " fill="none" id="vt_router-to-vt_ecom" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1861.97,856.92,1859.9297,848.6232,1854.9774,852.0105,1861.97,856.92" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="45" x="1888" y="781.6016">fetches</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="145" x="1838" y="795.7344">[tutor galleries, about us]</text></g><!--MD5=[17130c7b01aa84ac0c6fb2893879ad56]
+link vt_router to llt_atlas--><g id="link_vt_router_llt_atlas"><path d="M1408.42,705.16 C1382.79,718.39 1359.81,731.53 1349,741 C1314.05,771.64 1284.08,814.39 1262.72,849.79 " fill="none" id="vt_router-to-llt_atlas" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1258.56,856.76,1265.2272,851.4169,1260.07,848.3505,1258.56,856.76" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="45" x="1394" y="753.6016">fetches</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="129" x="1350" y="767.7344">[single page paid ads,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="56" x="1388.5" y="781.8672">lead form</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="113" x="1358" y="796">experiments, locale</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="86" x="1373.5" y="810.1328">specific pages,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="86" x="1373.5" y="824.2656">partner pages]</text></g><!--MD5=[ab4d1eabb3e7f90d46281f2df0386c9c]
+link vt_router to llt_reach--><g id="link_vt_router_llt_reach"><path d="M1509.17,711.1 C1502.52,754.54 1493.43,813.84 1486.78,857.2 " fill="none" id="vt_router-to-llt_reach" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1485.53,865.38,1489.7085,857.9275,1483.7779,857.0176,1485.53,865.38" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="45" x="1546" y="760.6016">fetches</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="103" x="1515" y="774.7344">[Classes, courses,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="83" x="1527" y="788.8672">Collection, Self</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="125" x="1504" y="803">study, virtual summer</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="42" x="1547.5" y="817.1328">camps]</text></g><!--MD5=[7cf0db7439f6cc7f677c11e4270d63b1]
+link vt_apigw to vt_leadform--><g id="link_vt_apigw_vt_leadform"><path d="M786.2,965.6 C786.92,995.29 787.85,1033.26 788.6,1064.3 " fill="none" id="vt_apigw-to-vt_leadform" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="788.8,1072.44,791.6135,1064.3725,785.6151,1064.5118,788.8,1072.44" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="40" x="803" y="1016.6016">routes</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="70" x="788" y="1030.7344">[lead forms]</text></g><!--MD5=[5968ae6412602b0c523c3748d47fab21]
+link vt_mce to vt_apigw--><g id="link_vt_mce_vt_apigw"><path d="M926.66,695.72 C898.02,739.96 852.89,809.66 821.28,858.47 " fill="none" id="vt_mce-to-vt_apigw" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="816.91,865.21,823.7738,860.122,818.7358,856.8634,816.91,865.21" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="29" x="895" y="781.6016">uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="26" x="896.5" y="795.7344">[API]</text></g><!--MD5=[eadc7e76eea6e187a1fe6658eef00b67]
+link vt_ecom to vt_dynamodb--><g id="link_vt_ecom_vt_dynamodb"><path d="M1897,974.15 C1897,1004.68 1897,1041.81 1897,1071.17 " fill="none" id="vt_ecom-to-vt_dynamodb" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1897,1079.23,1900,1071.23,1894,1071.23,1897,1079.23" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="70" x="1898" y="1016.6016">stores data</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="13" x="1926.5" y="1030.7344">[?]</text></g><!--MD5=[ac667777a9069fc7e2f7652bc7e97305]
+link vt_ecom to mex_components--><g id="link_vt_ecom_mex_components"><path d="M1805.31,974.09 C1797.11,979.16 1788.91,984.19 1781,989 C1747.46,1009.4 1739.59,1015.44 1705,1034 C1683.49,1045.54 1660.23,1057.3 1637.77,1068.31 " fill="none" id="vt_ecom-to-mex_components" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1630.51,1071.85,1639.0146,1071.0303,1636.3786,1065.6403,1630.51,1071.85" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="54" x="1769" y="1016.6016">relies on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="78" x="1757" y="1030.7344">[components]</text></g><!--MD5=[36186aec05fd232998e3b844505d576c]
+link vt_homepage to mex_components--><g id="link_vt_homepage_mex_components"><path d="M1644.04,974.15 C1622.87,1000.13 1597.8,1030.91 1576.06,1057.59 " fill="none" id="vt_homepage-to-mex_components" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1570.9,1063.93,1578.2753,1059.6167,1573.6206,1055.8307,1570.9,1063.93" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="54" x="1630" y="1016.6016">relies on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="78" x="1618" y="1030.7344">[components]</text></g><!--MD5=[abb6e121857a65cd967de2fbc2d42a15]
+link llt_atlas to mex_components--><g id="link_llt_atlas_mex_components"><path d="M1309.91,974.05 C1337.24,993.18 1367.9,1014.57 1396,1034 C1407.86,1042.2 1420.37,1050.8 1432.72,1059.28 " fill="none" id="llt_atlas-to-mex_components" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1439.57,1063.97,1434.6605,1056.9774,1431.2732,1061.9297,1439.57,1063.97" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="54" x="1409" y="1016.6016">relies on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="78" x="1397" y="1030.7344">[components]</text></g><!--MD5=[31b85ffbcf47baa1b95f8dc27c3b2877]
+link llt_reach to mex_components--><g id="link_llt_reach_mex_components"><path d="M1480.06,965.59 C1481.71,986.84 1484.67,1011.87 1490,1034 C1491.74,1041.21 1493.93,1048.63 1496.37,1055.95 " fill="none" id="llt_reach-to-mex_components" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1499.09,1063.84,1499.3097,1055.2988,1493.6394,1057.2604,1499.09,1063.84" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="54" x="1503" y="1016.6016">relies on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="78" x="1491" y="1030.7344">[components]</text></g><!--MD5=[da05afc1566896e02dde3a947053cadd]
+link vt_leadform to vt_leadform_builder--><g id="link_vt_leadform_vt_leadform_builder"><path d="M790.5,1172.58 C790.78,1199.89 791.13,1234.04 791.42,1262.59 " fill="none" id="vt_leadform-to-vt_leadform_builder" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="791.5,1270.87,794.4141,1262.8383,788.4145,1262.9026,791.5,1270.87" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="29" x="798" y="1223.6016">uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="41" x="792" y="1237.7344">[forms]</text></g><!--MD5=[5eb32001176df7899aff7c7e6536d569]
+link llt_3p_datafeeds to vtwa--><g id="link_llt_3p_datafeeds_vtwa"><path d="M2051.31,415.8 C2023.46,431.2 1993.96,451.64 1973,477 C1945.14,510.71 1928.57,557.51 1919.15,594.17 " fill="none" id="llt_3p_datafeeds-to-vtwa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1917.13,602.3,1921.9716,595.2602,1916.1488,593.8125,1917.13,602.3" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="29" x="1976.5" y="489.6016">uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="34" x="1974" y="503.7344">[data]</text></g><!--MD5=[d2885291e0392c80e1798cb105eafa12]
+link llt_3p_datafeed_jobs to vtwa--><g id="link_llt_3p_datafeed_jobs_vtwa"><path d="M2278.71,420.64 C2262.47,429.88 2244.84,439.28 2228,447 C2145.33,484.9 2111.07,465.15 2035,515 C2002.17,536.52 1971.94,568.28 1949.22,595.75 " fill="none" id="llt_3p_datafeed_jobs-to-vtwa" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1943.9,602.27,1951.2813,597.9669,1946.6318,594.1745,1943.9,602.27" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="29" x="2128.5" y="489.6016">uses</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="34" x="2126" y="503.7344">[data]</text></g><!--MD5=[10e18abd4cfac4f678c1dce5bc7a83bc]
+link vt_cms_proxy to dato--><g id="link_vt_cms_proxy_dato"><path d="M1144.69,686.03 C1116.67,728.79 1066.98,804.64 1032.58,857.15 " fill="none" id="vt_cms_proxy-to-dato" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1028.04,864.07,1034.924,859.0093,1029.8989,855.7307,1028.04,864.07" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="46" x="1108" y="781.6016">proxies</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="50" x="1106" y="795.7344">[content]</text></g><rect fill="none" height="28.4883" id="_legend" rx="7.5" ry="7.5" style="stroke:none;stroke-width:1.0;" width="221" x="2641" y="1400"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="26" x="2647" y="1419.5352">Ref:</text><a href="https://docs.google.com/presentation/d/1EYPaQqKt4taEnt6qrRg22j5EjmFW1BzNxdx-ZukGv1Y/edit#slide=id.p" target="_top" title="https://docs.google.com/presentation/d/1EYPaQqKt4taEnt6qrRg22j5EjmFW1BzNxdx-ZukGv1Y/edit#slide=id.p" xlink:actuate="onRequest" xlink:href="https://docs.google.com/presentation/d/1EYPaQqKt4taEnt6qrRg22j5EjmFW1BzNxdx-ZukGv1Y/edit#slide=id.p" xlink:show="new" xlink:title="https://docs.google.com/presentation/d/1EYPaQqKt4taEnt6qrRg22j5EjmFW1BzNxdx-ZukGv1Y/edit#slide=id.p" xlink:type="simple"><text fill="#0000FF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="179" x="2677" y="1419.5352">MEX Technology Overview</text></a><!--MD5=[e895ac68d5257ba7720641e363034143]
+@startuml
+!include /Users/dmitrymarkushevich/org-roam/external/C4_Container.puml
+!include /Users/dmitrymarkushevich/org-roam/external/C4_Component.puml
+
+
+Person(user, "User", "web traffic")
+
+
+System_Boundary(ads, "Ads") {
+        System(facebook, "Facebook", "Ads")
+        System(google, "Google", "Ads")
+        System(bing, "Bing", "Ads")
+}
+
+
+System_Boundary(vt, "varsitytutors.com") {
+        Component(mex_components, "MEX_Components", "Gem", "Provides Atlas, components and engine")
+        Component(vt_router, "vt-router", "nginx", "Router for varsitytutors.com and all web facing properties")
+        Component(vt_apigw, "vt-apigw", "nginx", "Router for API services")
+        Component(vt_homepage, "vt-homepage", "Rails", "Serves the root of varsitytutors.com")
+        Component(vt_ecom, "vt-ecom", "Rails", "Tutor galleries, about us; organic traffic")
+        Component(llt_atlas, "llt_atlas", "Rails", "Hosts PPC landing pages and experiments")
+        Component(vt_leadform, "vt-leadform", "Rails", "Lead Forms as a service")
+        Component(vt_leadform_builder, "vt-leadform-builder", "Rails", "Builds Lead Forms")
+        Component(llt_reach, "llt_reach", "Rails", "New business opportunities")
+        Component(vtwa, "vtwa", "Rails", "The original Monolith?")
+        Component(vt_contact, "vt-contact", "", "")
+        Component(vt_cms_proxy, "vt-cms-proxy", "proxy for dato")
+        Component(vt_mce, "MCE (marketing content engine)", "old system for page content")
+
+        System(vt_dynamodb, "DyanmoDB", "???")
+
+
+        System(aws_cloudfront, "CloudFront", "AWS", "CDN")
+        System(dato, "Dato", "Content Management System")
+}
+
+
+System_Boundary(marketing, "Marketing & BI") {
+        System(bi_s3, "S3", "BI Data store")
+        System(vt_bid, "vt-bid", "Managing marketing data?")
+        System(looker, "looker", "BI")
+        System(redshift, "redshift", "datawarehouse")
+        Component(llt_3p_datafeeds, "llt-3p-datafeeds", "VTWA <-> Facebook/google/bing?")
+        Component(llt_3p_datafeed_jobs, "llt-3p-datafeed-jobs", "VTWA <-> Facebook/google/bing?")
+        Component(mktg_extractor, "mktg-extractor", "Ads->S3 for BI")
+}
+
+
+Rel_U(mktg_extractor, facebook, "extracts", "ads")
+Rel(mktg_extractor, bi_s3, "stores", "ads performance")
+Rel(llt_3p_datafeed_jobs, bi_s3,  "stores", "ads performance")
+Rel(llt_3p_datafeeds, bi_s3, "stores", "ads performance")
+Rel(vt_bid, ads, "uploads", "bids")
+Rel(redshift, looker, "source of truth")
+Rel(bi_s3, redshift, "uploads")
+
+
+
+System_Boundary(ft, "firsttutors.com") {
+        Component(ft_rails, "ft-rails", "?")
+        Component(ft_php_app, "ft-php-web-app", "?")
+}
+
+
+System_Boundary(ut, "Universitytutors.com??") {
+        Component(ralphie, "ralphie", "?")
+        Component(ut_ppc, "ut-ppc", "?")
+        Component(ut_galleries, "ut-galleries", "?")
+}
+
+
+Rel(user, vt_router, "Uses", "HTTPS")
+Rel(user, aws_cloudfront, "Uses", "HTTPS")
+Rel(user, ft_php_app, "Uses", "HTTPS")
+Rel_D(user, ut, "Uses")
+
+' routing
+Rel(vt_router, vt_homepage, "fetches", "homepage")
+Rel(vt_router, vt_ecom, "fetches", "tutor galleries, about us")
+Rel(vt_router, llt_atlas, "fetches", "single page paid ads, lead form experiments, locale specific pages, partner pages")
+Rel(vt_router, llt_reach, "fetches", "Classes, courses, Collection, Self study, virtual summer camps")
+
+Rel(vt_apigw, vt_leadform, "routes", "lead forms")
+
+Rel(vt_mce, vt_apigw, "uses", "API")
+
+' service connections
+Rel(vt_ecom, vt_dynamodb,  "stores data", "?")
+
+
+' dependencies
+Rel(vt_ecom, mex_components,  "relies on", "components")
+Rel(vt_homepage, mex_components,  "relies on", "components")
+Rel(llt_atlas, mex_components,  "relies on", "components")
+Rel(llt_reach, mex_components,  "relies on", "components")
+
+Rel(vt_leadform, vt_leadform_builder, "uses", "forms")
+
+Rel(llt_3p_datafeeds, vtwa, "uses", "data")
+Rel(llt_3p_datafeed_jobs, vtwa, "uses", "data")
+
+
+Rel(vt_cms_proxy, dato, "proxies", "content")
+
+' - - -
+legend right
+Ref: [[https://docs.google.com/presentation/d/1EYPaQqKt4taEnt6qrRg22j5EjmFW1BzNxdx-ZukGv1Y/edit#slide=id.p MEX Technology Overview]]
+endlegend
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendBorderColor transparent
+skinparam LegendBackgroundColor transparent
+skinparam LegendFontColor #FFFFFF
+
+skinparam shadowing<<legendArea>> false
+skinparam rectangle<<legendArea>> {
+    backgroundcolor #00000000
+    bordercolor #00000000
+}
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam queue {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam actor {
+    StereotypeFontSize 12
+    shadowing false
+    style awesome
+}
+
+skinparam person {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    BorderStyle dashed
+}
+
+skinparam package {
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontStyle plain
+    BackgroundColor transparent
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<boundary>>StereotypeFontColor transparent
+skinparam rectangle<<boundary>>StereotypeFontColor transparent
+
+
+skinparam rectangle<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<enterprise_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<enterprise_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<enterprise_boundary>>StereotypeFontColor transparent
+
+
+
+skinparam rectangle<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<system_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<system_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<system_boundary>>StereotypeFontColor transparent
+
+
+
+skinparam rectangle<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<container_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<container_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<container_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam actor<<person>> {
+    StereotypeFontColor #08427B
+    FontColor #08427B
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam person<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_person>> {
+    StereotypeFontColor #686868
+    FontColor #686868
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam person<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam queue<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam actor<<system>> {
+    StereotypeFontColor #1168BD
+    FontColor #1168BD
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam person<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_system>> {
+    StereotypeFontColor #999999
+    FontColor #999999
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam person<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+skinparam rectangle<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<enterprise_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<enterprise_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<enterprise_boundary>>StereotypeFontColor transparent
+
+
+
+skinparam rectangle<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<system_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<system_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<system_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $person2 [48x48/16] {
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000002578888300000000005888864100000000000
+0000000007DFFFFFFFFD9643347BFFFFFFFFFB4000000000
+00000004EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB10000000
+0000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+00003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+0000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF50000
+0003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0000
+0009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+0009FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF2000
+0003FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFD0000
+0000BFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF50000
+00003FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFB00000
+000006FFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFE100000
+0000007FFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFD2000000
+00000004EFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFB10000000
+0000000007DF8FFFFFFFFFFFFFFFFFFFFFF8FB4000000000
+000000000002578888888888888888888864100000000000
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam queue<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam actor<<container>> {
+    StereotypeFontColor #438DD5
+    FontColor #438DD5
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam person<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam database<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam queue<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam actor<<external_container>> {
+    StereotypeFontColor #B3B3B3
+    FontColor #B3B3B3
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam person<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendBorderColor transparent
+skinparam LegendBackgroundColor transparent
+skinparam LegendFontColor #FFFFFF
+
+skinparam shadowing<<legendArea>> false
+skinparam rectangle<<legendArea>> {
+    backgroundcolor #00000000
+    bordercolor #00000000
+}
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam queue {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam actor {
+    StereotypeFontSize 12
+    shadowing false
+    style awesome
+}
+
+skinparam person {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    BorderStyle dashed
+}
+
+skinparam package {
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontStyle plain
+    BackgroundColor transparent
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<boundary>>StereotypeFontColor transparent
+skinparam rectangle<<boundary>>StereotypeFontColor transparent
+
+
+skinparam rectangle<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<enterprise_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<enterprise_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<enterprise_boundary>>StereotypeFontColor transparent
+
+
+
+skinparam rectangle<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<system_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<system_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<system_boundary>>StereotypeFontColor transparent
+
+
+
+skinparam rectangle<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<container_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<container_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<container_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam actor<<person>> {
+    StereotypeFontColor #08427B
+    FontColor #08427B
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam person<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_person>> {
+    StereotypeFontColor #686868
+    FontColor #686868
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam person<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam queue<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam actor<<system>> {
+    StereotypeFontColor #1168BD
+    FontColor #1168BD
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam person<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_system>> {
+    StereotypeFontColor #999999
+    FontColor #999999
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam person<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+skinparam rectangle<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<enterprise_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<enterprise_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<enterprise_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<enterprise_boundary>>StereotypeFontColor transparent
+
+
+
+skinparam rectangle<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<system_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<system_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<system_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<system_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $person2 [48x48/16] {
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000002578888300000000005888864100000000000
+0000000007DFFFFFFFFD9643347BFFFFFFFFFB4000000000
+00000004EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB10000000
+0000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+00003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+0000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF50000
+0003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0000
+0009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+0009FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF2000
+0003FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFD0000
+0000BFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF50000
+00003FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFB00000
+000006FFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFE100000
+0000007FFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFD2000000
+00000004EFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFB10000000
+0000000007DF8FFFFFFFFFFFFFFFFFFFFFF8FB4000000000
+000000000002578888888888888888888864100000000000
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam queue<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam actor<<container>> {
+    StereotypeFontColor #438DD5
+    FontColor #438DD5
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam person<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam database<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam queue<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam actor<<external_container>> {
+    StereotypeFontColor #B3B3B3
+    FontColor #B3B3B3
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam person<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+
+
+
+skinparam rectangle<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam database<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam queue<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam actor<<container_boundary>> {
+    FontColor transparent
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam person<<container_boundary>> {
+    FontColor #444444
+    BackgroundColor transparent
+    BorderColor #444444
+}
+skinparam package<<container_boundary>>StereotypeFontColor transparent
+skinparam rectangle<<container_boundary>>StereotypeFontColor transparent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam database<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam queue<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam actor<<component>> {
+    StereotypeFontColor #85BBF0
+    FontColor #85BBF0
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+skinparam person<<component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #85BBF0
+    BorderColor #78A8D8
+}
+
+
+skinparam rectangle<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam database<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam queue<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam actor<<external_component>> {
+    StereotypeFontColor #CCCCCC
+    FontColor #CCCCCC
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+skinparam person<<external_component>> {
+    StereotypeFontColor #000000
+    FontColor #000000
+    BackgroundColor #CCCCCC
+    BorderColor #BFBFBF
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+rectangle "<$person>\n==User\n\n web traffic" <<person>> as user 
+
+
+  rectangle "==Ads\n<size:12>[System]</size>" <<system_boundary>><<boundary>> as ads  {
+        rectangle "==Facebook\n\n Ads" <<system>> as facebook 
+        rectangle "==Google\n\n Ads" <<system>> as google 
+        rectangle "==Bing\n\n Ads" <<system>> as bing 
+}
+
+
+  rectangle "==varsitytutors.com\n<size:12>[System]</size>" <<system_boundary>><<boundary>> as vt  {
+        rectangle "==MEX_Components\n//<size:12>[Gem]</size>//\n\nProvides Atlas, components and engine" <<component>> as mex_components 
+        rectangle "==vt-router\n//<size:12>[nginx]</size>//\n\nRouter for varsitytutors.com and all web facing properties" <<component>> as vt_router 
+        rectangle "==vt-apigw\n//<size:12>[nginx]</size>//\n\nRouter for API services" <<component>> as vt_apigw 
+        rectangle "==vt-homepage\n//<size:12>[Rails]</size>//\n\nServes the root of varsitytutors.com" <<component>> as vt_homepage 
+        rectangle "==vt-ecom\n//<size:12>[Rails]</size>//\n\nTutor galleries, about us; organic traffic" <<component>> as vt_ecom 
+        rectangle "==llt_atlas\n//<size:12>[Rails]</size>//\n\nHosts PPC landing pages and experiments" <<component>> as llt_atlas 
+        rectangle "==vt-leadform\n//<size:12>[Rails]</size>//\n\nLead Forms as a service" <<component>> as vt_leadform 
+        rectangle "==vt-leadform-builder\n//<size:12>[Rails]</size>//\n\nBuilds Lead Forms" <<component>> as vt_leadform_builder 
+        rectangle "==llt_reach\n//<size:12>[Rails]</size>//\n\nNew business opportunities" <<component>> as llt_reach 
+        rectangle "==vtwa\n//<size:12>[Rails]</size>//\n\nThe original Monolith?" <<component>> as vtwa 
+        rectangle "==vt-contact" <<component>> as vt_contact 
+        rectangle "==vt-cms-proxy\n//<size:12>[proxy for dato]</size>//" <<component>> as vt_cms_proxy 
+        rectangle "==MCE (marketing content engine)\n//<size:12>[old system for page content]</size>//" <<component>> as vt_mce 
+
+        rectangle "==DyanmoDB\n\n ???" <<system>> as vt_dynamodb 
+
+
+        rectangle "<$CDN>\n==CloudFront\n\n AWS" <<system>> as aws_cloudfront 
+        rectangle "==Dato\n\n Content Management System" <<system>> as dato 
+}
+
+
+  rectangle "==Marketing & BI\n<size:12>[System]</size>" <<system_boundary>><<boundary>> as marketing  {
+        rectangle "==S3\n\n BI Data store" <<system>> as bi_s3 
+        rectangle "==vt-bid\n\n Managing marketing data?" <<system>> as vt_bid 
+        rectangle "==looker\n\n BI" <<system>> as looker 
+        rectangle "==redshift\n\n datawarehouse" <<system>> as redshift 
+        rectangle "==llt-3p-datafeeds\n//<size:12>[VTWA <-> Facebook/google/bing?]</size>//" <<component>> as llt_3p_datafeeds 
+        rectangle "==llt-3p-datafeed-jobs\n//<size:12>[VTWA <-> Facebook/google/bing?]</size>//" <<component>> as llt_3p_datafeed_jobs 
+        rectangle "==mktg-extractor\n//<size:12>[Ads->S3 for BI]</size>//" <<component>> as mktg_extractor 
+}
+
+
+mktg_extractor -UP->> facebook : **extracts**\n//<size:12>[ads]</size>//
+mktg_extractor - ->> bi_s3 : **stores**\n//<size:12>[ads performance]</size>//
+llt_3p_datafeed_jobs - ->> bi_s3 : **stores**\n//<size:12>[ads performance]</size>//
+llt_3p_datafeeds - ->> bi_s3 : **stores**\n//<size:12>[ads performance]</size>//
+vt_bid - ->> ads : **uploads**\n//<size:12>[bids]</size>//
+redshift - ->> looker : **source of truth**
+bi_s3 - ->> redshift : **uploads**
+
+
+
+  rectangle "==firsttutors.com\n<size:12>[System]</size>" <<system_boundary>><<boundary>> as ft  {
+        rectangle "==ft-rails\n//<size:12>[?]</size>//" <<component>> as ft_rails 
+        rectangle "==ft-php-web-app\n//<size:12>[?]</size>//" <<component>> as ft_php_app 
+}
+
+
+  rectangle "==Universitytutors.com??\n<size:12>[System]</size>" <<system_boundary>><<boundary>> as ut  {
+        rectangle "==ralphie\n//<size:12>[?]</size>//" <<component>> as ralphie 
+        rectangle "==ut-ppc\n//<size:12>[?]</size>//" <<component>> as ut_ppc 
+        rectangle "==ut-galleries\n//<size:12>[?]</size>//" <<component>> as ut_galleries 
+}
+
+
+user - ->> vt_router : **Uses**\n//<size:12>[HTTPS]</size>//
+user - ->> aws_cloudfront : **Uses**\n//<size:12>[HTTPS]</size>//
+user - ->> ft_php_app : **Uses**\n//<size:12>[HTTPS]</size>//
+user -DOWN->> ut : **Uses**
+
+vt_router - ->> vt_homepage : **fetches**\n//<size:12>[homepage]</size>//
+vt_router - ->> vt_ecom : **fetches**\n//<size:12>[tutor galleries, about us]</size>//
+vt_router - ->> llt_atlas : **fetches**\n//<size:12>[single page paid ads, lead form</size>//\n//<size:12>experiments, locale specific pages,</size>//\n//<size:12>partner pages]</size>//
+vt_router - ->> llt_reach : **fetches**\n//<size:12>[Classes, courses, Collection, Self</size>//\n//<size:12>study, virtual summer camps]</size>//
+
+vt_apigw - ->> vt_leadform : **routes**\n//<size:12>[lead forms]</size>//
+
+vt_mce - ->> vt_apigw : **uses**\n//<size:12>[API]</size>//
+
+vt_ecom - ->> vt_dynamodb : **stores data**\n//<size:12>[?]</size>//
+
+
+vt_ecom - ->> mex_components : **relies on**\n//<size:12>[components]</size>//
+vt_homepage - ->> mex_components : **relies on**\n//<size:12>[components]</size>//
+llt_atlas - ->> mex_components : **relies on**\n//<size:12>[components]</size>//
+llt_reach - ->> mex_components : **relies on**\n//<size:12>[components]</size>//
+
+vt_leadform - ->> vt_leadform_builder : **uses**\n//<size:12>[forms]</size>//
+
+llt_3p_datafeeds - ->> vtwa : **uses**\n//<size:12>[data]</size>//
+llt_3p_datafeed_jobs - ->> vtwa : **uses**\n//<size:12>[data]</size>//
+
+
+vt_cms_proxy - ->> dato : **proxies**\n//<size:12>[content]</size>//
+
+legend right
+Ref: [[https://docs.google.com/presentation/d/1EYPaQqKt4taEnt6qrRg22j5EjmFW1BzNxdx-ZukGv1Y/edit#slide=id.p MEX Technology Overview]]
+endlegend
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 10:01:30 PDT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: CA
+--></g></svg>

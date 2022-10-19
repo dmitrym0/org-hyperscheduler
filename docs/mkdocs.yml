@@ -1,5 +1,6 @@
 site_name: My Docs
 nav:
   - Home: index.md
+  - Arch Diagrams: arch.md
 plugins:
   - techdocs-core
