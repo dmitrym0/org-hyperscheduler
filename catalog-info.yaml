@@ -11,6 +11,6 @@ metadata:
       title: My Dashboard
       icon: dashboard
 spec:
-  type: other
+  type: service
   lifecycle: unknown
   owner: guests
