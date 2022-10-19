@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: org-hyperscheduler
+  annotations:
+    github.com/project-slug: dmitrym0/org-hyperscheduler
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
