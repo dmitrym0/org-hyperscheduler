@@ -4,6 +4,8 @@ metadata:
   name: org-hyperscheduler
   annotations:
     github.com/project-slug: dmitrym0/org-hyperscheduler
+  annotations:
+    backstage.io/techdocs-ref: value
 spec:
   type: other
   lifecycle: unknown
