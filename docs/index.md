@@ -1,1 +1,1 @@
-Backstage demo docs --
+Backstage demo docs.
