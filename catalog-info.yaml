@@ -4,7 +4,7 @@ metadata:
   name: org-hyperscheduler
   annotations:
     github.com/project-slug: dmitrym0/org-hyperscheduler
-    backstage.io/techdocs-ref: value
+    backstage.io/techdocs-ref: dir:docs
   links:
     - url: https://dashboard.example.com
       title: My Dashboard
