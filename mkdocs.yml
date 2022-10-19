@@ -4,3 +4,4 @@ nav:
   - Arch Diagrams: arch.md
 plugins:
   - techdocs-core
+  - search
