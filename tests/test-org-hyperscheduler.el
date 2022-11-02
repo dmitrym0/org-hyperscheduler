@@ -48,6 +48,10 @@ SCHEDULED: <2026-01-23 Sun>
 :END:
 * This heading shouldn't be there because it has an inactive time stamp
 [2022-09-06 Tue]
+* DONE This heading should be there because it's done and scheduled so we want it to appear greyed out on the calendar.
+SCHEDULED: <2022-11-02 Wed 09:30-10:00>
+:PROPERTIES:
+
 ")
 
 (defvar mock-org-contents-unprocessed
@@ -390,6 +394,6 @@ SCHEDULED: <2022-01-23 Sun>
               (with-mock-contents
                mock-org-contents-org-ql-test
                '(lambda () (let ((number-of-todo-entries (length (org-hyperscheduler-get-calendar-entries nil))))
-                             (expect number-of-todo-entries :to-be 4))))
+                             (expect number-of-todo-entries :to-be 5))))
               )
           )
