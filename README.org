@@ -77,6 +77,15 @@ For now you can either download the source and install it manually or with ~use-
     :files ("*")))
 #+end_src
 
+You can also use quelpa and install with the snippet below:
+
+#+BEGIN_SRC elisp
+(package-install 'quelpa-use-package)
+(require 'quelpa-use-package)
+
+(use-package org-hyperscheduler
+  :quelpa (org-hyperscheduler :fetcher github :repo "dmitrym0/org-hyperscheduler"))
+#+END_SRC
 
 You can then invoke ~M-x org-hyperscheduler-open~ to invoke the web view.
 
