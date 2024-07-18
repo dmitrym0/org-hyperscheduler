@@ -97,7 +97,7 @@ export function ReactCalendar(props) {
             if (payload?.command) {
                 console.log(`[websocket] Got command =${payload.command}=`);
                 if (payload.command === 'invalidate') {
-                    queryClient.invalidateQueries(['agenda']);
+                    invalidateCachedAgenda();
                 }
                 else if (payload.command === 'update-settings') {
                     console.log(payload);
@@ -159,6 +159,45 @@ export function ReactCalendar(props) {
     }
     );
 
+
+    const updateEvent = useMutation(existingEvent => {
+        asyncSend(existingEvent);
+        console.log("Sending an update");
+    },
+                                    {
+        onMutate: async existingEvent => {
+            // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+            await queryClient.cancelQueries(['agenda', existingEvent.id])
+
+            // Snapshot the previous value
+            const ag = queryClient.getQueryData(['agenda']).agenda;
+
+            console.log("On mutate");
+
+            // walk all the events, when we find the one that matches
+            // update it which will force a local UI.
+            const updatedAgenda = ag.map(function (event, index) {
+                if (event.ID === existingEvent.data.id) {
+                    console.log("Found the entry to mutate.");
+                    const updatedEvent = event;
+                    updatedEvent.startDate = existingEvent.data.startjs;
+                    updatedEvent.endDate= existingEvent.data.endjs;
+                    return updatedEvent;
+                }
+                return event;
+            });
+
+
+
+            // Optimistically update to the new value
+            queryClient.setQueryData(['agenda'], {agenda: updatedAgenda});
+
+            // Return a context with the previous and new todo
+            return {agenda: ag};
+        }
+
+    })
+
     const useAgenda = () => useQuery(["agenda"],
         fetchAgenda,
         {
@@ -206,10 +245,9 @@ export function ReactCalendar(props) {
         {
             id: '4',
             name: 'Done Entries',
-            backgroundColor: '#DCDCDC',
+            backgroundColor: '#848482',
             dragColor: '#00a9ff',
             borderColor: '#00a9ff'
-
         }
 
 
@@ -220,6 +258,8 @@ export function ReactCalendar(props) {
     const parseAgenda = (agenda) => {
         console.log("Parsing agenda...");
         const schedule = [];
+
+        console.log(agenda);
 
         if (agenda === undefined) {
             console.warn("Empty agenda!");
@@ -238,7 +278,11 @@ export function ReactCalendar(props) {
 
         console.log(`${agenda.length} items in agenda.`);
 
-        for (const agendaItem of agenda) {
+//        console.groupCollapsed("agenda");
+
+        for (let i = 0; i < agenda.length; i++) {
+            const agendaItem = agenda[i];
+            // console.log(`${i} ${agendaItem["ITEM"]}`);
             let calendarItem = {
                 id: agendaItem["ID"],
                 calendarId: "1",
@@ -265,7 +309,7 @@ export function ReactCalendar(props) {
                 calendarItem.calendarId = "4";
             }
 
-            if (agendaItem.clockedList) {
+            if (agendaItem.clockedList.length) {
                 for (const clockedItem of agendaItem.clockedList) {
                     let clockedEntry = {
                         id: agendaItem["ID"],
@@ -281,22 +325,42 @@ export function ReactCalendar(props) {
                 }
             }
 
+            if (i === 15) {
+                console.log("asdf");
+                // debugger;
+            }
             // dont show done tasks when it has clocked entries
-            if (!(calendarItem.calendarId === "4" && !calendarItem.clockedList)) {
+            // dont show entries that don't have a start/end date (these are just clocked entries)
+            if (!isDoneTaskWithClockedEntries(calendarItem) &&
+                !isUnscheduledEntry(calendarItem)) {
                 schedule.push(calendarItem);
             }
         }
 
+//        console.groupEnd();
+
+
         return schedule;
     }
+
+    const isDoneTaskWithClockedEntries = (calendarItem) => {
+        return (calendarItem.TODO === "DONE" && !calendarItem?.clockedList?.length);
+    }
+
+    const isUnscheduledEntry = (calendarItem) => {
+        return !(calendarItem.start && calendarItem.end);
+    }
+
 
     console.log("Rendering ReactCalendar");
 
     const [settings, onSettingsChange] = useState({
-      "defaultCalendarView": "week",
-      "showDone": true,
-      "showClocked": true
+        "defaultCalendarView": "week",
+        "showDone": true,
+        "showClocked": true,
+        "readOnly": false
     });
+
     const [calendarView, onCalendarViewChange] = useState("week");
     const [agenda, setAgenda] = useState([]);
 
@@ -307,6 +371,7 @@ export function ReactCalendar(props) {
     const onBeforeUpdateSchedule = (payload) => {
         const event = payload.event;
         let changes = payload.changes;
+        const ch = {...payload.changes};
 
         // if we change the event by dragging the bottom handle in the UI we only get the end date.
         if (changes.start === undefined) {
@@ -315,9 +380,11 @@ export function ReactCalendar(props) {
 
         console.log(`Time changed to ${getUnixTimestampFromDate(changes.end)}`);
 
-        let update_event_data = {id: event.id, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
-        asyncSend({"command": "update-event", "data":update_event_data});
-        getCalInstance().updateEvent(event.id, event.calendarId, changes);
+        let update_event_data = {id: event.id, startjs: changes.start, endjs: changes.end, start: getUnixTimestampFromDate(changes.start), end: getUnixTimestampFromDate(changes.end)};
+        getCalInstance().updateEvent(event.id, event.calendarId, ch);
+        updateEvent.mutate({"command": "update-event", "data":update_event_data});
+        //asyncSend({"command": "update-event", "data":update_event_data});
+
     };
 
     const onBeforeCreateEvent = (event) => {
@@ -362,7 +429,7 @@ export function ReactCalendar(props) {
 
         <div>
 
-            <NoConnectionModal message="You're in read-only mode. No changes can be made. See.." visible={true}/>
+            <InformationalModal message="You're in read-only mode. No changes can be made." visible={settings.readOnly}/>
             <Container breakpoint="fluid">
 
             <Navbar>
@@ -469,7 +536,7 @@ export function ReactCalendar(props) {
 }
 
 
-function NoConnectionModal(props) {
+function InformationalModal(props) {
     const [visible, setVisibility] = useState(props.visible);
 
     return (

@@ -268,6 +268,7 @@ Takes _WS and FRAME as arguments."
          (not org-hyperscheduler-readonly-mode)
          org-hyperscheduler-exclude-from-org-roam)
     (org-entry-put (point) "ROAM_EXCLUDE" "t"))
+  (message (format "headline -> %s (buffer %s)" (cdr (assoc "ITEM" (org-entry-properties))) (current-buffer)))
   (let* ((props (org-entry-properties))
          (json-null json-false)
          (js-date (org-hyperscheduler-get-js-date-pair-for-headline))
@@ -290,6 +291,8 @@ Return a structure that is JSONable."
 
 ;; (org-map-entries #'org-hyperscheduler-get-agenda org-hyperscheduler-agenda-filter scope))
 ;; (org-ql-select  "~/org-roam/daily/2022-09-06.org" '(or (todo "DONE" "TODO") (planning)) :action #'org-hyperscheduler-get-agenda))
+;; easy way to generate a a short agenda is to point a list of a single file.
+;;  (let ((entries (org-ql-select '("~/org-roam/vt-cal.org") '(or
   (let ((entries (org-ql-select org-agenda-files '(or
                                                    (ts-active)
                                                    (clocked)
@@ -307,6 +310,7 @@ Return a structure that is JSONable."
 
 (defun org-hyperscheduler-get-js-date-pair-for-headline ()
   "Converts headline's timestamp into JS format."
+  ;; get the date propertye
   (let* ((plist (car (cdr (org-element-property :scheduled  (org-element-at-point)))))
          (plist (or plist (car (cdr (org-timestamp-from-string (org-entry-get nil "TIMESTAMP")))))))
     (when plist

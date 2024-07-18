@@ -4,7 +4,7 @@
 
 
 
-* org-hyperscheduler 
+* org-hyperscheduler
 
 ** What is Hyperscheduling
 #+begin_quote
@@ -103,13 +103,23 @@ See ~org-hyperscheduler-exclude-from-org-roam~ through ~M-x customize-group org-
 
 ** Development
 
+There are two components to org-hyperscheduler:
+
+- Emacs Code (elisp)
+- web component (javascript)
 
 *** Running tests
+
 
 1. Install [[https://github.com/cask/cask][cask]] (~brew install cask~).
 2. Run ~cask~ to install dependencies.
 3. Run ~cask exec buttercup -L .~
 
+
+*** Javascript
+1. Install vite.js
+2. Run the dev version (in =calendar-react/org-hyperscheduler=):
+   =npm run dev=
 
 
 *** See also
@@ -120,4 +130,3 @@ org-hyperscheduler was heavily inspired by [[https://github.com/org-roam/org-roa
 **** calfw
 
 [[https://github.com/kiwanami/emacs-calfw][calfw]] is a (textmode) calendaring framwork for emacs. I found it somewhat late into the development of org-hyperscheduler. If I found it earlier, I may have skipepd developing this.
-

@@ -89,22 +89,57 @@ function onClickNavi(e) {
 // - time stamped items (in practice this comes from org-gcal)
 let calendar = new tui.Calendar('#calendar', {
     calendars: [
-    {
-      id: '1',
-      name: 'Scheduled Items',
-      color: '#ffffff',
-      bgColor: '#9e5fff',
-      dragBgColor: '#9e5fff',
-      borderColor: '#9e5fff'
-    },
-    {
-      id: '2',
-      name: 'Timestamped Items',
-      color: '#000000',
-      bgColor: '#00a9ff',
-      dragBgColor: '#00a9ff',
-      borderColor: '#00a9ff'
-    },
+        {
+            id: '1',
+            name: 'Scheduled Items',
+            color: '#ffffff',
+            bgColor: '#9e5fff',
+            dragBgColor: '#9e5fff',
+            borderColor: '#9e5fff'
+        },
+        {
+            id: '2',
+            name: 'Timestamped Items',
+            color: '#000000',
+            bgColor: '#00a9ff',
+            dragBgColor: '#00a9ff',
+            borderColor: '#00a9ff'
+        },
+        {
+            id: '3',
+            name: 'Done Items',
+            color: '#000000',
+            bgColor: '#C0C0C0',
+            dragBgColor: '#00a9ff',
+            borderColor: '#00a9ff'
+        },
+        {
+            id: '4',
+            name: 'Work',
+            color: '#000000',
+            bgColor: '#FFFF6e',
+            dragBgColor: '#00a9ff',
+            borderColor: '#00a9ff'
+        },
+        {
+            id: '5',
+            name: 'Clocked Items',
+            color: '#000000',
+            bgColor: '#e2fee2',
+            dragBgColor: '#00a9ff',
+            borderColor: '#00a9ff'
+        },
+        {
+            id: '6',
+            name: 'Cancelled',
+            color: '#000000',
+            bgColor: '#FAA0A0',
+            dragBgColor: '#00a9ff',
+            borderColor: '#00a9ff'
+        },
+
+
+
     ],
 
     defaultView: 'week', // set 'month'
@@ -220,6 +255,7 @@ socket.onopen = function() {
 
 // callback for when we get data
 socket.onmessage = function(event) {
+    debugger
     // TODO: what?
     if (schedule !== null) {
         for (let existingEvent of schedule) {
@@ -227,15 +263,28 @@ socket.onmessage = function(event) {
         }
     }
 
+    if (JSON.parse(event.data).command === 'invalidate') {
+        console.log('Invalidating cache');
+        schedule = [];
+        fetchNewAgenda();
+        return;
+    }
+
     schedule = [];
     console.log(`[message] Data received from server: ${event.data}`);
     agenda = JSON.parse(event.data).agenda;
-    console.log(`${agenda.length} items in agenda.`);
+    console.log(`${agenda?.length} items in agenda.`);
     schedule = [];
 
-    debugger
+    let unscheduledTasks = 0;
 
     for (const agendaItem of agenda) {
+        // skip elements that don't have startDate or endDate
+        if (agendaItem["startDate"] === null ) {
+            unscheduledTasks++;
+            continue;
+        }
+
 
         let calendarItem = {
             id:  agendaItem["ID"],
@@ -259,9 +308,47 @@ socket.onmessage = function(event) {
             calendarItem.calendarId = 2;
         }
 
+        if (agendaItem["CALENDAR-ID"] === 'dmitrym@gmail.com') {
+        }
+
+        if (agendaItem["CALENDAR-ID"] === 'dmitry.markushevich@varsitytutors.com') {
+            calendarItem.calendarId = 4;
+        }
+
+
+
+        if (agendaItem["TODO"] === "DONE") {
+            calendarItem.calendarId = 3;
+            calendarItem.isReadOnly = true;
+        }
+
+        if (agendaItem["TODO"] === "CANCELLED") {
+            calendarItem.calendarId = 6;
+            calendarItem.isReadOnly = true;
+        }
+
+
+
+        if (agendaItem["clockedList"].length) {
+            for (const clockedItem of agendaItem["clockedList"]) {
+                let clockedEntry = {
+                    id: agendaItem["ID"],
+                    calendarId: "5",
+                    title: agendaItem["ITEM"].replaceAll(/\[\[.*:.*\]\[/ig, '').replaceAll(/\]\]/ig, ''),
+                    category: 'time',
+                    start: clockedItem["startDate"],
+                    end: clockedItem["endDate"],
+                    isReadOnly: true
+                };
+                schedule.push(clockedEntry);
+            }
+        }
+
+
         schedule.push(calendarItem);
     }
 
+    console.log('There are ' + unscheduledTasks + ' unscheduled tasks.');
 
 
     if (isReadOnly()) {
