@@ -128,5 +128,5 @@ org-hyperscheduler was heavily inspired by [[https://github.com/org-roam/org-roa
 
 **** calfw
 
-[[https://github.com/kiwanami/emacs-calfw][calfw]] is a (textmode) calendaring framwork for emacs. I found it somewhat late into the development of org-hyperscheduler. If I found it earlier, I may have skipepd developing this.
+[[https://github.com/kiwanami/emacs-calfw][calfw]] is a (textmode) calendaring framework for emacs. I found it somewhat late into the development of org-hyperscheduler. If I found it earlier, I may have skipped developing this.
 
