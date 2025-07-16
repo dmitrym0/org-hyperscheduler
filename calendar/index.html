@@ -1,3 +1,4 @@
+<html>
 <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
 
 <!-- If you use the default popups, use this. -->
@@ -11,19 +12,20 @@
       <span id="menu-navi">
         <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
         <button type="button" class="btn btn-default btn-sm change-day" data-action="change-day">Day</button>
+        <button type="button" class="btn btn-default btn-sm change-work-week" data-action="change-work-week">Workweek</button>
         <button type="button" class="btn btn-default btn-sm change-week" data-action="change-week">Week</button>
+        <button type="button" class="btn btn-default btn-sm change-month" data-action="change-month">Month</button>
         <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
-          <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+          <i class="calendar-icon ic-arrow-line-left" data-action="move-prev">&lt;</i>
         </button>
         <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
-          <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+          <i class="calendar-icon ic-arrow-line-right" data-action="move-next">&gt;</i>
         </button>
       </span>
       <span id="renderRange" class="render-range"></span>
     </div>
 
     <div id="calendar"></div>
-  
 
 <div class="modal"><!-- Place at bottom of page --></div>
 
@@ -35,3 +37,4 @@
 <script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
 <script src="index.js"></script>
 
+</html>

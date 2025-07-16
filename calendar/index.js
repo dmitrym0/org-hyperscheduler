@@ -37,6 +37,9 @@
 let schedule = window.localStorage.getItem('schedule');
 let agenda;
 
+let startDayOfWeek = 1; // monday
+let visibleWeeksCount = 2; // visible weeks count in monthly
+
 // set readonly mode
 function setReadonly() {
   calendar.setOptions({isReadOnly:true});
@@ -60,7 +63,6 @@ function refreshCalendar() {
 // handler for day/week/month views, as well next/previous.
 function onClickNavi(e) {
   var action = getDataAction(e.target);
-
   switch (action) {
     case 'move-prev':
       calendar.prev();
@@ -74,13 +76,31 @@ function onClickNavi(e) {
     case 'change-day':
       calendar.changeView('day', true);
       break;
+    case 'change-work-week':
+      calendar.changeView('week', true);
+      calendar.setOptions({week: {
+        narrowWeekend: true,
+        workweek: true,
+        startDayOfWeek: startDayOfWeek
+      }});
+      break;
     case 'change-week':
       calendar.changeView('week', true);
+      calendar.setOptions({week: {
+        workweek: false,
+        startDayOfWeek: startDayOfWeek
+      }});
+      break;
+    case 'change-month':
+      calendar.changeView('month', true);
+      calendar.setOptions({month: {
+        visibleWeeksCount: visibleWeeksCount,
+        startDayOfWeek: startDayOfWeek
+      }});
       break;
     default:
       return;
   }
-
 }
 
 // initialize the calendar object.
@@ -109,18 +129,21 @@ let calendar = new tui.Calendar('#calendar', {
 
     defaultView: 'week', // set 'month'
     month: {
-      visibleWeeksCount: 2 // visible week count in monthly
+        visibleWeeksCount: visibleWeeksCount,
+        startDayOfWeek: startDayOfWeek,
     },
-    
+
     useCreationPopup: true,
     useDetailPopup: true,
     taskView: false, 
     usageStatistics: false,
     isReadOnly: false,
-      week: {
+    week:
+    {
         narrowWeekend: true,
-        startDayOfWeek: 1 // monday
-      },
+        workweek: true,
+        startDayOfWeek: startDayOfWeek,
+    },
     scheduleView:  ['allday', 'time'],
 
   });
