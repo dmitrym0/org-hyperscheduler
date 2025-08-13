@@ -600,10 +600,6 @@ SCHEDULED: <2022-01-23 Sun>
 
 (describe "calendar configuration"
           (before-each
-           ;; override work calendar matcher
-              (plist-put (cdr (assoc 'work org-hyperscheduler-calendar-categories))
-                         :matcher
-                         `(lambda (item) (string= (cdr (assoc "CALENDAR-ID" item)) "dmitry@work.com")))
            )
           (it "can assign work calendar category correctly"
               (let ((work-item '(("ITEM" . "Work meeting")

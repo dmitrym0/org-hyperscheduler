@@ -101,6 +101,16 @@ this setting to take effect."
 
 (defcustom org-hyperscheduler-calendar-categories
   '(
+    (work
+     :name "Work Calendar"
+     :color "#000000"
+     :bg-color "#FFFF6e"
+     :border-color "#FFFF6e"
+     :read-only t
+     :matcher (lambda (item) (string= (cdr (assoc "CALENDAR-ID" item))
+                                      "dmitry@work.com")))
+
+
     (done
      :name "Done Items"
      :color "#000000"
@@ -108,9 +118,6 @@ this setting to take effect."
      :border-color "#C0C0C0"
      :read-only t
      :matcher (lambda (item) (string= (cdr (assoc "TODO" item)) "DONE")))
-
-
-
 
     (timestamped
      :name "Timestamped Items"
@@ -120,9 +127,6 @@ this setting to take effect."
      :read-only nil
      :matcher (lambda (item) (and (not (assoc "SCHEDULED" item))
                                   (assoc "TIMESTAMP" item))))
-
-
-
     (clocked
      :name "Clocked Time"
      :color "#000000"
