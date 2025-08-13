@@ -24,3 +24,11 @@ tests: test
 
 coverage: test
 	genhtml -o coverage/ coverage/lcov.info
+
+.PHONY: build-svelte-calendar
+build-svelte-calendar:
+	cd svelte-calendar && npm run build
+	rm -rf calendar/static calendar/_app calendar/*.html calendar/*.js calendar/*.css
+	cp -r svelte-calendar/dist/* calendar/
+	cp svelte-calendar/public/index.html calendar/
+	@echo "Static svelte calendar built and copied to calendar/ directory"

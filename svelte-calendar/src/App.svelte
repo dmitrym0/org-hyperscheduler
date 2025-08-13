@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { agenda, isConnected, isLoading, lastSyncTime, syncedItemCount, calendarConfig } from '$lib/websocket';
-	import { transformAgendaToCalendarEvents, getUnixTimestampFromDate } from '$lib/calendar';
-	import { websocketManager } from '$lib/websocket';
+	import { agenda, isConnected, isLoading, lastSyncTime, syncedItemCount, calendarConfig } from './lib/websocket';
+	import { transformAgendaToCalendarEvents, getUnixTimestampFromDate } from './lib/calendar';
+	import { websocketManager } from './lib/websocket';
 
 	let calendarElement: HTMLElement;
 	let calendar: any;
@@ -72,12 +72,30 @@
 	}
 
 	onMount(async () => {
+		// Start WebSocket connection
+		websocketManager.connect();
+		
 		// Load TUI Calendar scripts
 		await loadScripts();
 		initializeCalendar();
 	});
 
 	async function loadScripts() {
+		// Load CSS files first
+		const stylesheets = [
+			'https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.css',
+			'https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.css',
+			'https://uicdn.toast.com/tui-calendar/latest/tui-calendar.min.css'
+		];
+
+		for (const href of stylesheets) {
+			const link = document.createElement('link');
+			link.rel = 'stylesheet';
+			link.href = href;
+			document.head.appendChild(link);
+		}
+
+		// Load JavaScript files
 		const scripts = [
 			'https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js',
 			'https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js',
