@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "vite build",
-    "dev": "vite dev",
+    "dev": "vite preview --port 5173",
     "preview": "vite preview"
   },
   "devDependencies": {
